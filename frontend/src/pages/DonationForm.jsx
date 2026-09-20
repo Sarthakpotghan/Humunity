@@ -1,31 +1,22 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
-import { useAuth } from '../context/AuthContext';
+import { MaterialIcon } from '../components/ui';
+import Toast from '../components/Toast';
 
 const CONDITIONS = [
-  { value: 'new', label: 'New - Never used, with tags' },
-  { value: 'good', label: 'Good - Lightly used, excellent condition' },
-  { value: 'fair', label: 'Fair - Used, visible wear but functional' },
+  { value: 'new', label: 'New' },
+  { value: 'good', label: 'Good' },
+  { value: 'fair', label: 'Fair' },
 ];
 
 const CATEGORIES = [
-  { value: 'clothes', label: 'Clothes' },
-  { value: 'stationery', label: 'Educational Stationery' },
+  { value: 'clothes', label: 'Clothes', icon: 'checkroom' },
+  { value: 'stationery', label: 'Educational Stationery', icon: 'menu_book' },
 ];
 
-const SEASONS = [
-  { value: 'spring', label: 'Spring' },
-  { value: 'summer', label: 'Summer' },
-  { value: 'autumn', label: 'Autumn' },
-  { value: 'winter', label: 'Winter' },
-];
-
-const GENDERS = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' },
-  { value: 'unisex', label: 'Unisex' },
-];
+const SEASONS = ['', 'spring', 'summer', 'autumn', 'winter'];
+const GENDERS = ['unisex', 'male', 'female'];
 
 export default function DonationForm() {
   const [formData, setFormData] = useState({
@@ -40,43 +31,45 @@ export default function DonationForm() {
     description: '',
     lat: '',
     lng: '',
-    address: '',
     available_from: '',
     available_to: '',
   });
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [toast, setToast] = useState(null);
   const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
   const navigate = useNavigate();
 
+  const showToast = (message, tone = 'success') => {
+    setToast({ message, tone });
+    setTimeout(() => setToast(null), 3500);
+  };
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
     setLoading(true);
     try {
       const payload = {
         ...formData,
-        quantity: parseInt(formData.quantity),
-        lat: parseFloat(formData.lat) || user?.lat,
-        lng: parseFloat(formData.lng) || user?.lng,
+        quantity: parseInt(formData.quantity, 10),
+        lat: formData.lat === '' ? undefined : parseFloat(formData.lat),
+        lng: formData.lng === '' ? undefined : parseFloat(formData.lng),
+        available_from: formData.available_from ? new Date(formData.available_from).toISOString() : undefined,
+        available_to: formData.available_to ? new Date(formData.available_to).toISOString() : undefined,
       };
-      // Remove empty optional fields
-      Object.keys(payload).forEach(key => {
-        if (payload[key] === '' || payload[key] === null) {
+      Object.keys(payload).forEach((key) => {
+        if (payload[key] === '' || payload[key] === null || payload[key] === undefined) {
           delete payload[key];
         }
       });
 
       const response = await api.post('/donations', payload);
-      setSuccess('Donation listed successfully!');
-      setTimeout(() => navigate(`/matches/${response.data.id}`), 1500);
+      showToast('Donation listed! Running matching engine...');
+      setTimeout(() => navigate(`/matches/${response.data.id}`), 800);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to create donation');
     } finally {
@@ -84,234 +77,122 @@ export default function DonationForm() {
     }
   };
 
-  const handleAddressSelect = (address, lat, lng) => {
-    setFormData({ ...formData, address, lat: lat.toString(), lng: lng.toString() });
-  };
-
   return (
-    <div className="max-w-3xl mx-auto">
-      <div className="bg-white shadow rounded-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">List a Donation</h2>
+    <div className="min-h-screen bg-surface font-body text-on-surface">
+      <header className="sticky top-0 z-40 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container-high">
+        <div className="max-w-3xl mx-auto px-gutter-mobile h-16 flex items-center gap-3">
+          <button type="button" onClick={() => navigate('/donor/dashboard/items')} className="icon-btn" aria-label="Back">
+            <MaterialIcon name="arrow_back" size={22} />
+          </button>
+          <h1 className="font-headline-md text-headline-md text-on-surface">List a Donation</h1>
+        </div>
+      </header>
 
-        {error && (
-          <div className="mb-4 bg-red-50 text-red-600 p-4 rounded-lg text-sm">
-            {error}
+      <main className="max-w-3xl mx-auto px-gutter-mobile py-6 pb-24">
+        <form className="bg-surface-container-lowest rounded-lg shadow-card border border-outline-variant/20 p-6 flex flex-col gap-6" onSubmit={handleSubmit}>
+          {error && (
+            <div className="bg-error-container text-on-error-container rounded-lg p-3.5 font-body-sm flex items-center gap-2">
+              <MaterialIcon name="error" size={18} />{error}
+            </div>
+          )}
+
+          <div className="flex flex-col gap-2">
+            <span className="font-label-md text-on-surface">Category *</span>
+            <div className="grid grid-cols-2 gap-3">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.value}
+                  type="button"
+                  onClick={() => setFormData({ ...formData, category: cat.value })}
+                  className={`flex items-center gap-2 rounded-full py-2.5 px-4 font-label-md transition-colors ${
+                    formData.category === cat.value ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-surface-container-low text-on-surface-variant'
+                  }`}
+                >
+                  <MaterialIcon name={cat.icon} size={18} />
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
-        )}
-        {success && (
-          <div className="mb-4 bg-green-50 text-green-600 p-4 rounded-lg text-sm">
-            {success}
-          </div>
-        )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Category *</label>
-              <select
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat.value} value={cat.value}>{cat.label}</option>
-                ))}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Item Type *</label>
+              <input name="item_type" type="text" required placeholder="e.g., jackets, notebooks" value={formData.item_type} onChange={handleChange} className="field" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Condition *</label>
+              <select name="condition" value={formData.condition} onChange={handleChange} required className="field">
+                {CONDITIONS.map((c) => <option key={c.value} value={c.value}>{c.label}</option>)}
               </select>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Item Type *</label>
-              <input
-                name="item_type"
-                type="text"
-                value={formData.item_type}
-                onChange={handleChange}
-                required
-                placeholder="e.g., jackets, notebooks"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              />
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Quantity *</label>
+              <input name="quantity" type="number" min="1" required value={formData.quantity} onChange={handleChange} className="field" />
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Condition *</label>
-              <select
-                name="condition"
-                value={formData.condition}
-                onChange={handleChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              >
-                {CONDITIONS.map((cond) => (
-                  <option key={cond.value} value={cond.value}>{cond.label}</option>
-                ))}
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Size</label>
+              <input name="size" type="text" placeholder="e.g., M, L, 100 pages" value={formData.size} onChange={handleChange} className="field" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Age Group</label>
+              <input name="age_group" type="text" placeholder="e.g., 6-10, adult" value={formData.age_group} onChange={handleChange} className="field" />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Gender</label>
+              <select name="gender" value={formData.gender} onChange={handleChange} className="field">
+                {GENDERS.map((g) => <option key={g} value={g}>{g === 'unisex' ? 'Unisex' : g[0].toUpperCase() + g.slice(1)}</option>)}
               </select>
             </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Quantity *</label>
-              <input
-                name="quantity"
-                type="number"
-                min="1"
-                value={formData.quantity}
-                onChange={handleChange}
-                required
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Size</label>
-              <input
-                name="size"
-                type="text"
-                value={formData.size}
-                onChange={handleChange}
-                placeholder="e.g., M, L, XL, 100 pages"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Age Group</label>
-              <input
-                name="age_group"
-                type="text"
-                value={formData.age_group}
-                onChange={handleChange}
-                placeholder="e.g., 6-10, adult"
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Gender</label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              >
-                {GENDERS.map((g) => (
-                  <option key={g.value} value={g.value}>{g.label}</option>
-                ))}
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Season</label>
-              <select
-                name="season"
-                value={formData.season}
-                onChange={handleChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-              >
-                <option value="">Select season</option>
-                {SEASONS.map((s) => (
-                  <option key={s.value} value={s.value}>{s.label}</option>
-                ))}
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Season</label>
+              <select name="season" value={formData.season} onChange={handleChange} className="field">
+                <option value="">Any season</option>
+                {SEASONS.filter(Boolean).map((s) => <option key={s} value={s}>{s[0].toUpperCase() + s.slice(1)}</option>)}
               </select>
             </div>
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              rows={3}
-              placeholder="Describe the items (e.g., '10 warm jackets for kids 6-10'). The system will extract details automatically."
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-            />
+          <div className="flex flex-col gap-1.5">
+            <label className="font-label-md text-on-surface">Description</label>
+            <textarea rows={3} name="description" placeholder="Describe the items, e.g. '10 warm jackets for kids 6-10'. Matching details are extracted automatically." value={formData.description} onChange={handleChange} className="field textarea" />
           </div>
 
-          <div className="border-t pt-6">
-            <h3 className="text-lg font-medium text-gray-900 mb-4">Location & Availability</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Address</label>
-                <input
-                  name="address"
-                  type="text"
-                  value={formData.address}
-                  onChange={handleChange}
-                  placeholder="Enter address (will auto-fill coordinates)"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                />
+          <div className="flex flex-col gap-3 border-t border-outline-variant/30 pt-5">
+            <span className="font-headline-sm text-headline-sm text-on-surface">Location &amp; Availability</span>
+            <p className="font-body-sm text-on-surface-variant">
+              Leave coordinates blank to use your profile location. Optional latitude/longitude numbers help volunteers find you.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="font-label-md text-on-surface">Latitude</label>
+                <input name="lat" type="number" step="any" placeholder="e.g., 28.6139" value={formData.lat} onChange={handleChange} className="field" />
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
-                  <input
-                    name="lat"
-                    type="number"
-                    step="any"
-                    value={formData.lat}
-                    onChange={handleChange}
-                    placeholder="Auto-filled from address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">Longitude</label>
-                  <input
-                    name="lng"
-                    type="number"
-                    step="any"
-                    value={formData.lng}
-                    onChange={handleChange}
-                    placeholder="Auto-filled from address"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                  />
-                </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="font-label-md text-on-surface">Longitude</label>
+                <input name="lng" type="number" step="any" placeholder="e.g., 77.2090" value={formData.lng} onChange={handleChange} className="field" />
               </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Available From</label>
-                <input
-                  name="available_from"
-                  type="datetime-local"
-                  value={formData.available_from}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                />
+              <div className="flex flex-col gap-1.5">
+                <label className="font-label-md text-on-surface">Available From</label>
+                <input name="available_from" type="datetime-local" value={formData.available_from} onChange={handleChange} className="field" />
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Available To</label>
-                <input
-                  name="available_to"
-                  type="datetime-local"
-                  value={formData.available_to}
-                  onChange={handleChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
-                />
+              <div className="flex flex-col gap-1.5">
+                <label className="font-label-md text-on-surface">Available Until</label>
+                <input name="available_to" type="datetime-local" value={formData.available_to} onChange={handleChange} className="field" />
               </div>
             </div>
           </div>
 
-          <div className="flex justify-end space-x-4 pt-4 border-t">
-            <button
-              type="button"
-              onClick={() => navigate(-1)}
-              className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={loading}
-              className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-hover disabled:opacity-50"
-            >
+          <div className="flex justify-end gap-3 border-t border-outline-variant/30 pt-5">
+            <button type="button" className="btn-outline" onClick={() => navigate('/donor/dashboard/items')}>Cancel</button>
+            <button type="submit" disabled={loading} className="btn-primary">
               {loading ? 'Listing...' : 'List Donation'}
             </button>
           </div>
         </form>
-      </div>
+      </main>
+
+      <Toast message={toast?.message} tone={toast?.tone} onClose={() => setToast(null)} />
     </div>
   );
 }

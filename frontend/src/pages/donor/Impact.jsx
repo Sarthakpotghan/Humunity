@@ -1,186 +1,123 @@
-import { MaterialIcon } from '../../components/ui';
-import { ImpactSnapshot } from '../../components/dashboard';
-import { Bar, Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler,
-} from 'chart.js';
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  BarElement,
-  LineElement,
-  PointElement,
-  ArcElement,
-  Title,
-  Tooltip,
-  Legend,
-  Filler
-);
-
-const monthlyData = {
-  labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-  datasets: [
-    {
-      label: 'Donations',
-      data: [12, 19, 15, 25, 22, 30],
-      backgroundColor: '#0F5B38',
-      borderRadius: 8,
-    },
-  ],
-};
-
-const categoryData = {
-  labels: ['Clothes', 'Stationery', 'Meals', 'Medical', 'Other'],
-  datasets: [
-    {
-      label: 'Items',
-      data: [156, 89, 67, 34, 12],
-      backgroundColor: [
-        '#0F5B38',
-        '#005B3D',
-        '#004226',
-        '#005236',
-        '#00412B',
-      ],
-      borderRadius: 8,
-    },
-  ],
-};
-
-const trendData = {
-  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
-  datasets: [
-    {
-      label: 'Items Donated',
-      data: [45, 52, 48, 61, 55, 67, 72, 69, 78],
-      borderColor: '#0F5B38',
-      backgroundColor: 'rgba(15, 91, 56, 0.1)',
-      fill: true,
-      tension: 0.4,
-      pointBackgroundColor: '#0F5B38',
-      pointBorderColor: '#fff',
-      pointBorderWidth: 2,
-      pointRadius: 4,
-      pointHoverRadius: 6,
-    },
-  ],
-};
-
-const chartOptions = {
-  responsive: true,
-  maintainAspectRatio: false,
-  plugins: {
-    legend: { display: false },
-    tooltip: {
-      backgroundColor: '#0D1C2E',
-      titleColor: '#fff',
-      bodyColor: '#fff',
-      padding: 12,
-      cornerRadius: 8,
-    },
-  },
-  scales: {
-    x: {
-      grid: { display: false },
-      ticks: { color: '#404942', font: { family: 'Inter', size: 11 } },
-    },
-    y: {
-      grid: { color: '#D5E3FC' },
-      ticks: { color: '#404942', font: { family: 'Inter', size: 11 }, stepSize: 10 },
-      beginAtZero: true,
-    },
-  },
-};
+import { useDonorData } from '../../hooks/useDonorData';
+import { StatusBadge, MaterialIcon } from '../../components/ui';
+import { formatDate, titleCase, formatScore } from '../../utils/format';
 
 export default function Impact() {
+  const { donations, matches, stats, loading, error } = useDonorData();
+
+  const categoryTotals = donations.reduce((acc, d) => {
+    acc[d.category] = (acc[d.category] || 0) + (d.quantity || 0);
+    return acc;
+  }, {});
+
+  const categoryList = Object.entries(categoryTotals).sort((a, b) => b[1] - a[1]);
+  const categoryMax = Math.max(1, ...categoryList.map(([, v]) => v));
+
+  const statusCounts = donations.reduce((acc, d) => {
+    acc[d.status] = (acc[d.status] || 0) + 1;
+    return acc;
+  }, {});
+
+  const recentMatches = [...matches].sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 6);
+
+  if (loading && donations.length === 0) {
+    return <div className="flex items-center justify-center h-64 text-on-surface-variant">Loading...</div>;
+  }
+
   return (
-    <div className="flex flex-col gap-4">
-      <h2 className="font-headline-md text-headline-md font-bold text-on-surface">Impact Analytics</h2>
-      
-      <ImpactSnapshot />
-      
-      <section className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/20 flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <MaterialIcon name="analytics" size={22} className="text-primary-container" />
-            <h3 className="font-headline-sm text-[17px] font-bold text-on-surface">Monthly Donations</h3>
-          </div>
+    <div className="flex flex-col gap-5">
+      <h1 className="font-headline-md text-headline-md text-on-surface">Impact Analytics</h1>
+
+      {error && (
+        <div className="bg-error-container text-on-error-container rounded-lg p-4 font-body-sm">{error}</div>
+      )}
+
+      <section className="grid grid-cols-3 gap-3">
+        <div className="bg-tertiary-container rounded-lg p-4 flex flex-col gap-1">
+          <span className="font-display text-display-lg text-on-tertiary-container">{stats.totalItems}</span>
+          <span className="font-label-sm text-on-tertiary-container">Items Donated</span>
         </div>
-        <div className="h-64">
-          <Bar data={monthlyData} options={chartOptions} />
+        <div className="bg-primary-container rounded-lg p-4 flex flex-col gap-1">
+          <span className="font-display text-display-lg text-on-primary-container">{stats.completedDeliveries}</span>
+          <span className="font-label-sm text-on-primary-container">Deliveries Completed</span>
+        </div>
+        <div className="bg-secondary-container rounded-lg p-4 flex flex-col gap-1">
+          <span className="font-display text-display-lg text-on-secondary-container">{stats.activeDonations}</span>
+          <span className="font-label-sm text-on-secondary-container">Active Donations</span>
         </div>
       </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <section className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/20 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <MaterialIcon name="category" size={22} className="text-primary-container" />
-              <h3 className="font-headline-sm text-[17px] font-bold text-on-surface">By Category</h3>
-            </div>
-          </div>
-          <div className="h-64">
-              <Bar data={categoryData} options={chartOptions} />
-            </div>
-        </section>
-
-        <section className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/20 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-1.5">
-              <MaterialIcon name="show_chart" size={22} className="text-primary-container" />
-              <h3 className="font-headline-sm text-[17px] font-bold text-on-surface">9-Month Trend</h3>
-            </div>
-          </div>
-          <div className="h-64">
-              <Line data={trendData} options={chartOptions} />
-            </div>
-        </section>
-      </div>
-
-      <section className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-outline-variant/20 flex flex-col gap-4">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5">
-            <MaterialIcon name="leaderboard" size={22} className="text-primary-container" />
-            <h3 className="font-headline-sm text-[17px] font-bold text-on-surface">Top NGOs Helped</h3>
-          </div>
+      <section className="bg-surface-container-lowest rounded-2xl p-5 shadow-card border border-outline-variant/20">
+        <div className="flex items-center gap-1.5 mb-4">
+          <MaterialIcon name="category" size={20} className="text-primary" />
+          <h3 className="font-headline-sm text-headline-sm text-on-surface">Items by Category</h3>
         </div>
-        <div className="flex flex-col gap-3">
-          {[
-            { name: 'Help Kids Foundation', items: 89, location: 'Delhi', badge: 'Verified' },
-            { name: 'Warm Hearts NGO', items: 67, location: 'Mumbai', badge: 'Verified' },
-            { name: 'School Aid Society', items: 54, location: 'Bangalore', badge: 'Verified' },
-            { name: 'Community Kitchen', items: 43, location: 'Chennai', badge: 'Verified' },
-            { name: 'Red Cross Camp', items: 38, location: 'Hyderabad', badge: 'Verified' },
-          ].map((ngo, index) => (
-            <div key={index} className="bg-surface-container-low rounded-xl p-3 flex items-center justify-between gap-3">
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-primary-container/10 text-primary-container flex items-center justify-center shrink-0">
-                  <MaterialIcon name="volunteer_activism" size={20} />
+        {categoryList.length === 0 ? (
+          <p className="py-6 text-center font-body-sm text-on-surface-variant">No donations listed yet</p>
+        ) : (
+          <div className="flex flex-col gap-3">
+            {categoryList.map(([cat, total]) => (
+              <div key={cat} className="flex flex-col gap-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="font-label-md text-on-surface capitalize">{cat}</span>
+                  <span className="font-label-md text-on-surface-variant">{total} items</span>
                 </div>
-                <div className="flex flex-col min-w-0">
-                  <span className="font-label-lg text-[13px] text-on-surface font-bold truncate">{ngo.name}</span>
-                  <span className="font-body-sm text-[11px] text-on-surface-variant truncate">{ngo.location}</span>
+                <div className="h-2.5 rounded-full bg-surface-container-high overflow-hidden">
+                  <div className="h-full rounded-full bg-tertiary" style={{ width: `${(total / categoryMax) * 100}%` }} />
                 </div>
               </div>
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="font-headline-sm text-[16px] font-bold text-on-surface">{ngo.items}</span>
-                <span className="text-on-surface-variant text-sm">items</span>
-                <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full font-label-sm text-[10px] font-bold">{ngo.badge}</span>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className="bg-surface-container-lowest rounded-2xl p-5 shadow-card border border-outline-variant/20">
+        <div className="flex items-center gap-1.5 mb-4">
+          <MaterialIcon name="inventory_2" size={20} className="text-primary" />
+          <h3 className="font-headline-sm text-headline-sm text-on-surface">Donation Status</h3>
         </div>
+        {Object.keys(statusCounts).length === 0 ? (
+          <p className="py-6 text-center font-body-sm text-on-surface-variant">No donations yet</p>
+        ) : (
+          <div className="flex flex-wrap gap-3">
+            {Object.entries(statusCounts).map(([status, count]) => (
+              <span key={status} className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low">
+                <StatusBadge status={status} size="sm" />
+                <span className="font-label-md font-bold text-on-surface">{count}</span>
+              </span>
+            ))}
+          </div>
+        )}
+      </section>
+
+      <section className="bg-surface-container-lowest rounded-2xl p-5 shadow-card border border-outline-variant/20">
+        <div className="flex items-center gap-1.5 mb-4">
+          <MaterialIcon name="volunteer_activism" size={20} className="text-primary" />
+          <h3 className="font-headline-sm text-headline-sm text-on-surface">Recent Matches</h3>
+        </div>
+        {recentMatches.length === 0 ? (
+          <p className="py-6 text-center font-body-sm text-on-surface-variant">No matches yet</p>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {recentMatches.map((m) => {
+              const donation = donations.find((x) => x.id === m.donation_id);
+              return (
+                <div key={m.id} className="bg-surface-container-low rounded-lg p-3 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-primary-container/50 text-on-primary-container flex items-center justify-center shrink-0">
+                    <MaterialIcon name="volunteer_activism" size={18} />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-label-md text-on-surface truncate">
+                      {donation ? titleCase(donation.item_type) : `Donation #${m.donation_id}`}
+                    </p>
+                    <p className="font-label-sm text-on-surface-variant">{formatDate(m.created_at)} · {formatScore(m.score)}</p>
+                  </div>
+                  <StatusBadge status={m.status} size="sm" />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </section>
     </div>
   );

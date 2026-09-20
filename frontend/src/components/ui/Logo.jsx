@@ -14,13 +14,13 @@ export default function Logo({ size = 'md', variant = 'full', className = '' }) 
       aria-label="Humunity"
     >
       <span
-        className="bg-gradient-primary rounded-full flex items-center justify-center text-on-primary shadow-card shrink-0"
+        className="bg-primary rounded-full flex items-center justify-center text-on-primary shadow-card shrink-0"
         style={{ width: dimensions.icon, height: dimensions.icon }}
       >
         <MaterialIcon name="volunteer_activism" size={Math.round(dimensions.icon * 0.62)} />
       </span>
       {variant === 'full' && (
-        <span className={`${dimensions.text} font-headline-md font-extrabold text-primary-container tracking-tight leading-none whitespace-nowrap`}>
+        <span className={`${dimensions.text} font-display font-extrabold text-on-surface tracking-tight leading-none whitespace-nowrap`}>
           Humunity
         </span>
       )}

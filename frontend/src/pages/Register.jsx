@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { Logo, MaterialIcon } from '../components/ui';
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -9,8 +10,10 @@ export default function Register() {
     password: '',
     role: 'donor',
     phone: '',
+    address: '',
   });
   const [error, setError] = useState('');
+  const [notice, setNotice] = useState('');
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
@@ -22,131 +25,103 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setNotice('');
     setLoading(true);
     try {
       await register(formData);
-      navigate('/login');
+      setNotice('Account created — you can now sign in.');
+      setTimeout(() => navigate('/login', { replace: true }), 1200);
     } catch (err) {
       setError(err.response?.data?.detail || 'Registration failed');
-    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="text-center text-3xl font-bold text-gray-900">Humunity</h2>
-          <p className="mt-2 text-center text-gray-600">Create your account</p>
+    <div className="min-h-screen flex items-center justify-center bg-surface px-4 py-10">
+      <div className="w-full max-w-md flex flex-col gap-8">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Logo size="xl" />
+          <div>
+            <h1 className="font-headline-lg text-headline-lg text-on-surface">Create your account</h1>
+            <p className="font-body-md text-on-surface-variant mt-1">Join the community matching surplus to needs</p>
+          </div>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="bg-surface-container-lowest rounded-lg shadow-card border border-outline-variant/20 p-6 flex flex-col gap-4" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm">
+            <div className="bg-error-container text-on-error-container rounded-lg p-3.5 font-body-sm flex items-center gap-2">
+              <MaterialIcon name="error" size={18} />
               {error}
             </div>
           )}
-          <div className="space-y-4">
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                Full Name
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                autoComplete="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="John Doe"
-              />
+          {notice && (
+            <div className="bg-tertiary-container text-on-tertiary-container rounded-lg p-3.5 font-body-sm flex items-center gap-2">
+              <MaterialIcon name="check_circle" size={18} />
+              {notice}
             </div>
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-                Email address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="john@example.com"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-                Password
-              </label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                required
-                minLength={8}
-                value={formData.password}
-                onChange={handleChange}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="••••••••"
-              />
-            </div>
-            <div>
-              <label htmlFor="role" className="block text-sm font-medium text-gray-700">
-                Role
-              </label>
-              <select
-                id="role"
-                name="role"
-                value={formData.role}
-                onChange={handleChange}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
-              >
-                <option value="donor">Donor</option>
-                <option value="ngo">NGO</option>
-              </select>
-            </div>
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
-                Phone (optional)
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                autoComplete="tel"
-                value={formData.phone}
-                onChange={handleChange}
-                className="mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="+91 98765 43210"
-              />
+          )}
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="role" className="font-label-md text-on-surface">I am a...</label>
+            <div className="grid grid-cols-2 gap-3">
+              {[
+                { value: 'donor', label: 'Donor', icon: 'volunteer_activism', desc: 'Giving items' },
+                { value: 'ngo', label: 'NGO', icon: 'groups', desc: 'Receiving supplies' },
+              ].map((r) => (
+                <button
+                  key={r.value}
+                  type="button"
+                  onClick={() => setFormData({ ...formData, role: r.value })}
+                  className={`flex flex-col items-center gap-1 rounded-lg p-4 transition-colors border-2 ${
+                    formData.role === r.value
+                      ? 'bg-tertiary-container/40 border-tertiary text-on-surface'
+                      : 'bg-surface-container-low border-transparent text-on-surface-variant'
+                  }`}
+                >
+                  <MaterialIcon name={r.icon} size={24} />
+                  <span className="font-label-md">{r.label}</span>
+                  <span className="font-label-sm">{r.desc}</span>
+                </button>
+              ))}
             </div>
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
-            >
-              {loading ? 'Creating account...' : 'Create account'}
-            </button>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="name" className="font-label-md text-on-surface">Full Name</label>
+            <input id="name" name="name" type="text" autoComplete="name" required value={formData.name} onChange={handleChange} className="field" placeholder="Full name" />
           </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="email" className="font-label-md text-on-surface">Email address</label>
+            <input id="email" name="email" type="email" autoComplete="email" required value={formData.email} onChange={handleChange} className="field" placeholder="you@example.com" />
+          </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="password" className="font-label-md text-on-surface">Password</label>
+            <input id="password" name="password" type="password" autoComplete="new-password" required minLength={8} value={formData.password} onChange={handleChange} className="field" placeholder="At least 8 characters" />
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="phone" className="font-label-md text-on-surface">Phone (optional)</label>
+              <input id="phone" name="phone" type="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} className="field" placeholder="+91 ..." />
+            </div>
+            <div className="flex flex-col gap-1.5">
+              <label htmlFor="address" className="font-label-md text-on-surface">Address (optional)</label>
+              <input id="address" name="address" type="text" autoComplete="street-address" value={formData.address} onChange={handleChange} className="field" placeholder="City, area" />
+            </div>
+          </div>
+
+          <button type="submit" disabled={loading} className="btn-primary w-full py-3">
+            {loading ? 'Creating account...' : 'Create account'}
+          </button>
         </form>
 
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Already have an account?{' '}
-            <a href="/login" className="font-medium text-primary hover:text-primary-hover">
-              Sign in
-            </a>
-          </p>
-        </div>
+        <p className="text-center font-body-md text-on-surface-variant">
+          Already have an account?{' '}
+          <Link to="/login" className="font-label-md text-primary hover:underline">Sign in</Link>
+        </p>
       </div>
     </div>
   );

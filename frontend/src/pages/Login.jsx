@@ -1,18 +1,32 @@
-import { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { Logo } from '../components/ui';
+import { Logo, MaterialIcon } from '../components/ui';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const { login, user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const from = location.state?.from?.pathname || '/donor/dashboard';
+  const homeByRole = (role) => {
+    switch (role) {
+      case 'ngo': return '/ngo/dashboard';
+      case 'admin': return '/admin/dashboard';
+      default: return '/donor/dashboard';
+    }
+  };
+
+  useEffect(() => {
+    if (loggedIn && user) {
+      const from = location.state?.from?.pathname;
+      navigate(from || homeByRole(user.role), { replace: true });
+    }
+  }, [loggedIn, user, navigate, location.state]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,77 +34,73 @@ export default function Login() {
     setLoading(true);
     try {
       await login(email, password);
-      navigate(from, { replace: true });
+      setLoggedIn(true);
     } catch (err) {
       setError(err.response?.data?.detail || 'Invalid email or password');
-    } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-md w-full space-y-8">
-        <div className="flex flex-col items-center gap-4">
-          <Logo size="lg" />
-          <p className="mt-2 text-center text-gray-600">Sign in to your account</p>
+    <div className="min-h-screen flex items-center justify-center bg-surface px-4 py-10">
+      <div className="w-full max-w-md flex flex-col gap-8">
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Logo size="xl" />
+          <div>
+            <h1 className="font-headline-lg text-headline-lg text-on-surface">Welcome back</h1>
+            <p className="font-body-md text-on-surface-variant mt-1">Sign in to continue donating with Humunity</p>
+          </div>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+
+        <form className="bg-surface-container-lowest rounded-lg shadow-card border border-outline-variant/20 p-6 flex flex-col gap-5" onSubmit={handleSubmit}>
           {error && (
-            <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm">
+            <div className="bg-error-container text-on-error-container rounded-lg p-3.5 font-body-sm flex items-center gap-2">
+              <MaterialIcon name="error" size={18} />
               {error}
             </div>
           )}
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="email" className="sr-only">Email address</label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="Email address"
-              />
-            </div>
-            <div>
-              <label htmlFor="password" className="sr-only">Password</label>
-              <input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-primary focus:border-primary focus:z-10 sm:text-sm"
-                placeholder="Password"
-              />
-            </div>
+
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="email" className="font-label-md text-on-surface">Email address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="field"
+              placeholder="you@example.com"
+            />
           </div>
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50"
-            >
-              {loading ? 'Signing in...' : 'Sign in'}
-            </button>
+          <div className="flex flex-col gap-1.5">
+            <label htmlFor="password" className="font-label-md text-on-surface">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="field"
+              placeholder="••••••••"
+            />
           </div>
+
+          <button type="submit" disabled={loading} className="btn-primary w-full py-3">
+            {loading ? 'Signing in...' : 'Sign in'}
+          </button>
         </form>
 
-        <div className="text-center">
-          <p className="text-sm text-gray-600">
-            Don't have an account?{' '}
-            <a href="/register" className="font-medium text-primary hover:text-primary-hover">
-              Sign up
-            </a>
-          </p>
-        </div>
+        <p className="text-center font-body-md text-on-surface-variant">
+          Don't have an account?{' '}
+          <Link to="/register" className="font-label-md text-primary hover:underline">
+            Create one
+          </Link>
+        </p>
       </div>
     </div>
   );
