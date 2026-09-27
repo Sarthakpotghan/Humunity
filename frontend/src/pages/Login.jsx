@@ -17,6 +17,7 @@ export default function Login() {
     switch (role) {
       case 'ngo': return '/ngo/dashboard';
       case 'admin': return '/admin/dashboard';
+      case 'volunteer': return '/volunteer/dashboard';
       default: return '/donor/dashboard';
     }
   };

@@ -9,6 +9,7 @@ import MyMatches from './pages/donor/MyMatches';
 import Impact from './pages/donor/Impact';
 import NGODashboard from './pages/NGODashboard';
 import AdminDashboard from './pages/AdminDashboard';
+import VolunteerDashboard from './pages/VolunteerDashboard';
 import DonationForm from './pages/DonationForm';
 import RequestForm from './pages/RequestForm';
 import MatchView from './pages/MatchView';
@@ -50,6 +51,14 @@ function App() {
             element={
               <PrivateRoute allowedRoles={['admin']}>
                 <AdminDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/volunteer/*"
+            element={
+              <PrivateRoute allowedRoles={['volunteer']}>
+                <VolunteerDashboard />
               </PrivateRoute>
             }
           />
