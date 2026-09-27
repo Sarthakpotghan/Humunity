@@ -1,0 +1,301 @@
+id,ngo_id,category,item_type,season,age_group,gender,quantity_needed,urgency,beneficiary_group,deadline,lat,lng,reliability_score
+66,738,stationery,geometry box,,,female,120,5,flood victims,2026-10-10T10:20:09.766036,13.303207,77.591942,0.8
+67,673,stationery,geometry box,autumn,6-10,male,164,1,urban poor,2026-10-04T10:20:09.774205,27.258969,75.56362,0.96
+68,750,stationery,story book,,10-14,male,29,1,urban poor,2026-10-05T10:20:09.779455,26.860681,75.920135,0.78
+69,777,clothes,jacket,spring,10-14,,27,2,homeless shelters,2026-10-13T10:20:09.784491,23.118759,72.475718,0.88
+70,771,stationery,crayon,summer,10-14,male,123,1,special needs kids,2026-09-28T10:20:09.789301,23.217461,72.47783,0.91
+71,668,stationery,backpack,spring,,,137,2,flood victims,2026-10-02T10:20:09.794727,26.61622,75.533687,0.97
+72,764,stationery,ruler,spring,6-10,female,41,4,homeless shelters,2026-09-30T10:20:09.799781,22.943391,72.614571,0.85
+73,76,stationery,pen,winter,6-10,,148,4,orphanage,2026-10-04T10:20:09.804902,23.269478,72.53783,0.81
+74,627,clothes,trouser,autumn,kid,unisex,16,3,orphanage,2026-09-27T10:20:09.819965,17.658932,78.732653,0.91
+75,74,clothes,coat,winter,10-14,female,115,4,special needs kids,2026-09-26T10:20:09.826558,17.422815,78.394938,0.83
+76,817,clothes,trouser,spring,adult,male,151,3,urban poor,2026-10-08T10:20:09.834025,12.908203,77.64703,0.99
+77,753,clothes,skirt,summer,teen,unisex,52,3,homeless shelters,2026-09-25T10:20:09.841462,26.97385,75.974747,0.7
+78,696,stationery,textbook,spring,kid,male,170,5,orphanage,2026-09-26T10:20:09.846053,18.951863,73.024232,0.94
+79,833,clothes,coat,winter,adult,male,20,5,special needs kids,2026-09-28T10:20:09.851294,26.9925,75.5027,0.95
+80,812,stationery,marker,autumn,teen,,170,2,flood victims,2026-10-12T10:20:09.856667,27.167047,75.494156,1.0
+81,86,stationery,eraser,,10-14,,50,4,rural schools,2026-10-06T10:20:09.861751,22.42537,88.683555,0.71
+82,626,stationery,crayon,spring,6-10,female,104,2,flood victims,2026-10-04T10:20:09.866443,22.513535,88.33901,0.82
+83,648,stationery,pen,summer,,,108,2,special needs kids,2026-10-01T10:20:09.871631,23.065656,72.444781,0.64
+84,708,clothes,trouser,winter,kid,female,129,5,rural schools,2026-10-04T10:20:09.877078,28.694664,77.032789,0.67
+85,806,clothes,skirt,,teen,male,22,3,orphanage,2026-10-01T10:20:09.882369,17.650353,78.484859,0.99
+86,690,stationery,ruler,summer,kid,male,113,3,orphanage,2026-09-27T10:20:09.887636,26.843126,81.213838,0.74
+87,724,clothes,trouser,winter,teen,female,81,3,special needs kids,2026-09-26T10:20:09.891993,18.75767,72.56351,0.97
+88,65,clothes,shirt,spring,6-10,male,60,5,flood victims,2026-10-06T10:20:09.895787,22.914963,88.490179,0.93
+89,699,clothes,jacket,spring,teen,female,165,2,flood victims,2026-10-04T10:20:09.900905,26.918786,75.787355,0.86
+90,746,stationery,pencil,winter,6-10,male,140,3,flood victims,2026-10-13T10:20:09.905599,26.660247,76.089258,0.69
+91,800,stationery,notebook,,teen,male,162,3,rural schools,2026-09-27T10:20:09.909662,28.606793,77.253047,0.62
+92,825,clothes,slipper,spring,teen,female,184,1,homeless shelters,2026-10-09T10:20:09.914421,28.449771,77.317914,0.62
+93,70,clothes,t-shirt,spring,kid,female,115,1,flood victims,2026-10-04T10:20:09.921293,17.057099,78.800444,0.99
+94,80,clothes,slipper,winter,6-10,female,106,2,orphanage,2026-09-30T10:20:09.929028,22.765081,88.658265,0.68
+95,39,stationery,textbook,spring,6-10,female,73,3,orphanage,2026-10-14T10:20:09.937990,19.39568,72.849464,0.67
+96,64,stationery,ruler,winter,10-14,male,194,4,orphanage,2026-10-09T10:20:09.945442,19.116661,72.685107,0.59
+97,720,stationery,backpack,,,male,98,4,rural schools,2026-09-28T10:20:09.952261,22.873953,72.622834,0.79
+98,49,clothes,t-shirt,spring,adult,male,37,4,flood victims,2026-10-02T10:20:09.960162,23.13168,72.744537,0.56
+99,612,clothes,sock,,kid,,115,5,orphanage,2026-10-01T10:20:09.967694,27.015324,80.763697,0.8
+100,781,clothes,jacket,autumn,adult,female,176,5,homeless shelters,2026-09-29T10:20:09.972748,18.672551,73.577081,0.73
+101,770,stationery,marker,winter,teen,unisex,199,1,urban poor,2026-09-26T10:20:09.977786,27.091538,75.638372,0.9
+102,632,clothes,skirt,spring,10-14,female,84,4,school children,2026-09-29T10:20:09.984565,23.267733,72.247509,0.8
+103,827,clothes,trouser,spring,teen,female,139,2,rural schools,2026-10-14T10:20:09.989291,26.503187,80.993773,0.59
+104,748,stationery,pencil,,adult,unisex,198,4,orphanage,2026-10-14T10:20:09.995018,28.454886,77.42517,0.84
+105,685,clothes,shirt,,10-14,male,112,3,urban poor,2026-10-14T10:20:10.000412,27.115937,75.834747,0.59
+106,54,stationery,geometry box,autumn,10-14,unisex,78,5,orphanage,2026-09-24T10:20:10.006681,22.73927,72.90858,0.82
+107,637,clothes,jeans,autumn,adult,,88,3,homeless shelters,2026-10-01T10:20:10.011674,12.944062,80.426718,0.87
+108,799,stationery,school bag,spring,teen,unisex,44,2,rural schools,2026-10-03T10:20:10.017749,17.318792,78.488464,0.93
+109,752,stationery,backpack,spring,adult,unisex,184,4,special needs kids,2026-10-09T10:20:10.024399,22.77973,72.744814,0.65
+110,46,stationery,textbook,winter,,,139,4,homeless shelters,2026-09-26T10:20:10.030957,26.97947,75.988459,0.56
+111,629,stationery,textbook,,teen,female,140,3,rural schools,2026-09-30T10:20:10.036364,26.897591,80.701097,0.79
+112,85,stationery,story book,,adult,male,111,3,orphanage,2026-10-11T10:20:10.041779,13.187684,77.562003,0.84
+113,694,clothes,jacket,autumn,,,18,3,orphanage,2026-09-26T10:20:10.047714,28.835417,77.381063,0.79
+114,794,stationery,geometry box,,10-14,female,184,5,urban poor,2026-10-06T10:20:10.054175,26.848607,75.97558,0.57
+115,710,stationery,pen,spring,teen,unisex,10,2,special needs kids,2026-10-11T10:20:10.059915,19.338188,72.620793,0.63
+116,658,stationery,textbook,spring,10-14,male,80,3,homeless shelters,2026-10-01T10:20:10.064229,17.050915,78.345554,0.84
+117,616,clothes,jacket,spring,,unisex,27,4,school children,2026-10-07T10:20:10.069602,19.382187,73.035217,0.55
+118,722,clothes,t-shirt,,kid,unisex,45,4,flood victims,2026-10-06T10:20:10.073929,26.912461,80.908709,0.7
+119,617,stationery,crayon,winter,6-10,unisex,66,3,rural schools,2026-10-04T10:20:10.078701,13.317038,77.408513,0.91
+120,742,clothes,sock,autumn,,male,144,4,orphanage,2026-10-11T10:20:10.083894,28.474251,76.90167,0.65
+121,714,stationery,backpack,summer,kid,unisex,191,2,homeless shelters,2026-10-11T10:20:10.091926,13.220116,80.206481,0.84
+122,671,stationery,backpack,spring,kid,male,94,3,urban poor,2026-09-28T10:20:10.096083,27.126443,76.077619,0.84
+123,82,stationery,pen,winter,6-10,female,164,3,school children,2026-09-30T10:20:10.101825,26.617749,75.752151,0.65
+124,703,clothes,dress,spring,,unisex,199,2,school children,2026-10-04T10:20:10.107489,27.108234,80.727914,0.6
+125,669,clothes,slipper,summer,kid,male,107,3,rural schools,2026-09-30T10:20:10.112222,27.019515,81.124232,0.94
+126,795,stationery,geometry box,summer,,female,62,3,orphanage,2026-10-09T10:20:10.116806,23.046055,72.472882,1.0
+127,761,clothes,slipper,summer,teen,female,49,2,homeless shelters,2026-10-02T10:20:10.121235,12.840645,77.276601,0.94
+128,38,clothes,dress,autumn,10-14,female,53,3,urban poor,2026-10-04T10:20:10.125040,17.265906,78.402588,0.56
+129,758,stationery,pencil,,,,181,5,school children,2026-10-11T10:20:10.129536,17.591483,78.255186,0.83
+130,644,clothes,sweater,summer,teen,female,25,4,flood victims,2026-09-24T10:20:10.135182,22.757637,88.302575,0.68
+131,608,stationery,marker,,teen,female,14,3,flood victims,2026-09-24T10:20:10.139796,18.61681,74.160433,0.78
+132,630,stationery,notebook,winter,,,48,3,homeless shelters,2026-10-07T10:20:10.144250,18.675935,73.881717,0.99
+133,763,stationery,ruler,winter,10-14,female,72,4,urban poor,2026-09-26T10:20:10.149665,17.169352,78.505219,0.66
+134,836,clothes,sock,autumn,,female,106,5,flood victims,2026-10-14T10:20:10.154710,22.8306,72.700229,0.83
+135,824,clothes,sweater,winter,6-10,,20,3,homeless shelters,2026-10-07T10:20:10.159211,28.597104,77.304724,0.93
+136,734,stationery,ruler,spring,6-10,,90,1,school children,2026-09-26T10:20:10.165507,17.182992,78.744382,0.89
+137,651,stationery,pen,winter,teen,female,94,2,rural schools,2026-10-12T10:20:10.171593,19.399028,72.938625,0.84
+138,807,clothes,hoodie,spring,,female,29,4,orphanage,2026-10-05T10:20:10.176581,17.563926,78.234665,0.67
+139,83,stationery,geometry box,summer,10-14,unisex,151,1,rural schools,2026-10-02T10:20:10.182506,19.149618,72.957406,0.6
+140,702,stationery,pen,,adult,,78,4,homeless shelters,2026-10-03T10:20:10.187816,26.798994,81.071986,0.84
+141,61,clothes,slipper,summer,,,123,3,orphanage,2026-10-05T10:20:10.193328,18.4364,74.055423,0.98
+142,667,clothes,shirt,,teen,female,16,3,school children,2026-10-11T10:20:10.198688,22.755543,88.085462,0.64
+143,680,stationery,backpack,winter,,unisex,143,1,homeless shelters,2026-10-07T10:20:10.204104,22.47034,88.079045,0.95
+144,783,stationery,ruler,summer,kid,female,117,2,orphanage,2026-09-28T10:20:10.209308,23.152221,72.340051,0.94
+145,792,stationery,eraser,autumn,teen,unisex,37,4,homeless shelters,2026-10-09T10:20:10.214696,12.960562,77.298445,0.94
+146,767,stationery,crayon,winter,6-10,female,44,3,orphanage,2026-10-04T10:20:10.220123,17.248261,78.800876,0.97
+147,602,clothes,dress,winter,6-10,female,72,2,orphanage,2026-10-06T10:20:10.225404,18.950466,73.190795,0.85
+148,796,stationery,geometry box,winter,teen,unisex,16,2,urban poor,2026-10-12T10:20:10.230513,22.935739,72.792946,0.93
+149,51,stationery,ruler,spring,adult,female,172,4,orphanage,2026-09-26T10:20:10.234805,12.944736,77.740457,0.84
+150,638,stationery,backpack,winter,teen,female,139,1,special needs kids,2026-10-13T10:20:10.240065,17.204415,78.597764,0.57
+151,804,stationery,school bag,,adult,,73,5,urban poor,2026-10-11T10:20:10.245075,22.706796,88.394452,0.58
+152,1,clothes,coat,,6-10,female,12,5,school children,2026-10-14T10:20:10.249595,18.635686,73.623137,1.0
+153,745,clothes,dress,summer,teen,unisex,16,3,rural schools,2026-10-08T10:20:10.253805,12.802717,77.602073,0.64
+154,727,clothes,sweater,autumn,6-10,male,62,4,flood victims,2026-09-28T10:20:10.260040,22.745685,72.512583,0.69
+155,41,stationery,school bag,,6-10,,15,4,special needs kids,2026-10-04T10:20:10.265220,19.064048,72.861014,0.88
+156,607,clothes,slipper,winter,kid,male,119,2,rural schools,2026-09-29T10:20:10.271282,22.462755,88.090454,0.65
+157,801,clothes,shirt,autumn,,unisex,161,3,rural schools,2026-10-07T10:20:10.277535,26.658999,80.879733,0.77
+158,621,clothes,jeans,summer,,unisex,93,4,homeless shelters,2026-09-26T10:20:10.283593,18.442585,74.000015,0.98
+159,709,stationery,textbook,winter,10-14,female,39,5,orphanage,2026-10-04T10:20:10.289564,17.355285,78.320347,0.78
+160,749,clothes,sock,spring,teen,,90,4,school children,2026-10-03T10:20:10.294664,12.867989,77.565102,0.75
+161,625,stationery,school bag,winter,teen,unisex,108,2,rural schools,2026-10-06T10:20:10.299237,26.663701,80.678064,0.93
+162,790,clothes,hoodie,autumn,kid,male,168,2,school children,2026-10-03T10:20:10.306094,18.856028,72.972551,0.97
+163,762,stationery,pencil,autumn,teen,female,185,2,rural schools,2026-10-06T10:20:10.311328,18.776266,74.172989,0.58
+164,672,stationery,pencil,summer,6-10,,67,1,flood victims,2026-09-24T10:20:10.317061,26.787641,81.184124,0.73
+165,756,stationery,textbook,winter,6-10,male,20,3,special needs kids,2026-10-12T10:20:10.321704,17.237069,78.683218,0.65
+166,622,stationery,pen,autumn,6-10,,77,4,orphanage,2026-10-14T10:20:10.326478,28.767186,77.241447,0.7
+167,78,clothes,t-shirt,spring,6-10,female,167,2,homeless shelters,2026-10-12T10:20:10.330809,17.63854,78.197588,0.57
+168,686,clothes,coat,summer,teen,unisex,190,3,orphanage,2026-10-02T10:20:10.339619,22.771995,88.583371,0.57
+169,89,clothes,shirt,spring,6-10,unisex,73,5,homeless shelters,2026-10-07T10:20:10.344943,12.824133,77.43174,0.67
+170,716,stationery,story book,autumn,adult,female,125,2,school children,2026-10-14T10:20:10.351546,13.230676,80.500637,0.62
+171,654,clothes,skirt,autumn,6-10,female,93,3,flood victims,2026-10-02T10:20:10.357543,17.478539,78.752788,0.88
+172,791,clothes,slipper,,adult,male,146,5,rural schools,2026-10-14T10:20:10.363641,26.564131,75.979195,0.75
+173,599,clothes,dress,winter,teen,unisex,134,2,special needs kids,2026-10-03T10:20:10.369733,12.885181,80.22145,0.67
+174,711,clothes,jacket,autumn,,unisex,126,1,school children,2026-10-08T10:20:10.374958,12.973318,80.398486,0.96
+175,618,clothes,sock,summer,adult,male,31,2,orphanage,2026-10-02T10:20:10.380434,13.315887,77.54406,0.86
+176,92,clothes,skirt,,adult,,10,3,homeless shelters,2026-10-01T10:20:10.385301,13.086756,77.698838,0.82
+177,707,clothes,hoodie,,adult,male,118,4,urban poor,2026-09-24T10:20:10.389855,19.059765,72.62059,0.94
+178,666,stationery,pen,summer,6-10,male,45,4,rural schools,2026-09-27T10:20:10.395103,22.315123,88.06348,0.67
+179,72,clothes,sock,winter,teen,,176,5,homeless shelters,2026-09-28T10:20:10.400008,19.267422,73.05491,0.8
+180,93,clothes,skirt,spring,,,41,3,flood victims,2026-10-08T10:20:10.405894,26.80477,81.101902,0.63
+181,620,stationery,geometry box,spring,adult,,151,4,flood victims,2026-10-01T10:20:10.412944,27.007706,80.842275,0.62
+182,603,clothes,sock,autumn,teen,unisex,85,4,urban poor,2026-09-30T10:20:10.419893,26.916706,81.021515,0.95
+183,597,clothes,dress,winter,adult,,13,3,orphanage,2026-10-01T10:20:10.425703,28.302098,77.487539,0.84
+184,59,stationery,geometry box,winter,,,27,3,school children,2026-09-29T10:20:10.432274,17.688747,78.229088,0.7
+185,633,clothes,skirt,autumn,teen,female,189,3,rural schools,2026-10-14T10:20:10.438261,22.85603,72.249279,0.92
+186,674,clothes,jeans,winter,kid,unisex,93,1,rural schools,2026-09-26T10:20:10.447042,12.679299,77.620195,0.76
+187,664,clothes,jeans,autumn,kid,,39,4,rural schools,2026-10-01T10:20:10.452043,23.083006,72.755657,0.56
+188,776,clothes,sweater,autumn,,unisex,98,1,flood victims,2026-09-28T10:20:10.457730,18.599008,73.54522,0.76
+189,71,stationery,pencil,summer,,,119,3,orphanage,2026-10-02T10:20:10.463532,12.983656,77.820355,0.72
+190,642,clothes,dress,summer,10-14,unisex,50,3,orphanage,2026-10-05T10:20:10.468591,12.988298,77.428665,0.65
+191,623,clothes,t-shirt,,,unisex,130,4,orphanage,2026-09-24T10:20:10.475331,13.16293,77.870588,0.59
+192,737,clothes,hoodie,spring,kid,male,116,4,urban poor,2026-10-14T10:20:10.482037,22.940586,72.326459,0.76
+193,42,stationery,pen,autumn,kid,,27,3,rural schools,2026-09-25T10:20:10.487446,12.845555,77.822798,0.85
+194,95,stationery,geometry box,summer,6-10,unisex,154,1,special needs kids,2026-10-08T10:20:10.492171,27.168623,75.978769,0.62
+195,60,stationery,geometry box,spring,adult,unisex,11,3,rural schools,2026-10-09T10:20:10.498019,28.476637,77.294902,0.62
+196,43,clothes,trouser,,adult,male,62,1,flood victims,2026-10-06T10:20:10.504108,18.187137,73.885782,0.95
+197,768,clothes,shirt,summer,kid,female,127,4,urban poor,2026-09-26T10:20:10.508786,17.723181,78.430571,0.81
+198,619,clothes,sock,autumn,teen,,179,4,homeless shelters,2026-09-26T10:20:10.513185,12.792132,79.987604,0.7
+199,805,stationery,backpack,spring,10-14,male,29,4,homeless shelters,2026-10-04T10:20:10.518687,26.72814,75.619994,0.72
+200,47,clothes,shirt,,6-10,female,147,1,orphanage,2026-10-08T10:20:10.523771,22.767778,72.760503,0.65
+201,719,stationery,story book,winter,kid,male,20,2,homeless shelters,2026-09-27T10:20:10.528608,22.897844,88.159245,0.9
+202,782,clothes,slipper,summer,teen,,76,2,special needs kids,2026-10-05T10:20:10.533942,27.147547,75.666756,0.7
+203,663,stationery,story book,,,female,45,3,school children,2026-10-11T10:20:10.538315,13.426174,79.942457,0.65
+204,815,clothes,shirt,winter,adult,,160,2,orphanage,2026-10-06T10:20:10.542728,26.50507,81.177461,0.62
+205,813,clothes,t-shirt,,,male,20,5,rural schools,2026-10-08T10:20:10.547380,13.3749,79.973191,0.8
+206,606,stationery,school bag,spring,adult,female,100,3,homeless shelters,2026-09-24T10:20:10.554376,22.258046,88.660792,0.56
+207,640,stationery,pencil,autumn,kid,male,115,1,flood victims,2026-10-13T10:20:10.560032,27.198213,75.629787,0.68
+208,751,stationery,pencil,autumn,kid,,192,3,orphanage,2026-10-14T10:20:10.568842,13.068022,79.982105,0.6
+209,656,stationery,crayon,summer,kid,,162,3,homeless shelters,2026-10-06T10:20:10.576834,17.370779,78.683705,0.72
+210,68,stationery,notebook,spring,6-10,unisex,35,4,homeless shelters,2026-10-09T10:20:10.583897,22.693012,72.788883,0.88
+211,772,clothes,t-shirt,spring,kid,unisex,161,3,orphanage,2026-10-06T10:20:10.589397,27.022205,75.623869,0.64
+212,704,clothes,slipper,autumn,kid,unisex,148,4,orphanage,2026-10-12T10:20:10.596159,27.126747,75.925639,0.75
+213,730,clothes,t-shirt,summer,10-14,,167,3,homeless shelters,2026-09-24T10:20:10.602057,22.34549,88.040475,0.98
+214,731,clothes,trouser,,adult,unisex,144,1,special needs kids,2026-09-28T10:20:10.608560,18.734912,73.745231,0.59
+215,79,stationery,crayon,autumn,kid,unisex,173,1,rural schools,2026-10-03T10:20:10.615060,26.752123,80.646972,0.65
+216,728,stationery,eraser,spring,6-10,male,55,3,urban poor,2026-09-29T10:20:10.620379,26.951126,80.718142,0.58
+217,701,stationery,crayon,winter,teen,unisex,36,1,rural schools,2026-10-13T10:20:10.627325,18.171659,73.998106,0.67
+218,73,clothes,trouser,autumn,,male,12,5,orphanage,2026-09-29T10:20:10.633141,12.72005,77.76634,0.92
+219,605,stationery,ruler,autumn,10-14,female,52,4,rural schools,2026-09-24T10:20:10.639177,12.879479,80.405923,0.74
+220,823,stationery,pen,spring,adult,unisex,125,4,school children,2026-10-12T10:20:10.644707,23.017657,72.486499,0.78
+221,740,clothes,trouser,autumn,6-10,unisex,51,2,urban poor,2026-09-27T10:20:10.649610,13.181036,77.267989,0.94
+222,676,clothes,trouser,autumn,adult,,177,3,homeless shelters,2026-10-13T10:20:10.654075,22.275102,88.673184,0.66
+223,765,clothes,sweater,summer,adult,male,86,2,homeless shelters,2026-09-30T10:20:10.660117,28.689022,77.16294,0.65
+224,645,stationery,pencil,winter,,male,132,1,homeless shelters,2026-09-24T10:20:10.664583,26.629541,75.712332,0.84
+225,87,stationery,pen,autumn,10-14,female,179,3,orphanage,2026-09-27T10:20:10.668994,17.102891,78.281567,0.72
+226,733,clothes,trouser,summer,10-14,,122,4,rural schools,2026-10-05T10:20:10.674144,26.560496,80.977088,0.58
+227,723,clothes,shirt,winter,adult,male,115,4,special needs kids,2026-09-27T10:20:10.678752,18.910381,73.113655,0.56
+228,797,stationery,textbook,autumn,10-14,unisex,86,3,school children,2026-10-11T10:20:10.683278,26.909509,80.983721,0.99
+229,705,clothes,hoodie,,adult,unisex,124,3,homeless shelters,2026-10-10T10:20:10.688027,19.002363,73.125458,0.75
+230,785,clothes,t-shirt,spring,adult,female,170,2,homeless shelters,2026-10-07T10:20:10.692828,22.886943,88.130915,0.64
+231,798,clothes,sweater,winter,6-10,male,127,3,special needs kids,2026-10-06T10:20:10.698171,19.309876,72.70822,0.97
+232,775,stationery,pen,,teen,,154,3,special needs kids,2026-09-28T10:20:10.703840,12.630255,77.734888,0.74
+233,610,stationery,backpack,,teen,female,54,2,orphanage,2026-10-14T10:20:10.711751,22.293293,88.214165,0.64
+234,96,stationery,notebook,autumn,kid,,78,3,orphanage,2026-10-04T10:20:10.718852,26.844482,75.870071,0.72
+235,832,stationery,ruler,spring,adult,,44,2,orphanage,2026-10-09T10:20:10.726370,26.510863,81.16837,0.6
+236,2,stationery,ruler,autumn,,unisex,64,4,special needs kids,2026-10-13T10:20:10.734747,13.303554,77.554777,1.0
+237,774,stationery,notebook,spring,6-10,female,144,3,flood victims,2026-09-29T10:20:10.740457,18.455419,73.845822,0.74
+238,743,clothes,jacket,summer,6-10,unisex,104,2,special needs kids,2026-10-08T10:20:10.745217,18.746264,72.662634,0.79
+239,736,clothes,sock,spring,teen,female,131,1,flood victims,2026-10-05T10:20:10.751896,13.057653,80.19856,0.61
+240,641,stationery,school bag,,,female,51,4,special needs kids,2026-09-26T10:20:10.758978,26.948334,75.678274,0.59
+241,37,clothes,sock,winter,adult,female,15,2,special needs kids,2026-09-30T10:20:10.764956,17.435581,78.812142,0.84
+242,718,clothes,dress,spring,teen,,74,5,flood victims,2026-10-14T10:20:10.770772,28.810113,77.396301,0.79
+243,56,stationery,backpack,autumn,6-10,unisex,87,5,urban poor,2026-10-05T10:20:10.775867,18.73396,73.720522,0.55
+244,834,clothes,jacket,summer,adult,male,185,3,school children,2026-10-05T10:20:10.781808,28.628347,77.295524,0.66
+245,81,stationery,marker,spring,adult,male,48,2,flood victims,2026-10-02T10:20:10.786714,18.507617,73.742099,0.59
+246,822,stationery,marker,summer,,female,76,2,rural schools,2026-09-28T10:20:10.791618,27.032532,81.225981,0.81
+247,77,clothes,trouser,summer,teen,female,139,4,orphanage,2026-10-01T10:20:10.796798,17.318219,78.652412,0.87
+248,57,clothes,jeans,summer,6-10,unisex,177,1,school children,2026-09-28T10:20:10.802810,13.324493,80.509147,0.91
+249,819,stationery,backpack,autumn,6-10,male,40,4,rural schools,2026-10-04T10:20:10.808028,18.325977,73.66303,0.79
+250,604,clothes,dress,winter,adult,female,86,5,rural schools,2026-10-10T10:20:10.813381,18.763574,72.971778,0.59
+251,91,clothes,t-shirt,spring,kid,male,30,3,rural schools,2026-10-12T10:20:10.817833,17.072843,78.734668,0.84
+252,697,stationery,marker,winter,kid,unisex,50,1,rural schools,2026-10-08T10:20:10.823234,12.965541,80.611348,0.56
+253,90,clothes,coat,autumn,10-14,female,11,3,school children,2026-10-07T10:20:10.829277,28.813548,77.404827,0.97
+254,62,clothes,trouser,spring,,,67,4,urban poor,2026-10-10T10:20:10.835052,17.408648,78.648161,0.7
+255,726,clothes,skirt,summer,,,84,3,rural schools,2026-10-03T10:20:10.840240,19.33989,72.746165,0.92
+256,814,stationery,backpack,spring,10-14,male,52,4,special needs kids,2026-09-28T10:20:10.845734,17.544482,78.554159,0.87
+257,52,clothes,t-shirt,summer,kid,,192,4,urban poor,2026-10-12T10:20:10.850926,12.903974,77.404493,0.8
+258,741,stationery,textbook,,adult,,22,3,urban poor,2026-10-13T10:20:10.856385,13.176089,77.507235,0.74
+259,682,clothes,hoodie,summer,adult,,117,2,urban poor,2026-09-28T10:20:10.864484,28.344953,77.17002,0.65
+260,615,clothes,skirt,summer,adult,,39,4,special needs kids,2026-09-27T10:20:10.870386,22.293286,88.378116,0.91
+261,646,clothes,jeans,summer,adult,female,51,4,school children,2026-09-30T10:20:10.876437,26.636785,75.576353,0.71
+262,830,stationery,geometry box,winter,,,181,2,rural schools,2026-09-24T10:20:10.881690,13.005297,77.88185,0.85
+263,613,clothes,slipper,summer,kid,female,77,4,rural schools,2026-10-02T10:20:10.887204,26.666801,75.500358,0.65
+264,829,clothes,jeans,,adult,,21,3,school children,2026-10-04T10:20:10.893149,26.597456,76.006525,0.82
+265,652,clothes,trouser,summer,6-10,,97,3,homeless shelters,2026-10-08T10:20:10.898576,23.268899,72.685749,0.82
+266,634,stationery,ruler,,adult,unisex,43,4,urban poor,2026-10-09T10:20:10.903753,28.343582,77.139175,0.83
+267,670,clothes,sweater,spring,teen,female,166,3,rural schools,2026-10-12T10:20:10.908686,19.234488,73.214798,0.69
+268,735,clothes,dress,,10-14,,76,5,urban poor,2026-09-27T10:20:10.913041,28.809315,77.286951,0.89
+269,94,clothes,sock,autumn,adult,,179,4,urban poor,2026-10-10T10:20:10.918426,22.442567,88.507098,0.88
+270,695,stationery,pencil,spring,,,139,4,special needs kids,2026-10-11T10:20:10.924115,12.906704,80.162725,0.99
+271,739,clothes,sweater,,6-10,male,139,4,homeless shelters,2026-10-04T10:20:10.929981,12.950102,77.591684,0.67
+272,689,clothes,sweater,autumn,,female,90,3,school children,2026-10-12T10:20:10.934488,26.882047,80.861246,0.91
+273,692,clothes,sweater,,teen,,164,3,flood victims,2026-09-25T10:20:10.941622,23.35897,72.743067,0.72
+274,643,clothes,sock,autumn,,unisex,94,4,flood victims,2026-10-04T10:20:10.946975,26.942977,81.219278,0.6
+275,732,stationery,school bag,summer,kid,,100,3,special needs kids,2026-09-27T10:20:10.954320,18.707591,73.926666,0.77
+276,679,stationery,school bag,,kid,female,75,1,flood victims,2026-09-29T10:20:10.960876,19.169563,73.087639,0.81
+277,67,stationery,eraser,autumn,6-10,,21,3,urban poor,2026-09-30T10:20:10.967226,22.359745,88.098422,0.91
+278,600,stationery,story book,winter,10-14,,198,3,school children,2026-10-10T10:20:10.976494,13.318926,80.332868,0.65
+279,58,stationery,textbook,spring,teen,unisex,36,4,rural schools,2026-09-29T10:20:10.984294,22.609858,88.316867,0.86
+280,614,stationery,textbook,summer,adult,unisex,111,4,orphanage,2026-10-07T10:20:10.992079,19.186265,72.952013,0.82
+281,802,clothes,shirt,winter,adult,male,171,3,homeless shelters,2026-10-10T10:20:10.999962,28.943244,77.175992,0.65
+282,828,stationery,marker,winter,adult,unisex,148,3,urban poor,2026-09-28T10:20:11.013821,12.873322,80.357617,0.63
+283,755,stationery,textbook,winter,adult,female,83,3,special needs kids,2026-10-12T10:20:11.028204,18.616214,74.003947,0.65
+284,75,clothes,jacket,summer,,unisex,51,3,orphanage,2026-09-25T10:20:11.041692,22.96817,72.230339,0.94
+285,816,clothes,slipper,autumn,,male,36,4,flood victims,2026-09-30T10:20:11.050130,27.040773,75.5398,0.68
+286,712,clothes,slipper,,teen,male,107,3,rural schools,2026-10-06T10:20:11.057908,19.333625,73.045345,0.94
+287,809,stationery,textbook,spring,teen,female,172,1,urban poor,2026-10-02T10:20:11.064437,19.017596,73.079378,0.75
+288,684,clothes,slipper,spring,kid,,54,5,urban poor,2026-10-03T10:20:11.070449,27.059082,75.694719,0.78
+289,55,stationery,ruler,,teen,male,94,3,rural schools,2026-09-28T10:20:11.075394,23.032193,72.485439,0.91
+290,835,clothes,trouser,autumn,adult,male,156,3,flood victims,2026-10-14T10:20:11.080825,26.993483,80.704564,0.82
+291,639,stationery,textbook,autumn,,unisex,149,2,flood victims,2026-09-29T10:20:11.086157,28.51456,77.407822,0.65
+292,53,clothes,sock,winter,kid,female,176,2,school children,2026-10-05T10:20:11.091178,26.779092,80.840782,0.65
+293,747,clothes,sock,autumn,,male,39,3,rural schools,2026-10-13T10:20:11.098389,22.752805,72.463605,1.0
+294,66,clothes,hoodie,autumn,teen,female,21,4,orphanage,2026-10-05T10:20:11.102779,12.912313,80.427483,0.82
+295,773,clothes,sweater,spring,,,181,2,urban poor,2026-10-11T10:20:11.109434,13.250397,77.379359,0.59
+296,757,stationery,pen,,,unisex,127,2,urban poor,2026-10-07T10:20:11.114710,22.764108,88.619366,0.58
+297,793,clothes,shirt,summer,teen,unisex,114,4,rural schools,2026-10-11T10:20:11.122578,18.402601,73.567965,0.8
+298,789,stationery,notebook,winter,,,21,3,urban poor,2026-09-27T10:20:11.128195,28.579688,77.142114,0.66
+299,831,clothes,jeans,autumn,,male,107,4,rural schools,2026-10-03T10:20:11.132973,23.266276,72.47179,0.66
+300,624,clothes,hoodie,summer,6-10,unisex,183,2,special needs kids,2026-10-06T10:20:11.137872,17.610486,78.158273,0.59
+301,649,clothes,hoodie,winter,,,162,4,rural schools,2026-09-28T10:20:11.142859,13.339697,80.374258,0.67
+302,659,stationery,eraser,spring,10-14,unisex,57,4,homeless shelters,2026-10-05T10:20:11.150268,23.048506,72.884286,0.8
+303,657,clothes,shirt,winter,teen,female,28,4,orphanage,2026-10-12T10:20:11.155837,18.602219,73.683619,1.0
+304,609,clothes,slipper,,kid,unisex,82,3,flood victims,2026-10-04T10:20:11.164630,13.09178,77.420081,0.56
+305,683,stationery,story book,winter,teen,unisex,155,2,orphanage,2026-10-03T10:20:11.170236,18.774866,72.663149,1.0
+306,40,clothes,jacket,summer,adult,female,102,2,homeless shelters,2026-10-01T10:20:11.175988,27.06209,81.267261,0.65
+307,760,stationery,story book,spring,teen,,175,3,flood victims,2026-10-03T10:20:11.181406,17.510706,78.368794,0.96
+308,63,clothes,hoodie,,adult,,139,2,urban poor,2026-10-14T10:20:11.187233,18.783382,72.724131,0.59
+309,662,stationery,crayon,spring,6-10,female,103,2,rural schools,2026-09-25T10:20:11.195496,26.518536,81.003523,0.9
+310,729,stationery,pencil,winter,10-14,male,12,3,urban poor,2026-10-10T10:20:11.202979,26.653015,81.136701,0.95
+311,759,clothes,hoodie,autumn,teen,unisex,101,2,school children,2026-09-29T10:20:11.209258,26.663917,81.271,0.65
+312,700,clothes,jeans,autumn,kid,male,130,3,rural schools,2026-09-25T10:20:11.216479,26.649873,80.93755,0.79
+313,69,stationery,pen,winter,6-10,male,149,4,flood victims,2026-10-10T10:20:11.221897,27.113786,80.624133,0.79
+314,778,stationery,crayon,spring,6-10,female,142,3,rural schools,2026-09-26T10:20:11.227343,28.385595,77.316573,0.85
+315,715,stationery,story book,spring,kid,female,68,4,school children,2026-09-24T10:20:11.232872,18.417429,74.114104,0.82
+316,611,clothes,shirt,autumn,,unisex,94,2,urban poor,2026-10-13T10:20:11.239049,26.922579,75.633867,0.84
+317,803,stationery,eraser,,,unisex,42,3,flood victims,2026-10-14T10:20:11.243896,28.343237,77.331661,0.73
+318,50,clothes,coat,winter,kid,female,154,2,urban poor,2026-09-29T10:20:11.251715,18.585043,73.601007,0.64
+319,786,stationery,pen,spring,10-14,unisex,115,2,flood victims,2026-10-13T10:20:11.257334,17.048034,78.640383,0.75
+320,48,clothes,coat,autumn,adult,male,162,3,flood victims,2026-10-02T10:20:11.263178,22.322498,88.421752,0.78
+321,677,clothes,sweater,spring,adult,female,165,1,school children,2026-10-10T10:20:11.269387,28.31209,77.123748,0.8
+322,601,clothes,hoodie,winter,10-14,unisex,148,3,special needs kids,2026-09-27T10:20:11.274742,17.159196,78.767826,0.88
+323,44,stationery,textbook,spring,teen,female,133,3,special needs kids,2026-09-25T10:20:11.281035,18.72684,73.184114,0.59
+324,691,clothes,skirt,winter,,male,149,2,rural schools,2026-10-09T10:20:11.286824,17.57307,78.382062,0.58
+325,628,clothes,coat,summer,10-14,unisex,114,3,orphanage,2026-10-10T10:20:11.291860,12.913163,79.924529,0.88
+326,721,stationery,ruler,autumn,6-10,male,62,4,rural schools,2026-10-07T10:20:11.299983,18.800608,72.82595,0.55
+327,653,clothes,trouser,autumn,6-10,male,198,3,homeless shelters,2026-10-09T10:20:11.305354,23.058973,72.611694,0.63
+328,688,clothes,dress,summer,kid,female,150,4,flood victims,2026-09-29T10:20:11.310992,17.633499,78.598198,0.83
+329,636,clothes,skirt,winter,kid,female,121,5,school children,2026-09-24T10:20:11.316467,13.10954,77.739353,0.81
+330,88,clothes,coat,winter,teen,male,24,1,special needs kids,2026-10-06T10:20:11.321906,28.308756,77.014239,0.64
+331,681,stationery,notebook,winter,kid,,140,2,flood victims,2026-10-10T10:20:11.327166,17.60916,78.584904,0.73
+332,678,clothes,trouser,autumn,,male,100,2,urban poor,2026-09-24T10:20:11.332063,26.985615,81.026833,0.67
+333,784,clothes,slipper,summer,6-10,male,80,4,homeless shelters,2026-09-26T10:20:11.337393,17.3116,78.546956,0.66
+334,647,stationery,crayon,winter,teen,,28,1,flood victims,2026-09-29T10:20:11.344570,13.046054,77.380768,0.72
+335,810,stationery,textbook,autumn,adult,female,154,4,rural schools,2026-10-12T10:20:11.350052,26.768376,76.100211,0.74
+336,631,stationery,marker,summer,10-14,,27,3,rural schools,2026-10-12T10:20:11.355889,27.101377,75.967531,0.72
+337,811,clothes,trouser,summer,teen,,73,3,orphanage,2026-10-05T10:20:11.363038,13.065163,77.940539,0.98
+338,698,stationery,pen,spring,6-10,male,156,3,orphanage,2026-09-29T10:20:11.368955,12.686707,77.716189,0.87
+339,635,clothes,dress,spring,kid,male,68,4,homeless shelters,2026-10-01T10:20:11.375939,18.853949,73.050009,0.94
+340,598,stationery,pencil,winter,adult,female,11,4,special needs kids,2026-09-27T10:20:11.382797,27.146858,76.022734,0.56
+341,655,stationery,geometry box,spring,6-10,female,140,3,orphanage,2026-10-09T10:20:11.389868,28.863863,77.529595,0.62
+342,665,clothes,jacket,winter,teen,,98,3,rural schools,2026-10-07T10:20:11.395816,22.501116,88.539019,0.69
+343,826,stationery,pen,,adult,,182,4,homeless shelters,2026-10-08T10:20:11.401389,13.33498,80.463833,0.98
+344,675,stationery,crayon,summer,6-10,unisex,130,4,flood victims,2026-09-29T10:20:11.406865,28.5295,76.929523,0.67
+345,769,stationery,eraser,autumn,10-14,male,56,3,flood victims,2026-10-05T10:20:11.411918,12.972868,80.04944,0.76
+346,717,clothes,sweater,spring,10-14,female,47,4,special needs kids,2026-10-01T10:20:11.419637,28.355697,77.262125,0.89
+347,706,clothes,shirt,autumn,teen,male,86,3,orphanage,2026-09-28T10:20:11.428343,17.706404,78.241384,0.98
+348,818,stationery,pen,,6-10,female,125,4,urban poor,2026-09-25T10:20:11.436998,22.616097,88.411384,0.81
+349,754,stationery,geometry box,winter,adult,unisex,157,1,urban poor,2026-09-27T10:20:11.446411,26.73096,80.848873,0.81
+350,713,stationery,geometry box,,adult,female,107,2,flood victims,2026-10-10T10:20:11.452324,18.624792,73.628877,0.68
+351,808,clothes,shirt,,adult,female,30,3,homeless shelters,2026-10-04T10:20:11.459819,26.697267,81.038399,0.9
+352,820,stationery,school bag,summer,6-10,female,160,2,flood victims,2026-10-14T10:20:11.467600,26.802938,75.656737,0.89
+353,779,clothes,jacket,spring,6-10,,52,2,rural schools,2026-10-01T10:20:11.477399,22.898468,88.303692,0.99
+354,725,stationery,textbook,summer,,,168,1,homeless shelters,2026-10-06T10:20:11.486729,28.336007,76.903655,0.95
+355,693,stationery,ruler,spring,adult,unisex,144,2,special needs kids,2026-10-03T10:20:11.494388,12.791718,80.572813,1.0
+356,661,stationery,geometry box,spring,6-10,female,188,4,flood victims,2026-10-08T10:20:11.503239,22.342026,88.038508,0.93
+357,744,stationery,textbook,winter,6-10,female,68,3,special needs kids,2026-10-11T10:20:11.510751,17.158926,78.555009,0.88
+358,650,stationery,ruler,summer,teen,unisex,83,2,rural schools,2026-09-24T10:20:11.518240,28.326588,77.074508,0.97
+359,687,stationery,story book,,teen,unisex,150,2,orphanage,2026-10-07T10:20:11.525817,17.409569,78.618139,0.6
+360,84,stationery,backpack,summer,10-14,unisex,30,2,rural schools,2026-10-14T10:20:11.534065,22.3546,88.631413,0.68
+361,45,stationery,ruler,,10-14,unisex,56,3,homeless shelters,2026-10-11T10:20:11.543527,19.163726,72.889327,0.74
+362,766,stationery,ruler,spring,6-10,,22,4,flood victims,2026-10-09T10:20:11.552459,17.237717,78.582525,0.61
+363,788,stationery,ruler,,,unisex,48,2,school children,2026-10-08T10:20:11.561249,18.185892,74.187333,0.68
+364,780,stationery,story book,,,male,47,5,school children,2026-10-08T10:20:11.569866,18.515906,73.746039,0.59
+365,660,stationery,pencil,spring,,,108,2,special needs kids,2026-10-02T10:20:11.579016,26.748953,75.711995,0.86

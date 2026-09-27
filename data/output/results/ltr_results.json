@@ -1,0 +1,616 @@
+{
+  "avg_ndcg@5": 0.14329402272267597,
+  "avg_ap": 0.13,
+  "feature_importance": {
+    "urgency": 0.0027881465504891625,
+    "seasonal": 0.0025634709716865485,
+    "proximity": 0.4746718039158622,
+    "quantity_fit": 0.007625863214645393,
+    "condition": 0.0,
+    "reliability": 0.000810836869069341,
+    "similarity": 0.5115398784782473
+  },
+  "best_params": null,
+  "per_donor": [
+    {
+      "donation_id": 35,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 142
+    },
+    {
+      "donation_id": 37,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 44,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 50
+    },
+    {
+      "donation_id": 46,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 101
+    },
+    {
+      "donation_id": 50,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 96
+    },
+    {
+      "donation_id": 53,
+      "ndcg@5": 0.6309297535714573,
+      "ap": 0.5,
+      "num_candidates": 106
+    },
+    {
+      "donation_id": 57,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 89
+    },
+    {
+      "donation_id": 65,
+      "ndcg@5": 0.5,
+      "ap": 0.3333333333333333,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 68,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 145
+    },
+    {
+      "donation_id": 74,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 141
+    },
+    {
+      "donation_id": 81,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 50
+    },
+    {
+      "donation_id": 90,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 149
+    },
+    {
+      "donation_id": 98,
+      "ndcg@5": 0.9197207891481877,
+      "ap": 0.8333333333333333,
+      "num_candidates": 105
+    },
+    {
+      "donation_id": 103,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 104,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 147
+    },
+    {
+      "donation_id": 105,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 107,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 108,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 48
+    },
+    {
+      "donation_id": 110,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 137
+    },
+    {
+      "donation_id": 111,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 63
+    },
+    {
+      "donation_id": 112,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 143
+    },
+    {
+      "donation_id": 113,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 136
+    },
+    {
+      "donation_id": 114,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 107
+    },
+    {
+      "donation_id": 117,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 49
+    },
+    {
+      "donation_id": 119,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 119
+    },
+    {
+      "donation_id": 121,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 139
+    },
+    {
+      "donation_id": 125,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 128,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 42
+    },
+    {
+      "donation_id": 136,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 139,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 94
+    },
+    {
+      "donation_id": 159,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 166,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 60
+    },
+    {
+      "donation_id": 183,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 54
+    },
+    {
+      "donation_id": 189,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 132
+    },
+    {
+      "donation_id": 190,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 75
+    },
+    {
+      "donation_id": 207,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 142
+    },
+    {
+      "donation_id": 208,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 44
+    },
+    {
+      "donation_id": 215,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 217,
+      "ndcg@5": 0.4306765580733929,
+      "ap": 0.25,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 220,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 29
+    },
+    {
+      "donation_id": 228,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 72
+    },
+    {
+      "donation_id": 229,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 239,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 145
+    },
+    {
+      "donation_id": 244,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 131
+    },
+    {
+      "donation_id": 246,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 273,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 60
+    },
+    {
+      "donation_id": 297,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 303,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 141
+    },
+    {
+      "donation_id": 312,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 74
+    },
+    {
+      "donation_id": 313,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 57
+    },
+    {
+      "donation_id": 315,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 113
+    },
+    {
+      "donation_id": 325,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 139
+    },
+    {
+      "donation_id": 339,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 140
+    },
+    {
+      "donation_id": 347,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 84
+    },
+    {
+      "donation_id": 351,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 145
+    },
+    {
+      "donation_id": 352,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 149
+    },
+    {
+      "donation_id": 356,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 110
+    },
+    {
+      "donation_id": 358,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 359,
+      "ndcg@5": 0.6934264036172708,
+      "ap": 0.5833333333333333,
+      "num_candidates": 126
+    },
+    {
+      "donation_id": 368,
+      "ndcg@5": 0.6309297535714573,
+      "ap": 0.5,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 369,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 98
+    },
+    {
+      "donation_id": 371,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 148
+    },
+    {
+      "donation_id": 376,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 96
+    },
+    {
+      "donation_id": 382,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 43
+    },
+    {
+      "donation_id": 387,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 42
+    },
+    {
+      "donation_id": 391,
+      "ndcg@5": 0.6309297535714573,
+      "ap": 0.5,
+      "num_candidates": 129
+    },
+    {
+      "donation_id": 396,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 397,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 90
+    },
+    {
+      "donation_id": 406,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 409,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 98
+    },
+    {
+      "donation_id": 412,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 149
+    },
+    {
+      "donation_id": 416,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 78
+    },
+    {
+      "donation_id": 419,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 148
+    },
+    {
+      "donation_id": 423,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 85
+    },
+    {
+      "donation_id": 426,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 113
+    },
+    {
+      "donation_id": 429,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 115
+    },
+    {
+      "donation_id": 441,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 102
+    },
+    {
+      "donation_id": 443,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 137
+    },
+    {
+      "donation_id": 444,
+      "ndcg@5": 0.6309297535714573,
+      "ap": 0.5,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 445,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 126
+    },
+    {
+      "donation_id": 449,
+      "ndcg@5": 1.0,
+      "ap": 1.0,
+      "num_candidates": 117
+    },
+    {
+      "donation_id": 450,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 120
+    },
+    {
+      "donation_id": 466,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 107
+    },
+    {
+      "donation_id": 473,
+      "ndcg@5": 0.6309297535714573,
+      "ap": 0.5,
+      "num_candidates": 147
+    },
+    {
+      "donation_id": 475,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 99
+    },
+    {
+      "donation_id": 485,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 127
+    },
+    {
+      "donation_id": 486,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 134
+    },
+    {
+      "donation_id": 490,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 496,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 118
+    },
+    {
+      "donation_id": 500,
+      "ndcg@5": 0.6309297535714573,
+      "ap": 0.5,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 507,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 148
+    },
+    {
+      "donation_id": 510,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 16
+    },
+    {
+      "donation_id": 512,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 151
+    },
+    {
+      "donation_id": 518,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 101
+    },
+    {
+      "donation_id": 520,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 126
+    },
+    {
+      "donation_id": 525,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 106
+    },
+    {
+      "donation_id": 526,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 120
+    },
+    {
+      "donation_id": 529,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 144
+    },
+    {
+      "donation_id": 530,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 150
+    },
+    {
+      "donation_id": 532,
+      "ndcg@5": 0.0,
+      "ap": 0.0,
+      "num_candidates": 62
+    }
+  ]
+}

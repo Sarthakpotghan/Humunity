@@ -1,0 +1,501 @@
+id,donor_id,category,item_type,condition,quantity,description,season,age_group,gender,lat,lng,created_at
+35,569,clothes,t-shirt,good,42,34 t-shirt assorted sizes,autumn,teen,unisex,28.946381,77.032014,2026-09-23T10:20:11.590937
+36,168,clothes,slipper,new,49,40 slipper for kids,summer,6-10,female,17.690351,78.247728,2026-09-23T10:20:11.600842
+37,220,clothes,sweater,good,77,20 sweater assorted sizes,spring,6-10,,27.183664,76.04186,2026-09-23T10:20:11.607372
+38,563,clothes,jacket,new,34,42 jacket washed and folded,summer,10-14,unisex,18.254155,74.059101,2026-09-23T10:20:11.613145
+39,366,stationery,marker,new,19,8 marker,winter,adult,unisex,18.280789,73.570681,2026-09-23T10:20:11.619549
+40,577,stationery,story book,fair,20,51 story book in good condition,summer,adult,female,12.96309,77.466318,2026-09-23T10:20:11.624816
+41,349,stationery,textbook,new,72,23 textbook for kids,winter,10-14,unisex,26.737887,75.464942,2026-09-23T10:20:11.631767
+42,146,stationery,crayon,good,36,60 crayon for kids,autumn,,unisex,28.507265,77.371682,2026-09-23T10:20:11.639715
+43,333,stationery,school bag,fair,11,16 school bag,summer,6-10,unisex,13.000724,77.562455,2026-09-23T10:20:11.645450
+44,245,stationery,eraser,good,44,38 eraser assorted sizes,winter,teen,unisex,26.957503,80.97347,2026-09-23T10:20:11.651529
+45,538,clothes,hoodie,new,16,47 hoodie,,kid,unisex,22.959363,72.446817,2026-09-23T10:20:11.656237
+46,189,stationery,marker,good,31,36 marker for kids,,adult,male,17.374759,78.205828,2026-09-23T10:20:11.661878
+47,413,clothes,sock,fair,56,36 sock washed and folded,summer,10-14,,19.150168,72.577312,2026-09-23T10:20:11.670138
+48,190,clothes,coat,new,30,22 coat for kids,summer,adult,,27.137819,75.993275,2026-09-23T10:20:11.679436
+49,256,clothes,hoodie,fair,25,29 hoodie in good condition,winter,teen,unisex,19.398411,72.595683,2026-09-23T10:20:11.687974
+50,426,clothes,sock,new,26,41 sock gently used,,10-14,female,26.887596,80.986899,2026-09-23T10:20:11.697070
+51,214,clothes,hoodie,good,58,43 hoodie new and sealed,summer,6-10,male,26.947376,75.790585,2026-09-23T10:20:11.704930
+52,352,clothes,coat,good,60,39 coat in good condition,summer,teen,male,28.842208,77.085416,2026-09-23T10:20:11.711557
+53,184,clothes,jeans,good,31,43 jeans,,kid,male,13.293477,77.244737,2026-09-23T10:20:11.717988
+54,561,stationery,textbook,new,61,37 textbook for kids,,teen,unisex,18.320776,73.727133,2026-09-23T10:20:11.726220
+55,468,stationery,crayon,good,75,20 crayon in good condition,winter,6-10,,12.870559,77.341486,2026-09-23T10:20:11.734474
+56,228,stationery,story book,fair,41,16 story book new and sealed,winter,adult,,19.368517,73.041686,2026-09-23T10:20:11.741386
+57,498,stationery,pen,new,32,54 pen,autumn,6-10,female,26.58856,76.003139,2026-09-23T10:20:11.749032
+58,263,clothes,sock,new,43,54 sock assorted sizes,winter,,male,22.745975,88.608535,2026-09-23T10:20:11.755115
+59,493,clothes,shirt,fair,67,8 shirt assorted sizes,winter,10-14,female,17.412951,78.241406,2026-09-23T10:20:11.761515
+60,133,stationery,pencil,good,36,13 pencil gently used,winter,10-14,,22.735558,72.523755,2026-09-23T10:20:11.768266
+61,31,clothes,shirt,new,74,35 shirt for kids,winter,10-14,female,18.229955,73.857976,2026-09-23T10:20:11.774249
+62,490,clothes,t-shirt,fair,55,9 t-shirt gently used,,6-10,,19.157198,73.042667,2026-09-23T10:20:11.782382
+63,284,stationery,geometry box,fair,59,43 geometry box assorted sizes,summer,6-10,unisex,17.331478,78.380515,2026-09-23T10:20:11.791203
+64,485,clothes,t-shirt,fair,9,48 t-shirt gently used,,adult,,26.932928,80.904524,2026-09-23T10:20:11.799270
+65,202,clothes,jeans,good,5,5 jeans gently used,autumn,,male,18.340534,73.941402,2026-09-23T10:20:11.808328
+66,393,clothes,t-shirt,fair,21,39 t-shirt for kids,winter,teen,female,17.267314,78.654709,2026-09-23T10:20:11.815306
+67,473,stationery,crayon,good,28,47 crayon for kids,,6-10,unisex,27.04895,75.905082,2026-09-23T10:20:11.821502
+68,555,clothes,dress,new,5,46 dress,summer,10-14,male,27.049132,81.028775,2026-09-23T10:20:11.827187
+69,506,stationery,eraser,fair,71,29 eraser for kids,autumn,,male,28.468647,77.477382,2026-09-23T10:20:11.833064
+70,161,stationery,textbook,good,53,50 textbook,summer,kid,male,22.734114,72.360613,2026-09-23T10:20:11.838071
+71,430,stationery,geometry box,fair,35,45 geometry box gently used,,teen,male,19.247074,72.540561,2026-09-23T10:20:11.843227
+72,191,clothes,hoodie,new,51,22 hoodie in good condition,spring,6-10,female,13.347774,80.543981,2026-09-23T10:20:11.848776
+73,507,clothes,skirt,good,60,20 skirt for kids,winter,10-14,male,22.587102,88.488496,2026-09-23T10:20:11.853752
+74,362,clothes,coat,new,58,39 coat assorted sizes,winter,kid,male,13.112264,80.06543,2026-09-23T10:20:11.859062
+75,24,clothes,sock,good,21,41 sock in good condition,spring,,,19.42298,73.210744,2026-09-23T10:20:11.864433
+76,223,stationery,backpack,new,16,24 backpack new and sealed,spring,adult,male,18.679356,74.042505,2026-09-23T10:20:11.869383
+77,130,stationery,crayon,fair,6,41 crayon for kids,spring,teen,unisex,18.818082,72.546039,2026-09-23T10:20:11.874669
+78,18,stationery,pencil,good,65,37 pencil washed and folded,spring,10-14,male,18.977483,73.009399,2026-09-23T10:20:11.881645
+79,389,clothes,jacket,fair,28,31 jacket washed and folded,spring,6-10,female,26.894093,75.55195,2026-09-23T10:20:11.887681
+80,551,stationery,crayon,good,8,36 crayon assorted sizes,autumn,10-14,unisex,13.152044,77.290895,2026-09-23T10:20:11.896460
+81,336,stationery,backpack,new,60,44 backpack assorted sizes,winter,teen,,22.648151,88.59093,2026-09-23T10:20:11.905673
+82,36,clothes,hoodie,fair,9,39 hoodie new and sealed,winter,,female,28.58373,77.473437,2026-09-23T10:20:11.913218
+83,527,stationery,ruler,new,62,34 ruler in good condition,winter,6-10,,28.396795,77.166688,2026-09-23T10:20:11.918924
+84,298,clothes,shirt,good,44,54 shirt for kids,autumn,teen,unisex,17.615925,78.452889,2026-09-23T10:20:11.924583
+85,185,clothes,dress,new,17,10 dress gently used,,adult,unisex,28.57952,76.984215,2026-09-23T10:20:11.930892
+86,554,clothes,hoodie,fair,51,50 hoodie new and sealed,autumn,teen,unisex,22.716959,88.457751,2026-09-23T10:20:11.937806
+87,207,stationery,crayon,fair,9,60 crayon assorted sizes,spring,kid,unisex,17.065734,78.256319,2026-09-23T10:20:11.945217
+88,404,stationery,ruler,fair,35,45 ruler in good condition,,kid,unisex,17.328707,78.353363,2026-09-23T10:20:11.949922
+89,518,stationery,textbook,fair,63,56 textbook,spring,10-14,unisex,18.178945,73.855039,2026-09-23T10:20:11.954653
+90,540,clothes,t-shirt,new,21,40 t-shirt gently used,,adult,unisex,12.939217,77.553913,2026-09-23T10:20:11.960306
+91,500,clothes,jacket,new,16,47 jacket for kids,,6-10,male,12.771245,80.165014,2026-09-23T10:20:11.965383
+92,271,stationery,crayon,fair,77,47 crayon assorted sizes,autumn,teen,unisex,26.78857,80.720974,2026-09-23T10:20:11.970510
+93,359,stationery,geometry box,good,20,28 geometry box new and sealed,summer,10-14,,18.422532,73.531788,2026-09-23T10:20:11.975925
+94,370,stationery,textbook,new,16,31 textbook for kids,winter,adult,unisex,22.757916,72.822986,2026-09-23T10:20:11.983736
+95,499,clothes,dress,fair,43,51 dress assorted sizes,autumn,adult,male,13.021557,77.930145,2026-09-23T10:20:11.989904
+96,369,stationery,pencil,new,32,44 pencil for kids,autumn,teen,female,12.803362,77.6472,2026-09-23T10:20:12.000195
+97,412,clothes,sweater,good,55,6 sweater new and sealed,winter,,unisex,13.117611,77.93008,2026-09-23T10:20:12.010662
+98,462,clothes,jacket,good,41,45 jacket in good condition,,6-10,male,18.757845,72.772455,2026-09-23T10:20:12.019973
+99,338,clothes,sweater,new,45,48 sweater gently used,spring,10-14,,23.027183,72.448147,2026-09-23T10:20:12.028445
+100,351,stationery,story book,fair,61,56 story book,spring,kid,female,18.754078,74.152296,2026-09-23T10:20:12.036406
+101,322,stationery,story book,good,75,55 story book washed and folded,winter,adult,,23.296941,72.597277,2026-09-23T10:20:12.043274
+102,482,clothes,t-shirt,good,6,41 t-shirt assorted sizes,spring,6-10,,13.240175,80.141552,2026-09-23T10:20:12.050188
+103,175,clothes,coat,fair,43,43 coat new and sealed,summer,teen,,26.799807,75.699969,2026-09-23T10:20:12.055715
+104,526,clothes,dress,good,25,20 dress gently used,winter,6-10,unisex,23.169388,72.411448,2026-09-23T10:20:12.061727
+105,16,clothes,sweater,good,64,33 sweater for kids,spring,10-14,unisex,12.700162,77.794061,2026-09-23T10:20:12.068491
+106,505,stationery,pencil,fair,7,54 pencil washed and folded,spring,teen,unisex,13.245409,80.28724,2026-09-23T10:20:12.073952
+107,147,clothes,jacket,good,8,24 jacket,summer,teen,,26.883958,75.936874,2026-09-23T10:20:12.082621
+108,328,stationery,notebook,new,27,41 notebook washed and folded,summer,adult,unisex,22.294772,88.550226,2026-09-23T10:20:12.092633
+109,288,stationery,marker,new,74,12 marker gently used,,kid,male,26.762997,75.809893,2026-09-23T10:20:12.101924
+110,549,stationery,textbook,new,24,25 textbook gently used,winter,adult,male,22.582442,88.158504,2026-09-23T10:20:12.110220
+111,270,stationery,textbook,new,52,33 textbook,,,female,28.31377,77.288284,2026-09-23T10:20:12.117033
+112,171,clothes,slipper,good,42,43 slipper for kids,winter,adult,female,26.60006,75.735826,2026-09-23T10:20:12.123797
+113,20,clothes,dress,good,42,41 dress in good condition,,adult,female,22.455232,88.152603,2026-09-23T10:20:12.130576
+114,587,stationery,story book,good,26,19 story book in good condition,summer,teen,male,26.975835,81.093351,2026-09-23T10:20:12.136440
+115,282,stationery,story book,good,62,36 story book,summer,10-14,,13.11133,77.710226,2026-09-23T10:20:12.143944
+116,342,stationery,crayon,good,74,41 crayon in good condition,,,female,19.318036,72.72528,2026-09-23T10:20:12.148808
+117,530,stationery,backpack,new,64,42 backpack new and sealed,winter,teen,unisex,27.017016,75.992002,2026-09-23T10:20:12.153459
+118,174,stationery,backpack,fair,12,41 backpack washed and folded,spring,teen,unisex,17.303672,78.3752,2026-09-23T10:20:12.159149
+119,310,stationery,pen,new,42,42 pen for kids,autumn,6-10,,23.190057,72.719736,2026-09-23T10:20:12.167829
+120,546,clothes,sock,new,30,57 sock for kids,,6-10,female,22.891718,88.062625,2026-09-23T10:20:12.175261
+121,326,clothes,shirt,fair,76,47 shirt in good condition,autumn,teen,male,18.742324,74.127783,2026-09-23T10:20:12.180766
+122,324,stationery,ruler,new,77,41 ruler washed and folded,summer,6-10,female,22.535612,88.157863,2026-09-23T10:20:12.185821
+123,374,stationery,pencil,fair,74,59 pencil gently used,,6-10,,26.568083,76.127795,2026-09-23T10:20:12.190997
+124,169,stationery,notebook,fair,51,20 notebook new and sealed,summer,teen,female,22.797127,88.265371,2026-09-23T10:20:12.196083
+125,596,clothes,sock,good,22,16 sock new and sealed,summer,kid,female,13.016923,80.225333,2026-09-23T10:20:12.201434
+126,285,clothes,shirt,fair,58,5 shirt,autumn,,unisex,18.37233,74.117615,2026-09-23T10:20:12.207173
+127,316,clothes,sock,new,61,56 sock new and sealed,winter,adult,female,27.244883,75.532343,2026-09-23T10:20:12.212036
+128,277,stationery,backpack,good,33,27 backpack in good condition,winter,10-14,,19.08259,72.914135,2026-09-23T10:20:12.218117
+129,127,stationery,notebook,fair,64,7 notebook for kids,,adult,male,13.231191,80.109175,2026-09-23T10:20:12.223545
+130,343,stationery,story book,good,12,38 story book,spring,teen,,18.843616,73.562744,2026-09-23T10:20:12.228727
+131,472,stationery,crayon,fair,63,8 crayon gently used,autumn,,female,23.151352,72.598838,2026-09-23T10:20:12.234044
+132,259,stationery,ruler,good,10,23 ruler in good condition,winter,adult,male,17.436776,78.36876,2026-09-23T10:20:12.238728
+133,32,clothes,sock,good,13,23 sock washed and folded,summer,teen,,23.11301,72.626099,2026-09-23T10:20:12.243448
+134,327,stationery,ruler,fair,17,13 ruler for kids,,6-10,male,22.311375,88.067704,2026-09-23T10:20:12.249100
+135,10,clothes,sock,new,70,33 sock gently used,autumn,6-10,unisex,22.645275,88.650992,2026-09-23T10:20:12.253700
+136,400,clothes,shirt,new,59,43 shirt washed and folded,autumn,10-14,female,28.86731,77.098994,2026-09-23T10:20:12.258296
+137,262,stationery,notebook,good,63,46 notebook gently used,autumn,,unisex,18.678599,73.623798,2026-09-23T10:20:12.264117
+138,594,clothes,skirt,fair,58,48 skirt assorted sizes,spring,10-14,male,22.433557,88.536205,2026-09-23T10:20:12.268882
+139,382,stationery,backpack,fair,48,48 backpack gently used,,adult,,28.272204,77.508056,2026-09-23T10:20:12.276097
+140,15,stationery,geometry box,fair,33,22 geometry box gently used,autumn,6-10,female,23.341829,72.52365,2026-09-23T10:20:12.282520
+141,519,clothes,hoodie,new,4,26 hoodie assorted sizes,winter,kid,male,28.777919,77.271107,2026-09-23T10:20:12.287490
+142,35,clothes,hoodie,good,27,11 hoodie assorted sizes,summer,6-10,unisex,23.254683,72.229773,2026-09-23T10:20:12.292747
+143,141,clothes,coat,new,80,47 coat washed and folded,,teen,,26.586229,75.870878,2026-09-23T10:20:12.300010
+144,501,clothes,sweater,fair,61,49 sweater in good condition,,6-10,female,22.313535,88.473376,2026-09-23T10:20:12.308601
+145,247,stationery,school bag,good,10,47 school bag washed and folded,,6-10,unisex,13.378587,80.114168,2026-09-23T10:20:12.315250
+146,192,clothes,jeans,new,53,57 jeans gently used,autumn,10-14,,22.940459,72.454258,2026-09-23T10:20:12.322294
+147,9,clothes,hoodie,fair,36,54 hoodie new and sealed,autumn,teen,,17.15991,78.48114,2026-09-23T10:20:12.332649
+148,398,stationery,story book,fair,52,6 story book new and sealed,,adult,,12.805001,79.971744,2026-09-23T10:20:12.344249
+149,17,stationery,crayon,good,11,5 crayon for kids,autumn,10-14,female,12.919206,80.410739,2026-09-23T10:20:12.353885
+150,297,stationery,pen,new,14,41 pen for kids,autumn,6-10,male,23.05059,72.223715,2026-09-23T10:20:12.362933
+151,514,stationery,pen,fair,8,58 pen new and sealed,spring,adult,unisex,22.478349,88.611239,2026-09-23T10:20:12.371823
+152,539,stationery,school bag,new,59,29 school bag,autumn,adult,male,13.298859,77.707114,2026-09-23T10:20:12.381085
+153,368,clothes,jacket,fair,42,51 jacket for kids,,10-14,female,19.240727,72.62566,2026-09-23T10:20:12.390605
+154,193,stationery,notebook,new,30,7 notebook gently used,autumn,6-10,,28.613679,77.534468,2026-09-23T10:20:12.399510
+155,543,stationery,marker,new,21,60 marker washed and folded,,kid,unisex,22.787573,88.481021,2026-09-23T10:20:12.407324
+156,145,clothes,t-shirt,good,15,49 t-shirt assorted sizes,,,unisex,26.904626,75.450644,2026-09-23T10:20:12.415893
+157,390,clothes,sweater,new,57,12 sweater new and sealed,,teen,unisex,28.583229,76.978483,2026-09-23T10:20:12.425150
+158,391,stationery,geometry box,new,8,12 geometry box assorted sizes,summer,teen,unisex,22.90864,72.806527,2026-09-23T10:20:12.435592
+159,435,clothes,jeans,new,59,14 jeans washed and folded,winter,kid,male,17.45016,78.371553,2026-09-23T10:20:12.445673
+160,138,clothes,sweater,new,65,55 sweater washed and folded,spring,teen,female,12.792151,77.65199,2026-09-23T10:20:12.455123
+161,155,clothes,slipper,new,21,46 slipper for kids,spring,10-14,female,18.782506,72.532757,2026-09-23T10:20:12.463588
+162,334,stationery,eraser,fair,14,16 eraser for kids,autumn,,unisex,22.670478,88.380061,2026-09-23T10:20:12.472953
+163,470,stationery,backpack,new,49,5 backpack for kids,winter,kid,,17.474034,78.684508,2026-09-23T10:20:12.479922
+164,300,clothes,dress,new,17,54 dress assorted sizes,,kid,male,18.774312,74.197447,2026-09-23T10:20:12.485607
+165,396,stationery,story book,good,29,16 story book in good condition,summer,,,13.179229,77.724271,2026-09-23T10:20:12.492128
+166,576,stationery,notebook,new,65,11 notebook assorted sizes,spring,teen,unisex,13.03697,80.154706,2026-09-23T10:20:12.499808
+167,143,clothes,slipper,fair,44,33 slipper for kids,spring,6-10,female,12.982033,77.294202,2026-09-23T10:20:12.507551
+168,341,clothes,sweater,new,63,20 sweater assorted sizes,spring,kid,female,26.657744,80.673293,2026-09-23T10:20:12.514857
+169,345,stationery,pencil,new,61,18 pencil for kids,summer,kid,female,17.444565,78.174738,2026-09-23T10:20:12.521059
+170,3,stationery,eraser,new,17,26 eraser in good condition,summer,adult,,27.000575,81.038615,2026-09-23T10:20:12.529204
+171,486,clothes,trouser,fair,32,19 trouser gently used,winter,kid,unisex,27.092856,80.917205,2026-09-23T10:20:12.535461
+172,475,stationery,eraser,fair,34,42 eraser new and sealed,autumn,6-10,,22.283132,88.613782,2026-09-23T10:20:12.541517
+173,408,clothes,coat,good,67,14 coat for kids,,10-14,,12.795082,77.548574,2026-09-23T10:20:12.546544
+174,13,stationery,school bag,fair,4,57 school bag,,10-14,unisex,22.246134,88.385685,2026-09-23T10:20:12.550914
+175,461,clothes,shirt,good,42,27 shirt gently used,,adult,,27.047612,75.721933,2026-09-23T10:20:12.558642
+176,129,clothes,dress,good,62,34 dress washed and folded,spring,adult,female,22.335862,88.335398,2026-09-23T10:20:12.564613
+177,269,clothes,skirt,good,72,49 skirt gently used,autumn,,male,17.527731,78.137655,2026-09-23T10:20:12.569265
+178,139,clothes,coat,new,52,26 coat assorted sizes,,teen,male,19.128661,72.672702,2026-09-23T10:20:12.574528
+179,200,stationery,geometry box,fair,29,16 geometry box assorted sizes,winter,adult,,26.818314,75.870693,2026-09-23T10:20:12.579037
+180,409,clothes,sock,good,48,35 sock assorted sizes,spring,adult,unisex,18.822884,72.762151,2026-09-23T10:20:12.583820
+181,365,stationery,ruler,fair,70,8 ruler,autumn,6-10,female,13.250153,77.597096,2026-09-23T10:20:12.589678
+182,14,stationery,story book,good,14,44 story book gently used,spring,adult,,13.313392,80.249815,2026-09-23T10:20:12.594634
+183,424,stationery,pen,new,29,11 pen in good condition,autumn,,unisex,18.226519,74.135262,2026-09-23T10:20:12.600123
+184,208,stationery,backpack,good,5,48 backpack for kids,autumn,10-14,male,26.861181,81.035293,2026-09-23T10:20:12.605174
+185,492,clothes,hoodie,good,78,46 hoodie gently used,summer,teen,male,17.239062,78.180765,2026-09-23T10:20:12.610326
+186,401,stationery,story book,new,64,24 story book for kids,summer,6-10,unisex,19.192099,72.898816,2026-09-23T10:20:12.615299
+187,295,clothes,shirt,good,26,27 shirt gently used,winter,kid,unisex,18.430732,73.708402,2026-09-23T10:20:12.621473
+188,455,clothes,shirt,good,50,20 shirt,autumn,6-10,unisex,28.945144,77.446532,2026-09-23T10:20:12.628366
+189,387,clothes,sock,new,71,25 sock gently used,winter,6-10,female,22.351748,88.407641,2026-09-23T10:20:12.634197
+190,531,stationery,story book,fair,72,54 story book in good condition,,6-10,unisex,26.707792,81.240504,2026-09-23T10:20:12.639830
+191,234,stationery,story book,fair,59,23 story book washed and folded,winter,adult,unisex,19.408921,72.759596,2026-09-23T10:20:12.645223
+192,443,stationery,notebook,good,31,13 notebook assorted sizes,,,male,26.799479,75.515921,2026-09-23T10:20:12.651016
+193,348,clothes,coat,new,5,46 coat in good condition,summer,teen,unisex,17.347181,78.201437,2026-09-23T10:20:12.656150
+194,495,clothes,hoodie,good,21,30 hoodie in good condition,summer,6-10,,22.281113,88.608516,2026-09-23T10:20:12.661739
+195,469,stationery,geometry box,fair,14,5 geometry box gently used,autumn,6-10,male,23.173675,72.520748,2026-09-23T10:20:12.667645
+196,346,stationery,story book,fair,79,23 story book in good condition,spring,10-14,female,18.321387,74.128163,2026-09-23T10:20:12.673046
+197,585,stationery,textbook,good,37,26 textbook,,10-14,,17.095255,78.282149,2026-09-23T10:20:12.678625
+198,571,clothes,t-shirt,good,77,16 t-shirt washed and folded,,6-10,female,19.01616,72.91677,2026-09-23T10:20:12.684671
+199,244,stationery,eraser,fair,63,6 eraser washed and folded,summer,kid,male,12.94544,80.312197,2026-09-23T10:20:12.689770
+200,12,stationery,backpack,new,38,16 backpack new and sealed,,adult,unisex,26.649324,75.903439,2026-09-23T10:20:12.695242
+201,246,stationery,crayon,good,68,35 crayon for kids,,6-10,female,28.609035,77.538438,2026-09-23T10:20:12.701440
+202,354,stationery,pencil,good,23,42 pencil,spring,6-10,female,23.18557,72.233682,2026-09-23T10:20:12.706682
+203,381,stationery,notebook,new,26,23 notebook gently used,winter,adult,,26.533722,80.849014,2026-09-23T10:20:12.711679
+204,534,clothes,hoodie,fair,49,25 hoodie washed and folded,summer,adult,male,17.570283,78.555834,2026-09-23T10:20:12.716846
+205,22,clothes,jacket,good,23,13 jacket for kids,autumn,6-10,female,22.739583,72.627433,2026-09-23T10:20:12.721687
+206,520,clothes,t-shirt,good,12,55 t-shirt for kids,autumn,adult,,12.804393,80.028888,2026-09-23T10:20:12.726777
+207,216,clothes,dress,fair,69,27 dress gently used,autumn,6-10,unisex,18.807596,72.619563,2026-09-23T10:20:12.735274
+208,420,stationery,notebook,fair,32,52 notebook washed and folded,spring,kid,unisex,27.096913,75.676732,2026-09-23T10:20:12.743893
+209,181,clothes,skirt,good,8,49 skirt washed and folded,autumn,,,22.4378,88.160789,2026-09-23T10:20:12.749071
+210,525,clothes,dress,new,18,12 dress gently used,,,male,18.307846,73.529655,2026-09-23T10:20:12.754473
+211,203,clothes,shirt,fair,47,47 shirt gently used,summer,,unisex,19.370069,72.671481,2026-09-23T10:20:12.759535
+212,23,clothes,hoodie,new,27,41 hoodie,winter,teen,,12.868142,77.843197,2026-09-23T10:20:12.764788
+213,535,clothes,slipper,fair,78,11 slipper in good condition,summer,adult,female,28.938885,76.979241,2026-09-23T10:20:12.770206
+214,136,clothes,shirt,new,55,58 shirt gently used,winter,10-14,unisex,28.393488,77.330468,2026-09-23T10:20:12.775636
+215,274,clothes,dress,fair,8,12 dress for kids,summer,10-14,male,22.301592,88.703129,2026-09-23T10:20:12.782340
+216,416,stationery,ruler,fair,55,34 ruler for kids,spring,6-10,female,26.619974,75.782899,2026-09-23T10:20:12.789007
+217,418,clothes,sweater,new,65,58 sweater washed and folded,spring,adult,male,18.929413,73.126456,2026-09-23T10:20:12.797377
+218,497,clothes,sweater,new,49,14 sweater new and sealed,spring,adult,,19.196467,72.805159,2026-09-23T10:20:12.804788
+219,405,stationery,pen,fair,77,19 pen washed and folded,summer,adult,female,13.415345,80.157742,2026-09-23T10:20:12.811674
+220,483,stationery,geometry box,good,21,35 geometry box assorted sizes,winter,10-14,female,26.912255,81.125612,2026-09-23T10:20:12.820759
+221,235,stationery,story book,fair,9,36 story book in good condition,,kid,,13.1592,77.320226,2026-09-23T10:20:12.829663
+222,318,clothes,shirt,fair,15,29 shirt for kids,summer,6-10,unisex,18.751619,73.855394,2026-09-23T10:20:12.839190
+223,182,stationery,story book,good,72,17 story book gently used,winter,10-14,female,27.09452,75.900056,2026-09-23T10:20:12.849350
+224,166,clothes,jacket,good,61,32 jacket,autumn,10-14,male,17.275531,78.738471,2026-09-23T10:20:12.859635
+225,157,stationery,school bag,good,17,15 school bag new and sealed,autumn,kid,male,26.521887,80.720008,2026-09-23T10:20:12.869745
+226,170,stationery,story book,good,66,40 story book washed and folded,autumn,teen,,18.568599,73.850088,2026-09-23T10:20:12.879316
+227,279,stationery,ruler,good,47,25 ruler,spring,teen,,23.086232,72.485858,2026-09-23T10:20:12.888108
+228,580,stationery,backpack,new,34,11 backpack new and sealed,summer,6-10,female,13.188287,77.653377,2026-09-23T10:20:12.900743
+229,209,clothes,slipper,new,71,9 slipper washed and folded,spring,,male,18.34373,73.960358,2026-09-23T10:20:12.910525
+230,583,stationery,crayon,new,43,37 crayon new and sealed,winter,,female,18.954282,72.850337,2026-09-23T10:20:12.920129
+231,158,clothes,dress,fair,46,11 dress assorted sizes,autumn,kid,male,26.826816,75.710511,2026-09-23T10:20:12.927983
+232,403,stationery,eraser,good,9,36 eraser assorted sizes,summer,teen,unisex,22.789139,72.431065,2026-09-23T10:20:12.936752
+233,221,clothes,coat,good,37,52 coat,winter,teen,,18.378524,73.908164,2026-09-23T10:20:12.945662
+234,559,stationery,backpack,good,58,18 backpack gently used,winter,adult,male,22.269689,88.57473,2026-09-23T10:20:12.955887
+235,373,stationery,backpack,fair,69,21 backpack for kids,,10-14,unisex,28.72832,77.078347,2026-09-23T10:20:12.965881
+236,353,clothes,sock,fair,10,57 sock assorted sizes,winter,6-10,female,17.638897,78.54049,2026-09-23T10:20:12.975928
+237,167,clothes,t-shirt,good,11,14 t-shirt assorted sizes,autumn,6-10,female,13.098289,80.175692,2026-09-23T10:20:12.986089
+238,260,stationery,ruler,new,17,46 ruler in good condition,autumn,adult,unisex,27.006149,76.029477,2026-09-23T10:20:12.995562
+239,329,stationery,story book,new,37,36 story book for kids,spring,10-14,,26.667374,75.456693,2026-09-23T10:20:13.005089
+240,344,stationery,marker,new,13,40 marker in good condition,,,female,12.828201,80.101578,2026-09-23T10:20:13.014882
+241,509,clothes,skirt,new,17,28 skirt assorted sizes,spring,,female,17.254733,78.345285,2026-09-23T10:20:13.025668
+242,593,clothes,hoodie,new,33,47 hoodie washed and folded,autumn,teen,male,19.125681,72.877874,2026-09-23T10:20:13.037786
+243,471,stationery,geometry box,new,21,58 geometry box for kids,autumn,10-14,unisex,17.454875,78.677934,2026-09-23T10:20:13.047408
+244,287,stationery,story book,good,17,31 story book gently used,winter,,female,26.57147,80.746076,2026-09-23T10:20:13.057400
+245,137,clothes,jeans,new,80,55 jeans in good condition,summer,10-14,male,17.256543,78.433347,2026-09-23T10:20:13.067729
+246,524,clothes,slipper,fair,49,55 slipper assorted sizes,summer,6-10,female,28.288267,77.376615,2026-09-23T10:20:13.077531
+247,237,clothes,dress,new,41,29 dress,,6-10,male,18.80261,73.986374,2026-09-23T10:20:13.084527
+248,521,stationery,marker,new,65,25 marker washed and folded,summer,10-14,,22.369871,88.637073,2026-09-23T10:20:13.093199
+249,552,stationery,school bag,new,48,32 school bag washed and folded,winter,kid,male,13.062464,80.209773,2026-09-23T10:20:13.100933
+250,226,stationery,story book,fair,20,49 story book,autumn,adult,unisex,19.020609,73.038162,2026-09-23T10:20:13.108914
+251,281,stationery,geometry box,fair,19,41 geometry box,winter,kid,unisex,26.564553,75.577353,2026-09-23T10:20:13.116127
+252,474,stationery,story book,fair,78,35 story book washed and folded,spring,kid,male,19.318872,73.007727,2026-09-23T10:20:13.122468
+253,496,clothes,sweater,new,5,31 sweater gently used,winter,10-14,female,13.311438,80.48037,2026-09-23T10:20:13.131058
+254,454,clothes,sweater,good,57,34 sweater in good condition,,adult,unisex,23.336176,72.867579,2026-09-23T10:20:13.137079
+255,290,stationery,pencil,fair,66,41 pencil,autumn,adult,female,28.684175,76.963476,2026-09-23T10:20:13.143052
+256,460,clothes,jeans,new,79,23 jeans assorted sizes,autumn,10-14,unisex,28.346859,77.358495,2026-09-23T10:20:13.149667
+257,249,clothes,skirt,new,60,16 skirt new and sealed,summer,,male,17.185897,78.713562,2026-09-23T10:20:13.155919
+258,240,stationery,pen,fair,52,5 pen new and sealed,spring,6-10,female,13.36783,80.179446,2026-09-23T10:20:13.161796
+259,428,stationery,pen,good,48,11 pen for kids,spring,,male,13.117517,77.759873,2026-09-23T10:20:13.168629
+260,465,clothes,jacket,fair,50,21 jacket for kids,autumn,10-14,male,23.370218,72.878925,2026-09-23T10:20:13.174144
+261,452,clothes,coat,good,19,16 coat gently used,summer,teen,female,12.825267,80.545258,2026-09-23T10:20:13.181240
+262,378,stationery,pencil,good,49,21 pencil,autumn,,unisex,18.788754,73.024879,2026-09-23T10:20:13.187219
+263,131,stationery,crayon,new,43,58 crayon washed and folded,autumn,teen,male,27.145066,80.794248,2026-09-23T10:20:13.193010
+264,449,clothes,hoodie,new,9,59 hoodie assorted sizes,spring,10-14,,13.248508,80.264592,2026-09-23T10:20:13.198210
+265,128,stationery,pencil,good,48,50 pencil new and sealed,,,female,22.833402,72.246504,2026-09-23T10:20:13.203645
+266,314,stationery,story book,new,29,12 story book washed and folded,summer,kid,,13.424873,80.313298,2026-09-23T10:20:13.209398
+267,478,clothes,slipper,new,70,37 slipper washed and folded,winter,teen,unisex,13.340421,80.047158,2026-09-23T10:20:13.215215
+268,581,clothes,t-shirt,good,18,54 t-shirt new and sealed,,,male,17.571793,78.263098,2026-09-23T10:20:13.221324
+269,361,clothes,trouser,fair,37,14 trouser,autumn,10-14,female,12.897519,77.657837,2026-09-23T10:20:13.230462
+270,215,clothes,sock,new,39,44 sock new and sealed,spring,adult,unisex,23.088443,72.225464,2026-09-23T10:20:13.238694
+271,229,clothes,hoodie,new,54,43 hoodie new and sealed,spring,10-14,male,28.49012,76.897875,2026-09-23T10:20:13.245361
+272,562,clothes,skirt,good,65,54 skirt new and sealed,,adult,unisex,22.285032,88.610542,2026-09-23T10:20:13.251641
+273,302,stationery,marker,fair,28,43 marker in good condition,summer,adult,,13.18237,77.759722,2026-09-23T10:20:13.260008
+274,142,stationery,ruler,fair,26,41 ruler for kids,summer,,female,12.964336,77.864389,2026-09-23T10:20:13.271250
+275,153,clothes,hoodie,fair,70,26 hoodie new and sealed,autumn,kid,unisex,26.800574,80.894412,2026-09-23T10:20:13.280539
+276,205,clothes,dress,fair,57,24 dress in good condition,spring,adult,male,22.281379,88.341653,2026-09-23T10:20:13.288614
+277,296,clothes,jacket,good,75,37 jacket,,10-14,female,12.828437,77.27801,2026-09-23T10:20:13.295990
+278,34,clothes,hoodie,new,53,6 hoodie,spring,adult,female,19.294977,72.77652,2026-09-23T10:20:13.303466
+279,494,stationery,geometry box,good,46,42 geometry box assorted sizes,winter,adult,female,28.295581,77.150376,2026-09-23T10:20:13.313201
+280,417,clothes,t-shirt,good,71,16 t-shirt,,teen,male,13.298304,77.854541,2026-09-23T10:20:13.323597
+281,429,clothes,shirt,fair,65,46 shirt new and sealed,winter,adult,female,28.276441,77.135454,2026-09-23T10:20:13.331483
+282,289,stationery,school bag,new,20,48 school bag assorted sizes,,10-14,male,17.24696,78.705893,2026-09-23T10:20:13.341705
+283,325,clothes,slipper,fair,33,17 slipper washed and folded,spring,kid,female,12.742413,79.999039,2026-09-23T10:20:13.351465
+284,512,clothes,sweater,new,17,24 sweater washed and folded,autumn,kid,female,22.977552,72.659641,2026-09-23T10:20:13.361118
+285,508,stationery,story book,good,75,35 story book,spring,teen,unisex,17.151274,78.243396,2026-09-23T10:20:13.370489
+286,397,stationery,notebook,fair,77,11 notebook assorted sizes,autumn,10-14,female,28.844516,77.133213,2026-09-23T10:20:13.379674
+287,437,stationery,notebook,fair,10,36 notebook new and sealed,spring,teen,female,13.038688,77.632613,2026-09-23T10:20:13.388753
+288,159,stationery,textbook,good,47,9 textbook gently used,,10-14,female,22.592416,88.309303,2026-09-23T10:20:13.396867
+289,453,clothes,jeans,fair,31,51 jeans in good condition,spring,6-10,female,28.577728,77.164361,2026-09-23T10:20:13.405787
+290,350,stationery,pencil,good,23,23 pencil assorted sizes,summer,10-14,female,13.032961,77.724082,2026-09-23T10:20:13.413062
+291,293,clothes,sock,good,15,35 sock in good condition,winter,kid,unisex,18.60569,73.70442,2026-09-23T10:20:13.419270
+292,196,stationery,ruler,good,48,20 ruler in good condition,summer,,,27.052138,81.256338,2026-09-23T10:20:13.424498
+293,309,clothes,sweater,fair,31,26 sweater new and sealed,,teen,unisex,19.19985,72.65,2026-09-23T10:20:13.432489
+294,330,stationery,notebook,good,61,54 notebook for kids,,kid,,19.066456,73.223264,2026-09-23T10:20:13.438085
+295,568,clothes,coat,new,24,44 coat washed and folded,winter,teen,,27.236253,75.966335,2026-09-23T10:20:13.444903
+296,340,stationery,pencil,new,49,51 pencil gently used,,10-14,female,27.003348,76.046909,2026-09-23T10:20:13.450073
+297,558,clothes,dress,good,67,31 dress washed and folded,summer,kid,female,17.269225,78.233141,2026-09-23T10:20:13.455338
+298,30,stationery,geometry box,new,57,45 geometry box assorted sizes,spring,kid,female,26.616583,80.782411,2026-09-23T10:20:13.461531
+299,447,stationery,textbook,new,69,55 textbook assorted sizes,spring,,female,22.961887,72.507917,2026-09-23T10:20:13.470282
+300,489,stationery,backpack,fair,22,54 backpack in good condition,,,female,19.38655,72.587045,2026-09-23T10:20:13.479598
+301,198,stationery,backpack,good,4,30 backpack assorted sizes,summer,teen,male,27.194158,75.477767,2026-09-23T10:20:13.484918
+302,212,clothes,slipper,fair,54,30 slipper new and sealed,summer,kid,female,27.075602,81.226346,2026-09-23T10:20:13.495325
+303,399,clothes,jacket,fair,39,39 jacket gently used,winter,adult,unisex,13.27548,80.537382,2026-09-23T10:20:13.502092
+304,217,stationery,textbook,fair,78,26 textbook washed and folded,,kid,,22.822114,72.57957,2026-09-23T10:20:13.508419
+305,517,stationery,school bag,good,67,32 school bag for kids,summer,adult,,28.444983,77.44156,2026-09-23T10:20:13.514985
+306,268,clothes,dress,new,77,24 dress for kids,summer,,female,26.744831,80.629613,2026-09-23T10:20:13.522044
+307,360,clothes,trouser,fair,34,24 trouser gently used,autumn,adult,unisex,22.618518,88.639937,2026-09-23T10:20:13.527979
+308,556,clothes,trouser,new,14,34 trouser,autumn,adult,female,26.636059,75.798816,2026-09-23T10:20:13.534055
+309,140,stationery,eraser,fair,69,33 eraser,winter,adult,female,28.307436,77.480957,2026-09-23T10:20:13.540110
+310,183,stationery,marker,new,67,32 marker new and sealed,spring,10-14,female,28.809077,77.46941,2026-09-23T10:20:13.545568
+311,339,clothes,slipper,good,7,37 slipper washed and folded,autumn,,unisex,26.651387,75.935105,2026-09-23T10:20:13.551649
+312,419,stationery,pen,fair,40,43 pen washed and folded,summer,,,18.692947,74.167549,2026-09-23T10:20:13.557753
+313,566,stationery,ruler,new,78,28 ruler gently used,spring,10-14,,18.198597,73.614013,2026-09-23T10:20:13.563169
+314,570,stationery,ruler,fair,47,18 ruler in good condition,,10-14,,19.02123,73.183474,2026-09-23T10:20:13.569396
+315,504,stationery,crayon,fair,80,24 crayon for kids,autumn,6-10,female,26.609695,75.468578,2026-09-23T10:20:13.574791
+316,335,stationery,story book,fair,55,47 story book new and sealed,,adult,male,26.655367,75.534266,2026-09-23T10:20:13.580552
+317,261,stationery,textbook,new,6,7 textbook assorted sizes,,adult,male,18.997065,73.157871,2026-09-23T10:20:13.586085
+318,529,stationery,textbook,fair,72,46 textbook,spring,teen,,19.126396,73.085011,2026-09-23T10:20:13.591179
+319,591,clothes,dress,good,29,37 dress,,adult,unisex,17.438799,78.173712,2026-09-23T10:20:13.597714
+320,243,stationery,pen,new,65,56 pen for kids,winter,6-10,female,22.844201,72.715332,2026-09-23T10:20:13.603326
+321,252,stationery,pencil,new,17,31 pencil,summer,6-10,female,13.224982,77.260884,2026-09-23T10:20:13.608013
+322,411,stationery,pencil,fair,24,16 pencil gently used,autumn,kid,male,19.41185,72.906945,2026-09-23T10:20:13.614479
+323,377,clothes,jacket,new,55,50 jacket,summer,10-14,,12.66284,77.917386,2026-09-23T10:20:13.620516
+324,304,clothes,jacket,fair,67,17 jacket in good condition,autumn,teen,unisex,22.847708,88.194454,2026-09-23T10:20:13.625731
+325,550,clothes,trouser,good,32,34 trouser for kids,,,female,22.942034,72.301957,2026-09-23T10:20:13.631008
+326,388,clothes,t-shirt,good,60,53 t-shirt for kids,winter,kid,male,23.312115,72.234436,2026-09-23T10:20:13.635625
+327,186,clothes,shirt,good,8,28 shirt for kids,winter,kid,female,26.555436,81.041259,2026-09-23T10:20:13.641165
+328,291,stationery,marker,good,51,15 marker,winter,10-14,male,17.035701,78.461956,2026-09-23T10:20:13.647059
+329,312,clothes,coat,fair,11,58 coat for kids,winter,,unisex,18.869869,74.096407,2026-09-23T10:20:13.655148
+330,445,clothes,shirt,fair,43,51 shirt for kids,winter,10-14,unisex,22.882947,72.498113,2026-09-23T10:20:13.665532
+331,487,stationery,school bag,new,61,33 school bag gently used,summer,adult,male,27.115452,81.257986,2026-09-23T10:20:13.675213
+332,533,clothes,sock,good,74,5 sock for kids,spring,,,22.893895,88.24382,2026-09-23T10:20:13.685528
+333,248,stationery,textbook,new,59,10 textbook washed and folded,winter,adult,,27.189088,75.92961,2026-09-23T10:20:13.695591
+334,303,stationery,crayon,good,50,27 crayon new and sealed,,adult,,26.967272,80.843296,2026-09-23T10:20:13.705675
+335,264,clothes,slipper,new,41,6 slipper washed and folded,spring,adult,male,23.327873,72.532604,2026-09-23T10:20:13.715967
+336,306,stationery,geometry box,new,53,7 geometry box gently used,,adult,unisex,18.73629,73.661503,2026-09-23T10:20:13.725909
+337,255,stationery,pencil,fair,19,40 pencil in good condition,,adult,unisex,18.803663,72.721843,2026-09-23T10:20:13.735195
+338,565,clothes,hoodie,fair,35,51 hoodie washed and folded,winter,kid,,19.248181,72.616902,2026-09-23T10:20:13.743659
+339,541,clothes,skirt,good,38,46 skirt assorted sizes,autumn,,male,26.973176,81.214371,2026-09-23T10:20:13.752149
+340,160,stationery,geometry box,good,56,38 geometry box washed and folded,,adult,unisex,12.817902,80.283507,2026-09-23T10:20:13.761153
+341,422,stationery,eraser,new,34,26 eraser,autumn,,unisex,18.543087,73.728069,2026-09-23T10:20:13.768898
+342,480,clothes,sock,fair,45,45 sock,,10-14,female,26.700214,75.667757,2026-09-23T10:20:13.779598
+343,441,stationery,eraser,fair,59,26 eraser washed and folded,,6-10,unisex,13.321055,80.093707,2026-09-23T10:20:13.787982
+344,488,clothes,sweater,new,59,8 sweater,spring,6-10,,18.705269,73.944444,2026-09-23T10:20:13.796412
+345,484,stationery,pen,good,54,11 pen assorted sizes,summer,teen,,17.073352,78.564217,2026-09-23T10:20:13.806237
+346,197,clothes,coat,good,57,55 coat assorted sizes,autumn,,female,26.629481,75.963674,2026-09-23T10:20:13.814520
+347,567,stationery,marker,new,16,48 marker washed and folded,winter,10-14,male,18.786357,73.940161,2026-09-23T10:20:13.822971
+348,363,clothes,coat,good,48,55 coat washed and folded,winter,teen,unisex,18.242283,73.923323,2026-09-23T10:20:13.830099
+349,7,stationery,pencil,fair,58,20 pencil in good condition,summer,,unisex,19.020705,73.034936,2026-09-23T10:20:13.837277
+350,516,stationery,ruler,fair,46,42 ruler for kids,summer,kid,female,17.394188,78.592893,2026-09-23T10:20:13.844901
+351,513,clothes,jacket,new,28,20 jacket for kids,summer,,female,18.374145,74.18589,2026-09-23T10:20:13.854856
+352,227,clothes,trouser,fair,45,17 trouser assorted sizes,winter,adult,female,17.483388,78.277583,2026-09-23T10:20:13.865601
+353,194,stationery,crayon,new,66,24 crayon new and sealed,autumn,kid,,22.819006,88.410168,2026-09-23T10:20:13.875677
+354,392,clothes,slipper,fair,45,19 slipper new and sealed,autumn,kid,unisex,17.188584,78.139288,2026-09-23T10:20:13.886011
+355,294,stationery,pencil,new,74,57 pencil,summer,,,13.18669,77.507738,2026-09-23T10:20:13.896419
+356,432,clothes,sock,new,39,42 sock washed and folded,spring,,,26.643033,75.640703,2026-09-23T10:20:13.906677
+357,358,clothes,trouser,new,36,59 trouser for kids,,kid,unisex,18.847903,73.147468,2026-09-23T10:20:13.916605
+358,407,clothes,skirt,good,33,46 skirt washed and folded,summer,6-10,unisex,19.363454,72.542396,2026-09-23T10:20:13.926632
+359,320,clothes,hoodie,new,19,56 hoodie for kids,,adult,,18.984748,72.788345,2026-09-23T10:20:13.940389
+360,586,stationery,school bag,fair,78,28 school bag gently used,,10-14,unisex,19.282429,72.661877,2026-09-23T10:20:13.949500
+361,273,clothes,trouser,fair,65,20 trouser,winter,6-10,unisex,18.302772,73.881528,2026-09-23T10:20:13.957334
+362,319,stationery,marker,good,66,44 marker,winter,teen,female,18.872466,72.584685,2026-09-23T10:20:13.963222
+363,402,stationery,textbook,fair,54,49 textbook new and sealed,summer,10-14,female,17.398225,78.261999,2026-09-23T10:20:13.969729
+364,502,clothes,t-shirt,good,57,19 t-shirt in good condition,spring,kid,female,13.068274,77.798037,2026-09-23T10:20:13.975363
+365,459,stationery,ruler,fair,48,40 ruler,autumn,,male,27.118796,80.996159,2026-09-23T10:20:13.981541
+366,522,stationery,backpack,good,37,33 backpack new and sealed,autumn,10-14,male,28.425024,76.8878,2026-09-23T10:20:13.986539
+367,394,clothes,jeans,fair,72,46 jeans,winter,,male,22.94016,72.347096,2026-09-23T10:20:13.993168
+368,466,clothes,sweater,new,45,12 sweater,summer,,unisex,26.947258,81.146311,2026-09-23T10:20:13.999071
+369,590,stationery,eraser,good,39,50 eraser for kids,,adult,male,26.671717,81.117848,2026-09-23T10:20:14.004084
+370,536,stationery,backpack,new,53,57 backpack for kids,winter,,female,17.610616,78.68489,2026-09-23T10:20:14.010082
+371,21,clothes,dress,good,13,19 dress for kids,autumn,teen,female,18.885305,73.034035,2026-09-23T10:20:14.017535
+372,266,stationery,eraser,fair,19,33 eraser new and sealed,spring,,male,18.389552,73.638193,2026-09-23T10:20:14.022584
+373,371,stationery,marker,fair,54,58 marker gently used,autumn,kid,female,17.2489,78.653164,2026-09-23T10:20:14.029521
+374,444,stationery,geometry box,good,75,42 geometry box,spring,,unisex,18.704389,73.990063,2026-09-23T10:20:14.035582
+375,357,stationery,backpack,good,16,18 backpack new and sealed,spring,teen,female,28.704788,77.281102,2026-09-23T10:20:14.041108
+376,425,stationery,pen,fair,80,15 pen,,teen,unisex,22.452789,88.687257,2026-09-23T10:20:14.047259
+377,451,clothes,skirt,new,50,23 skirt in good condition,autumn,6-10,,23.014529,72.352084,2026-09-23T10:20:14.053030
+378,442,stationery,backpack,fair,11,15 backpack,autumn,teen,female,22.585572,88.134178,2026-09-23T10:20:14.058880
+379,560,clothes,shirt,fair,76,60 shirt in good condition,spring,10-14,female,17.307295,78.769211,2026-09-23T10:20:14.064758
+380,239,stationery,ruler,fair,34,17 ruler,autumn,10-14,,19.383408,72.938944,2026-09-23T10:20:14.070401
+381,265,stationery,story book,fair,61,34 story book for kids,summer,adult,,23.0406,72.858612,2026-09-23T10:20:14.076783
+382,301,stationery,backpack,fair,58,44 backpack washed and folded,spring,10-14,unisex,26.739447,81.186048,2026-09-23T10:20:14.085382
+383,195,clothes,slipper,new,38,41 slipper,spring,adult,,13.05318,80.558283,2026-09-23T10:20:14.092666
+384,434,clothes,slipper,new,50,51 slipper assorted sizes,winter,10-14,female,13.239389,77.621016,2026-09-23T10:20:14.099946
+385,467,stationery,backpack,new,12,33 backpack in good condition,autumn,kid,,26.615974,75.510957,2026-09-23T10:20:14.109153
+386,211,stationery,backpack,new,35,26 backpack assorted sizes,,kid,female,13.179907,80.393635,2026-09-23T10:20:14.121309
+387,213,stationery,marker,fair,34,52 marker new and sealed,,10-14,,18.806278,73.169696,2026-09-23T10:20:14.132143
+388,253,stationery,ruler,good,18,58 ruler in good condition,spring,,,17.534507,78.443107,2026-09-23T10:20:14.139861
+389,276,clothes,sock,good,25,53 sock,autumn,6-10,unisex,26.870958,80.869795,2026-09-23T10:20:14.148765
+390,332,clothes,dress,fair,42,49 dress,autumn,teen,,17.186671,78.160811,2026-09-23T10:20:14.158551
+391,199,clothes,skirt,new,5,54 skirt in good condition,spring,6-10,unisex,19.036791,72.946444,2026-09-23T10:20:14.168964
+392,210,stationery,eraser,fair,24,48 eraser assorted sizes,spring,kid,,22.517778,88.706403,2026-09-23T10:20:14.178724
+393,337,stationery,geometry box,good,57,40 geometry box assorted sizes,winter,teen,unisex,22.703309,72.58015,2026-09-23T10:20:14.188932
+394,26,stationery,geometry box,good,30,16 geometry box,,adult,male,12.817263,80.070346,2026-09-23T10:20:14.198987
+395,292,stationery,marker,good,79,44 marker gently used,autumn,,unisex,18.491543,73.552911,2026-09-23T10:20:14.207488
+396,152,clothes,jeans,good,25,11 jeans for kids,spring,adult,female,26.846403,81.289532,2026-09-23T10:20:14.213542
+397,456,stationery,marker,fair,32,35 marker,autumn,,female,23.117247,72.840177,2026-09-23T10:20:14.218721
+398,178,clothes,t-shirt,new,13,6 t-shirt for kids,autumn,6-10,unisex,23.024894,72.71464,2026-09-23T10:20:14.224639
+399,233,stationery,eraser,fair,79,14 eraser new and sealed,spring,adult,,26.538646,80.858367,2026-09-23T10:20:14.230792
+400,479,stationery,pencil,new,32,22 pencil gently used,summer,,female,28.955886,77.169608,2026-09-23T10:20:14.236265
+401,588,clothes,t-shirt,good,69,39 t-shirt,winter,kid,unisex,23.265354,72.453289,2026-09-23T10:20:14.245668
+402,307,clothes,sweater,new,19,60 sweater new and sealed,spring,kid,,22.447746,88.323553,2026-09-23T10:20:14.251951
+403,511,clothes,t-shirt,new,28,37 t-shirt,summer,adult,female,28.328132,77.273841,2026-09-23T10:20:14.257758
+404,188,clothes,jeans,good,13,23 jeans for kids,summer,adult,unisex,12.793047,77.368105,2026-09-23T10:20:14.263850
+405,19,stationery,pencil,good,5,35 pencil new and sealed,spring,teen,female,22.888309,88.265607,2026-09-23T10:20:14.270038
+406,308,clothes,jeans,good,62,43 jeans for kids,summer,teen,unisex,22.755951,88.313078,2026-09-23T10:20:14.277528
+407,187,stationery,pen,new,3,26 pen in good condition,spring,10-14,unisex,17.249093,78.334958,2026-09-23T10:20:14.286647
+408,180,stationery,story book,good,42,30 story book new and sealed,autumn,adult,male,17.043984,78.48719,2026-09-23T10:20:14.297178
+409,218,stationery,notebook,good,47,12 notebook new and sealed,autumn,kid,unisex,28.712634,77.270816,2026-09-23T10:20:14.305066
+410,532,stationery,school bag,good,7,8 school bag assorted sizes,spring,10-14,unisex,12.978326,77.586635,2026-09-23T10:20:14.311500
+411,414,clothes,slipper,good,34,47 slipper assorted sizes,spring,6-10,female,13.266628,77.49759,2026-09-23T10:20:14.317075
+412,305,clothes,jacket,fair,78,12 jacket washed and folded,autumn,adult,female,23.094005,72.887645,2026-09-23T10:20:14.325791
+413,383,clothes,skirt,fair,51,15 skirt washed and folded,winter,6-10,male,18.852302,73.562944,2026-09-23T10:20:14.332676
+414,278,clothes,sweater,fair,53,45 sweater for kids,spring,kid,male,19.136256,73.041453,2026-09-23T10:20:14.341922
+415,149,clothes,dress,good,39,5 dress,winter,adult,female,13.110906,77.249094,2026-09-23T10:20:14.348270
+416,544,stationery,pencil,new,60,50 pencil in good condition,winter,10-14,unisex,28.77703,76.978444,2026-09-23T10:20:14.354953
+417,224,clothes,jacket,fair,16,52 jacket in good condition,autumn,6-10,female,19.122964,72.676501,2026-09-23T10:20:14.360519
+418,446,stationery,pen,fair,33,29 pen,,,male,27.104553,80.712488,2026-09-23T10:20:14.366454
+419,528,clothes,jacket,new,69,8 jacket gently used,,adult,,13.067228,80.391663,2026-09-23T10:20:14.372379
+420,280,stationery,story book,good,46,35 story book washed and folded,summer,teen,female,18.724651,73.769666,2026-09-23T10:20:14.380217
+421,27,stationery,marker,new,3,30 marker new and sealed,summer,,male,18.870012,74.078493,2026-09-23T10:20:14.389401
+422,283,clothes,jacket,good,63,43 jacket,summer,6-10,unisex,26.882243,75.926116,2026-09-23T10:20:14.401793
+423,254,clothes,sock,fair,44,57 sock gently used,,adult,male,17.39544,78.59886,2026-09-23T10:20:14.411702
+424,28,stationery,backpack,fair,15,52 backpack for kids,autumn,6-10,female,13.096151,77.408091,2026-09-23T10:20:14.422292
+425,162,clothes,slipper,good,14,14 slipper washed and folded,spring,teen,,17.548994,78.342404,2026-09-23T10:20:14.432865
+426,317,stationery,pencil,new,24,33 pencil,spring,adult,unisex,22.433544,88.485044,2026-09-23T10:20:14.445944
+427,172,clothes,sweater,good,31,32 sweater assorted sizes,autumn,kid,male,17.562277,78.598522,2026-09-23T10:20:14.455168
+428,503,clothes,sock,fair,45,13 sock for kids,,adult,female,23.175922,72.687553,2026-09-23T10:20:14.464349
+429,595,clothes,sock,good,32,26 sock new and sealed,winter,adult,female,23.282858,72.873646,2026-09-23T10:20:14.471944
+430,557,clothes,sweater,fair,50,10 sweater gently used,,teen,unisex,18.882486,72.608683,2026-09-23T10:20:14.479006
+431,25,stationery,crayon,good,43,52 crayon,autumn,,unisex,28.353092,77.078361,2026-09-23T10:20:14.484802
+432,376,clothes,hoodie,new,71,47 hoodie for kids,autumn,kid,,13.161497,77.802863,2026-09-23T10:20:14.492192
+433,173,stationery,eraser,fair,7,36 eraser assorted sizes,spring,kid,male,13.218253,77.465748,2026-09-23T10:20:14.498313
+434,450,clothes,jeans,good,51,59 jeans assorted sizes,autumn,10-14,unisex,23.091716,72.437624,2026-09-23T10:20:14.506151
+435,135,clothes,slipper,good,53,18 slipper washed and folded,spring,kid,,28.305069,77.426147,2026-09-23T10:20:14.514610
+436,154,clothes,jacket,good,53,40 jacket new and sealed,summer,10-14,female,18.935371,73.098209,2026-09-23T10:20:14.521732
+437,545,stationery,school bag,good,77,17 school bag assorted sizes,spring,10-14,,22.272876,88.522628,2026-09-23T10:20:14.527502
+438,384,stationery,story book,good,21,46 story book in good condition,autumn,kid,female,27.168499,75.475186,2026-09-23T10:20:14.532796
+439,315,clothes,slipper,good,57,46 slipper,spring,adult,,18.317236,74.069751,2026-09-23T10:20:14.543240
+440,458,clothes,sweater,fair,46,27 sweater new and sealed,winter,,,27.038012,75.555056,2026-09-23T10:20:14.552838
+441,379,stationery,eraser,fair,79,7 eraser,summer,10-14,female,23.087875,72.900209,2026-09-23T10:20:14.561363
+442,323,stationery,school bag,good,59,55 school bag assorted sizes,autumn,,female,27.230589,75.894258,2026-09-23T10:20:14.572372
+443,476,clothes,sweater,fair,76,36 sweater assorted sizes,,teen,unisex,18.427526,73.5907,2026-09-23T10:20:14.581839
+444,179,clothes,coat,fair,19,16 coat new and sealed,summer,adult,female,22.913745,88.349549,2026-09-23T10:20:14.587900
+445,231,clothes,skirt,fair,77,57 skirt assorted sizes,,10-14,female,12.802309,79.965149,2026-09-23T10:20:14.595285
+446,423,clothes,t-shirt,fair,60,47 t-shirt,,teen,unisex,26.873987,81.169379,2026-09-23T10:20:14.604271
+447,163,clothes,coat,new,18,18 coat assorted sizes,,,male,19.286359,72.613832,2026-09-23T10:20:14.609873
+448,491,clothes,skirt,good,71,47 skirt,winter,6-10,,17.389304,78.391192,2026-09-23T10:20:14.617374
+449,267,stationery,textbook,fair,8,27 textbook for kids,,teen,unisex,18.481844,73.91065,2026-09-23T10:20:14.623746
+450,8,stationery,eraser,new,57,13 eraser for kids,summer,kid,male,18.89197,72.659352,2026-09-23T10:20:14.629224
+451,29,stationery,marker,fair,21,15 marker new and sealed,autumn,,male,22.274652,88.192377,2026-09-23T10:20:14.634852
+452,238,stationery,marker,fair,68,49 marker assorted sizes,winter,adult,male,23.047633,72.270791,2026-09-23T10:20:14.640686
+453,313,clothes,trouser,good,18,55 trouser new and sealed,,,unisex,26.985861,75.731081,2026-09-23T10:20:14.646753
+454,553,stationery,pen,new,31,26 pen assorted sizes,summer,6-10,male,26.868729,81.074985,2026-09-23T10:20:14.653120
+455,144,clothes,skirt,good,15,11 skirt washed and folded,winter,kid,male,22.414153,88.082463,2026-09-23T10:20:14.660979
+456,33,stationery,textbook,good,26,22 textbook for kids,summer,,unisex,28.634172,77.349319,2026-09-23T10:20:14.666453
+457,225,stationery,story book,new,51,42 story book in good condition,spring,,unisex,12.974321,80.439608,2026-09-23T10:20:14.672003
+458,347,stationery,school bag,new,59,54 school bag in good condition,autumn,teen,female,18.567693,73.693859,2026-09-23T10:20:14.677528
+459,355,stationery,ruler,good,55,32 ruler for kids,,kid,male,23.362872,72.780328,2026-09-23T10:20:14.682817
+460,537,clothes,sweater,fair,39,51 sweater in good condition,,kid,,28.803305,77.450672,2026-09-23T10:20:14.688627
+461,421,clothes,skirt,fair,71,48 skirt for kids,autumn,kid,female,28.651812,77.203995,2026-09-23T10:20:14.694880
+462,448,clothes,slipper,fair,70,5 slipper assorted sizes,spring,adult,male,13.221217,80.20453,2026-09-23T10:20:14.701521
+463,589,stationery,pencil,good,20,48 pencil washed and folded,,kid,unisex,22.701455,88.043549,2026-09-23T10:20:14.709165
+464,272,stationery,story book,fair,18,29 story book in good condition,spring,,male,13.092279,80.587439,2026-09-23T10:20:14.714877
+465,464,stationery,eraser,good,68,5 eraser assorted sizes,spring,teen,female,12.824645,77.582787,2026-09-23T10:20:14.721177
+466,204,stationery,crayon,good,45,59 crayon new and sealed,winter,6-10,,22.800609,88.0387,2026-09-23T10:20:14.727287
+467,406,stationery,school bag,good,28,16 school bag new and sealed,autumn,,,22.431445,88.088915,2026-09-23T10:20:14.732776
+468,241,clothes,skirt,good,53,12 skirt new and sealed,spring,kid,male,17.094321,78.496723,2026-09-23T10:20:14.738601
+469,236,clothes,hoodie,new,48,56 hoodie gently used,spring,10-14,female,18.988017,72.782847,2026-09-23T10:20:14.744803
+470,176,clothes,sweater,fair,45,17 sweater gently used,autumn,kid,female,28.786864,76.863067,2026-09-23T10:20:14.750517
+471,542,clothes,dress,good,19,47 dress gently used,winter,10-14,female,27.193098,75.549519,2026-09-23T10:20:14.757213
+472,477,stationery,textbook,new,19,51 textbook assorted sizes,,kid,,18.397821,74.041775,2026-09-23T10:20:14.766861
+473,151,clothes,jacket,good,40,48 jacket washed and folded,autumn,10-14,,12.730479,77.594601,2026-09-23T10:20:14.775131
+474,156,stationery,eraser,good,17,44 eraser in good condition,spring,teen,unisex,12.819156,77.30243,2026-09-23T10:20:14.782190
+475,564,clothes,sock,fair,26,57 sock new and sealed,winter,10-14,,18.775317,74.20268,2026-09-23T10:20:14.787884
+476,165,clothes,t-shirt,new,57,12 t-shirt in good condition,spring,,male,26.628768,81.19461,2026-09-23T10:20:14.793366
+477,150,clothes,skirt,good,57,31 skirt for kids,spring,adult,unisex,12.745063,80.06045,2026-09-23T10:20:14.800251
+478,436,clothes,jeans,new,43,12 jeans gently used,autumn,6-10,male,26.832137,80.953105,2026-09-23T10:20:14.806072
+479,579,clothes,jacket,good,80,47 jacket assorted sizes,autumn,kid,male,27.123274,80.723426,2026-09-23T10:20:14.811887
+480,380,stationery,geometry box,new,45,26 geometry box gently used,winter,,,17.105533,78.266088,2026-09-23T10:20:14.818898
+481,515,stationery,eraser,new,19,46 eraser gently used,,teen,female,18.978398,73.094725,2026-09-23T10:20:14.824054
+482,438,clothes,coat,new,72,46 coat washed and folded,,kid,female,18.611091,73.927985,2026-09-23T10:20:14.831806
+483,573,stationery,eraser,good,73,39 eraser assorted sizes,spring,,unisex,28.697207,77.070033,2026-09-23T10:20:14.838250
+484,367,stationery,geometry box,good,56,33 geometry box assorted sizes,,,female,18.668522,74.130811,2026-09-23T10:20:14.843704
+485,431,clothes,shirt,fair,10,43 shirt gently used,,kid,male,28.630534,77.525711,2026-09-23T10:20:14.849707
+486,510,stationery,story book,fair,52,48 story book for kids,autumn,,unisex,27.118473,75.922962,2026-09-23T10:20:14.857340
+487,410,stationery,eraser,fair,4,16 eraser,winter,teen,unisex,19.119749,72.800873,2026-09-23T10:20:14.866299
+488,251,stationery,textbook,good,37,50 textbook assorted sizes,spring,6-10,male,17.650409,78.690153,2026-09-23T10:20:14.873323
+489,457,clothes,hoodie,new,37,20 hoodie gently used,summer,adult,unisex,23.059006,72.341176,2026-09-23T10:20:14.881064
+490,375,clothes,t-shirt,good,44,39 t-shirt,winter,adult,male,18.781768,73.542764,2026-09-23T10:20:14.889842
+491,523,stationery,school bag,fair,4,13 school bag new and sealed,,6-10,male,22.730772,72.715223,2026-09-23T10:20:14.900132
+492,321,stationery,pencil,fair,35,21 pencil,autumn,adult,,18.747152,73.660196,2026-09-23T10:20:14.908216
+493,177,clothes,dress,good,32,19 dress gently used,spring,kid,female,18.779418,73.950714,2026-09-23T10:20:14.914513
+494,242,clothes,dress,new,75,10 dress new and sealed,spring,10-14,unisex,22.733468,88.317632,2026-09-23T10:20:14.921533
+495,286,stationery,notebook,new,12,24 notebook in good condition,,10-14,unisex,19.069363,73.038336,2026-09-23T10:20:14.929626
+496,222,stationery,pen,new,51,51 pen for kids,winter,adult,,18.468877,73.825217,2026-09-23T10:20:14.937212
+497,547,clothes,sock,fair,79,7 sock in good condition,spring,,male,28.532693,76.936025,2026-09-23T10:20:14.945543
+498,132,clothes,hoodie,new,64,52 hoodie washed and folded,spring,adult,,17.044448,78.813153,2026-09-23T10:20:14.952433
+499,548,clothes,jeans,fair,37,26 jeans new and sealed,winter,kid,,13.15337,77.869273,2026-09-23T10:20:14.958627
+500,275,clothes,sweater,new,31,39 sweater gently used,spring,teen,female,23.11174,72.307553,2026-09-23T10:20:14.964945
+501,582,clothes,trouser,good,24,46 trouser gently used,,adult,female,26.579201,75.736295,2026-09-23T10:20:14.971652
+502,584,stationery,geometry box,new,80,9 geometry box for kids,,,male,17.728538,78.293866,2026-09-23T10:20:14.977238
+503,356,stationery,crayon,good,47,16 crayon assorted sizes,winter,kid,male,18.831772,72.82774,2026-09-23T10:20:14.983112
+504,206,stationery,marker,fair,21,28 marker gently used,spring,,,18.783182,73.696465,2026-09-23T10:20:14.988620
+505,372,stationery,pen,new,44,12 pen for kids,spring,adult,male,18.950179,72.80112,2026-09-23T10:20:14.994943
+506,574,stationery,geometry box,fair,45,25 geometry box new and sealed,winter,10-14,female,13.42904,80.048011,2026-09-23T10:20:15.001324
+507,148,clothes,skirt,fair,32,31 skirt for kids,winter,teen,female,18.267155,74.167521,2026-09-23T10:20:15.006908
+508,385,stationery,textbook,new,49,41 textbook washed and folded,,adult,unisex,22.941739,72.628075,2026-09-23T10:20:15.012622
+509,415,clothes,trouser,good,20,40 trouser new and sealed,summer,,,18.172406,74.202434,2026-09-23T10:20:15.019383
+510,578,stationery,eraser,fair,21,18 eraser washed and folded,,,unisex,26.702988,80.697098,2026-09-23T10:20:15.024873
+511,11,stationery,geometry box,fair,23,8 geometry box assorted sizes,autumn,adult,,18.990223,72.546143,2026-09-23T10:20:15.031483
+512,134,clothes,t-shirt,good,20,9 t-shirt,spring,10-14,unisex,18.19153,73.762371,2026-09-23T10:20:15.037035
+513,481,stationery,story book,new,22,31 story book assorted sizes,summer,10-14,,22.746275,88.502895,2026-09-23T10:20:15.044443
+514,572,clothes,hoodie,fair,36,15 hoodie,winter,10-14,female,17.077001,78.586418,2026-09-23T10:20:15.054374
+515,592,clothes,skirt,fair,30,15 skirt gently used,spring,teen,female,13.376105,80.272011,2026-09-23T10:20:15.062544
+516,331,stationery,pencil,good,43,57 pencil assorted sizes,autumn,teen,,17.315282,78.175898,2026-09-23T10:20:15.071081
+517,250,stationery,pencil,good,16,8 pencil washed and folded,spring,adult,female,13.07849,77.52817,2026-09-23T10:20:15.082217
+518,427,stationery,notebook,new,79,20 notebook gently used,,teen,,18.79908,72.781591,2026-09-23T10:20:15.093744
+519,440,clothes,hoodie,fair,75,17 hoodie assorted sizes,,kid,male,26.504384,81.232981,2026-09-23T10:20:15.105287
+520,164,stationery,notebook,good,53,8 notebook gently used,summer,6-10,,18.757412,73.218246,2026-09-23T10:20:15.116429
+521,299,stationery,school bag,good,67,27 school bag in good condition,summer,adult,,26.846851,80.816331,2026-09-23T10:20:15.126637
+522,232,clothes,jacket,new,22,42 jacket washed and folded,summer,10-14,,26.567402,81.161446,2026-09-23T10:20:15.137037
+523,219,clothes,slipper,fair,69,19 slipper in good condition,spring,adult,unisex,13.210362,79.975827,2026-09-23T10:20:15.148265
+524,257,stationery,story book,good,8,55 story book in good condition,winter,6-10,male,17.729595,78.562817,2026-09-23T10:20:15.160344
+525,463,stationery,eraser,fair,66,18 eraser for kids,winter,,unisex,17.658476,78.678623,2026-09-23T10:20:15.171126
+526,439,stationery,textbook,good,24,60 textbook washed and folded,autumn,10-14,,12.689784,77.255059,2026-09-23T10:20:15.181392
+527,201,stationery,crayon,good,63,28 crayon gently used,autumn,,unisex,13.386539,80.033731,2026-09-23T10:20:15.190966
+528,230,stationery,marker,good,54,13 marker,summer,10-14,,19.410939,73.061902,2026-09-23T10:20:15.201623
+529,575,clothes,dress,fair,55,28 dress for kids,,6-10,male,12.907923,77.678378,2026-09-23T10:20:15.213525
+530,258,clothes,coat,new,40,46 coat,spring,kid,,22.57676,88.197879,2026-09-23T10:20:15.223675
+531,364,clothes,t-shirt,good,62,29 t-shirt washed and folded,summer,adult,,12.995775,80.319794,2026-09-23T10:20:15.231437
+532,386,stationery,pen,new,54,10 pen in good condition,autumn,,female,13.071339,77.874689,2026-09-23T10:20:15.238229
+533,395,stationery,eraser,new,72,49 eraser assorted sizes,autumn,,male,22.902604,72.443499,2026-09-23T10:20:15.246927
+534,433,clothes,trouser,good,63,41 trouser,summer,10-14,,12.730619,77.573577,2026-09-23T10:20:15.257230
