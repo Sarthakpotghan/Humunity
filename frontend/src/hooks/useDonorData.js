@@ -33,6 +33,14 @@ export function useDonorData() {
         }
       }
 
+      let deliveries = [];
+      try {
+        const deliveriesRes = await api.get('/deliveries');
+        deliveries = deliveriesRes.data || [];
+      } catch (e) {
+        // Deliveries may not exist yet
+      }
+
       const activeStatuses = ['listed', 'matched', 'accepted', 'pickup_scheduled', 'in_transit'];
       const completedStatuses = ['delivered', 'confirmed'];
 
@@ -46,6 +54,7 @@ export function useDonorData() {
       setData({
         donations,
         matches: allMatches,
+        deliveries,
         stats,
         loading: false,
         error: null,

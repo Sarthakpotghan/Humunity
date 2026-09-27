@@ -32,7 +32,12 @@ export default function TopAppBar({ subtitle }) {
 
   const switchRoleHome = () => {
     setMenuOpen(false);
-    navigate(user?.role === 'ngo' ? '/ngo/dashboard' : user?.role === 'admin' ? '/admin/dashboard' : '/donor/dashboard');
+    const home = {
+      ngo: '/ngo/dashboard',
+      admin: '/admin/dashboard',
+      volunteer: '/volunteer/dashboard',
+    }[user?.role] || '/donor/dashboard';
+    navigate(home);
   };
 
   return (
