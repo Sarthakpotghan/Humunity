@@ -6,6 +6,7 @@ from app.models import Match, MatchStatus, Donation, DonationStatus, User, UserR
 from app.schemas import MatchResponse, MatchAction
 from app.utils.security import get_current_user, require_role
 from app.services.matching import run_matching_for_donation
+from app.services.notifier import notify_match_created_sync, notify_match_accepted_sync, notify_match_rejected_sync
 
 router = APIRouter(prefix="/donations", tags=["matches"])
 
@@ -27,7 +28,28 @@ def match_donation(
     matches = run_matching_for_donation(donation_id, db)
     donation.status = DonationStatus.MATCHED
     db.commit()
-    return matches
+    for match in matches:
+        try:
+            notify_match_created_sync(db, match)
+        except Exception:
+            pass
+    
+    # Enrich with NGO name
+    result = []
+    for match in matches:
+        match_dict = {
+            "id": match.id,
+            "donation_id": match.donation_id,
+            "request_id": match.request_id,
+            "score": match.score,
+            "score_breakdown": match.score_breakdown,
+            "status": match.status,
+            "created_at": match.created_at,
+            "ngo_name": match.request.ngo.name if match.request and match.request.ngo else None
+        }
+        result.append(match_dict)
+    
+    return result
 
 
 @router.get("/{donation_id}/matches", response_model=List[MatchResponse])
@@ -42,7 +64,24 @@ def get_matches(
     if donation.donor_id != current_user.id and current_user.role != UserRole.ADMIN:
         raise HTTPException(status_code=403, detail="Not authorized")
     
-    return db.query(Match).filter(Match.donation_id == donation_id).all()
+    matches = db.query(Match).filter(Match.donation_id == donation_id).all()
+    
+    # Enrich with NGO name
+    result = []
+    for match in matches:
+        match_dict = {
+            "id": match.id,
+            "donation_id": match.donation_id,
+            "request_id": match.request_id,
+            "score": match.score,
+            "score_breakdown": match.score_breakdown,
+            "status": match.status,
+            "created_at": match.created_at,
+            "ngo_name": match.request.ngo.name if match.request and match.request.ngo else None
+        }
+        result.append(match_dict)
+    
+    return result
 
 
 @router.patch("/matches/{match_id}/accept", response_model=MatchResponse)
@@ -63,6 +102,10 @@ def accept_match(
     match.donation.status = DonationStatus.ACCEPTED
     db.commit()
     db.refresh(match)
+    try:
+        notify_match_accepted_sync(db, match)
+    except Exception:
+        pass
     return match
 
 
@@ -83,4 +126,8 @@ def reject_match(
     match.status = MatchStatus.REJECTED
     db.commit()
     db.refresh(match)
+    try:
+        notify_match_rejected_sync(db, match)
+    except Exception:
+        pass
     return match
