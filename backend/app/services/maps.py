@@ -48,7 +48,7 @@ async def reverse_geocode(lat: float, lng: float) -> Optional[str]:
 
 async def get_route(waypoints: List[Tuple[float, float]]) -> Dict:
     if len(waypoints) < 2:
-        return {"distance": 0, "duration": 0, "geometry": None}
+        return {"distance": 0, "duration": 0, "geometry": None, "estimated": False}
     
     coords = ";".join(f"{lon},{lat}" for lat, lon in waypoints)
     url = f"{settings.OSRM_BASE_URL}/route/v1/driving/{coords}"
@@ -69,10 +69,25 @@ async def get_route(waypoints: List[Tuple[float, float]]) -> Dict:
                     "distance": route.get("distance", 0) / 1000,
                     "duration": route.get("duration", 0) / 60,
                     "geometry": route.get("geometry"),
+                    "estimated": False,
                 }
         except Exception:
             pass
-    return {"distance": 0, "duration": 0, "geometry": None}
+    
+    # Fallback: straight-line using Haversine
+    total_distance = 0.0
+    for i in range(len(waypoints) - 1):
+        total_distance += haversine(waypoints[i][0], waypoints[i][1], waypoints[i+1][0], waypoints[i+1][1])
+    
+    # Assume ~50 km/h average speed for duration estimate
+    estimated_duration = (total_distance / 50.0) * 60.0
+    
+    return {
+        "distance": total_distance,
+        "duration": estimated_duration,
+        "geometry": None,
+        "estimated": True,
+    }
 
 
 async def get_distance_matrix(origins: List[Tuple[float, float]], destinations: List[Tuple[float, float]]) -> List[List[float]]:
@@ -113,3 +128,15 @@ def suggest_delivery_mode(distance_km: float) -> str:
     if distance_km <= settings.DROPOFF_THRESHOLD_KM:
         return "dropoff"
     return "pickup"
+
+
+async def geocode_user_address(address: str) -> Optional[Tuple[float, float]]:
+    """Geocode user address string to (lat, lng). Returns None on failure."""
+    if not address or not address.strip():
+        return None
+    try:
+        return await geocode(address.strip())
+    except Exception as e:
+        import logging
+        logging.warning(f"Geocoding failed for '{address}': {e}")
+        return None
