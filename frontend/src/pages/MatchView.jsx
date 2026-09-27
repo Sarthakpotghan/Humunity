@@ -129,9 +129,13 @@ export default function MatchView() {
                   <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-3 flex-wrap">
-                        <span className="font-headline-sm text-headline-sm text-on-surface">Request #{match.request_id}</span>
-                        <StatusBadge status={match.status} size="sm" />
-                      </div>
+                          {match.ngo_name ? (
+                            <span className="font-headline-sm text-headline-sm text-on-surface">{match.ngo_name}</span>
+                          ) : (
+                            <span className="font-headline-sm text-headline-sm text-on-surface">Request #{match.request_id}</span>
+                          )}
+                          <StatusBadge status={match.status} size="sm" />
+                        </div>
                       <div className="flex items-center gap-2 mt-2">
                         <div className="h-2 w-32 rounded-full bg-surface-container-high overflow-hidden">
                           <div className="h-full rounded-full bg-tertiary" style={{ width: `${Math.min(100, (match.score || 0) * 100)}%` }} />

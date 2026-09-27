@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { api } from '../services/api';
 import { MaterialIcon } from '../components/ui';
@@ -34,6 +34,9 @@ export default function DonationForm() {
     available_from: '',
     available_to: '',
   });
+  const [photos, setPhotos] = useState([]);
+  const [photoPreviews, setPhotoPreviews] = useState([]);
+  const fileInputRef = useRef(null);
   const [error, setError] = useState('');
   const [toast, setToast] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -46,6 +49,18 @@ export default function DonationForm() {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handlePhotoSelect = (e) => {
+    const files = Array.from(e.target.files);
+    const newPreviews = files.map(file => URL.createObjectURL(file));
+    setPhotoPreviews(prev => [...prev, ...newPreviews]);
+    setPhotos(prev => [...prev, ...files]);
+  };
+
+  const removePhoto = (index) => {
+    setPhotoPreviews(prev => prev.filter((_, i) => i !== index));
+    setPhotos(prev => prev.filter((_, i) => i !== index));
   };
 
   const handleSubmit = async (e) => {
@@ -68,8 +83,18 @@ export default function DonationForm() {
       });
 
       const response = await api.post('/donations', payload);
+      const donationId = response.data.id;
+
+      for (const file of photos) {
+        const photoForm = new FormData();
+        photoForm.append('file', file);
+        await api.post(`/donations/${donationId}/photos`, photoForm, {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }).catch(() => {});
+      }
+
       showToast('Donation listed! Running matching engine...');
-      setTimeout(() => navigate(`/matches/${response.data.id}`), 800);
+      setTimeout(() => navigate(`/matches/${donationId}`), 800);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to create donation');
     } finally {
@@ -156,6 +181,44 @@ export default function DonationForm() {
           <div className="flex flex-col gap-1.5">
             <label className="font-label-md text-on-surface">Description</label>
             <textarea rows={3} name="description" placeholder="Describe the items, e.g. '10 warm jackets for kids 6-10'. Matching details are extracted automatically." value={formData.description} onChange={handleChange} className="field textarea" />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <span className="font-label-md text-on-surface">Photos</span>
+            <p className="font-body-sm text-on-surface-variant">Add up to 5 photos of the items. Helps NGOs assess condition.</p>
+            <div className="flex flex-wrap gap-3">
+              {photoPreviews.map((preview, index) => (
+                <div key={index} className="relative w-24 h-24 rounded-lg overflow-hidden border border-outline-variant/40 group">
+                  <img src={preview} alt={`Preview ${index + 1}`} className="w-full h-full object-cover" />
+                  <button
+                    type="button"
+                    onClick={() => removePhoto(index)}
+                    className="absolute top-1 right-1 w-6 h-6 rounded-full bg-error text-on-error flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    aria-label="Remove photo"
+                  >
+                    <MaterialIcon name="close" size={14} />
+                  </button>
+                </div>
+              ))}
+              {photos.length < 5 && (
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="w-24 h-24 rounded-lg border-2 border-dashed border-outline-variant/60 flex flex-col items-center justify-center gap-1 text-on-surface-variant hover:border-primary hover:text-primary transition-colors"
+                >
+                  <MaterialIcon name="add_a_photo" size={24} />
+                  <span className="font-label-sm">Add</span>
+                </button>
+              )}
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              multiple
+              onChange={handlePhotoSelect}
+              className="hidden"
+            />
           </div>
 
           <div className="flex flex-col gap-3 border-t border-outline-variant/30 pt-5">
