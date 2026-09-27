@@ -58,10 +58,38 @@ class NgoProfileUpdate(BaseModel):
     focus_areas: Optional[List[str]] = None
 
 
-class NgoProfileResponse(NgoProfileCreate):
+class NgoProfileResponse(BaseModel):
     id: int
     user_id: int
+    reg_number: str
+    reg_doc_url: Optional[str] = None
+    focus_areas: Optional[List[str]] = None
     reliability_score: float
+
+    class Config:
+        from_attributes = True
+
+
+class PendingNGOResponse(BaseModel):
+    """Extended response for pending NGOs that includes all NGO profile and user details."""
+    # NgoProfile fields
+    id: int
+    user_id: int
+    reg_number: Optional[str] = None
+    reg_doc_url: Optional[str] = None
+    focus_areas: Optional[List[str]] = None
+    reliability_score: float
+    
+    # User fields
+    ngo_name: Optional[str] = None
+    email: Optional[str] = None
+    phone: Optional[str] = None
+    address: Optional[str] = None
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    verified: bool = False
+    created_at: Optional[datetime] = None
+    has_profile: bool = False
 
     class Config:
         from_attributes = True
@@ -168,10 +196,27 @@ class MatchResponse(BaseModel):
     id: int
     donation_id: int
     request_id: int
+    ngo_name: Optional[str] = None
     score: float
     score_breakdown: Optional[dict] = None
     status: MatchStatus
     created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class NGOPlatformMatchResponse(BaseModel):
+    """Match response for NGO platform view - includes donation details"""
+    id: int
+    donation_id: int
+    request_id: int
+    score: float
+    score_breakdown: Optional[dict] = None
+    status: MatchStatus
+    created_at: datetime
+    donation: Optional["DonationResponse"] = None  # Use DonationResponse which has all fields
+    donor_area: Optional[str] = None  # General area from donor lat/lng
 
     class Config:
         from_attributes = True
@@ -216,6 +261,20 @@ class DeliveryEventResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class DeliveryDetailsResponse(DeliveryResponse):
+    donation_item: Optional[str] = None
+    donation_quantity: Optional[int] = None
+    donation_id: Optional[int] = None
+    request_id: Optional[int] = None
+    donor_name: Optional[str] = None
+    donor_lat: Optional[float] = None
+    donor_lng: Optional[float] = None
+    ngo_name: Optional[str] = None
+    ngo_lat: Optional[float] = None
+    ngo_lng: Optional[float] = None
+    match_status: Optional[str] = None
 
 
 class NotificationResponse(BaseModel):

@@ -4,8 +4,20 @@ from app.models import Notification, User
 from app.config import get_settings
 import aiosmtplib
 from email.message import EmailMessage
+import asyncio
 
 settings = get_settings()
+
+
+def _run_async(coro):
+    """Run an async coroutine in sync context, handling both with and without running event loop."""
+    try:
+        loop = asyncio.get_running_loop()
+        # If there's a running loop, schedule as task (fire-and-forget)
+        loop.create_task(coro)
+    except RuntimeError:
+        # No running loop, run in new loop
+        asyncio.run(coro)
 
 
 async def send_email(to_email: str, subject: str, body: str) -> bool:
@@ -143,3 +155,32 @@ async def notify_confirmed(db: Session, delivery):
         db, request.ngo_id,
         f"You confirmed receipt of {donation.item_type} from {donation.donor.name}."
     )
+
+
+# Sync-compatible wrappers for use in synchronous routers
+def notify_match_created_sync(db: Session, match):
+    _run_async(notify_match_created(db, match))
+
+
+def notify_match_accepted_sync(db: Session, match):
+    _run_async(notify_match_accepted(db, match))
+
+
+def notify_match_rejected_sync(db: Session, match):
+    _run_async(notify_match_rejected(db, match))
+
+
+def notify_pickup_scheduled_sync(db: Session, delivery):
+    _run_async(notify_pickup_scheduled(db, delivery))
+
+
+def notify_in_transit_sync(db: Session, delivery):
+    _run_async(notify_in_transit(db, delivery))
+
+
+def notify_delivered_sync(db: Session, delivery):
+    _run_async(notify_delivered(db, delivery))
+
+
+def notify_confirmed_sync(db: Session, delivery):
+    _run_async(notify_confirmed(db, delivery))
