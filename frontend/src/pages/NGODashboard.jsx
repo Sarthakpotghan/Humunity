@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { MaterialIcon, Avatar, StatusBadge } from '../components/ui';
 import TopAppBar from '../components/layout/TopAppBar';
 import Toast from '../components/Toast';
+import CreateDonationModal from '../components/CreateDonationModal';
 import {
   formatDate,
   formatDateTime,
@@ -13,40 +14,39 @@ import {
   categoryLabel,
 } from '../utils/format';
 
-const initialForm = {
-  category: 'clothes',
-  item_type: '',
-  size: '',
-  age_group: '',
-  gender: 'unisex',
-  season: '',
-  quantity_needed: 1,
-  urgency: 3,
-  beneficiary_group: '',
-  deadline: '',
-};
+
 
 const statusFilters = ['all', 'active', 'fulfilled', 'closed'];
 
 export default function NGODashboard() {
   const { user } = useAuth();
   const [requests, setRequests] = useState([]);
+  const [matches, setMatches] = useState({});
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState('');
   const [showCreate, setShowCreate] = useState(false);
-  const [form, setForm] = useState(initialForm);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
 
   const loadAll = useCallback(async () => {
     try {
-      const [reqRes, profileRes] = await Promise.all([
+      const [reqRes, profileRes, matchesRes] = await Promise.all([
         api.get('/requests'),
         api.get('/auth/ngo/profile').catch(() => null),
+        api.get('/requests/matches/all').catch(() => ({ data: [] })),
       ]);
       setRequests(reqRes.data || []);
       setProfile(profileRes?.data || null);
+      
+      const matchesByRequest = {};
+      (matchesRes.data || []).forEach(match => {
+        if (!matchesByRequest[match.request_id]) {
+          matchesByRequest[match.request_id] = [];
+        }
+        matchesByRequest[match.request_id].push(match);
+      });
+      setMatches(matchesByRequest);
       setError('');
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to load NGO data');
@@ -74,32 +74,7 @@ export default function NGODashboard() {
     { label: 'Total Requests', value: requests.length, icon: 'inventory_2', tone: 'secondary' },
   ];
 
-  const submitRequest = async (e) => {
-    e.preventDefault();
-    setSaving(true);
-    try {
-      const payload = {
-        ...form,
-        quantity_needed: parseInt(form.quantity_needed, 10),
-        urgency: parseInt(form.urgency, 10),
-        deadline: form.deadline ? new Date(form.deadline).toISOString() : undefined,
-      };
-      Object.keys(payload).forEach((key) => {
-        if (payload[key] === '' || payload[key] === null || payload[key] === undefined) {
-          delete payload[key];
-        }
-      });
-      await api.post('/requests', payload);
-      setShowCreate(false);
-      setForm(initialForm);
-      showToast('Resource need published successfully');
-      loadAll();
-    } catch (err) {
-      showToast(err.response?.data?.detail || 'Failed to publish request', 'error');
-    } finally {
-      setSaving(false);
-    }
-  };
+  ;
 
   const deadlineText = (req) => {
     const days = daysUntil(req.deadline);
@@ -116,6 +91,83 @@ export default function NGODashboard() {
       3: 'bg-secondary-container text-on-secondary-container',
     };
     return tones[urgency] || 'bg-surface-container-high text-on-surface-variant';
+  };
+
+  const handleAcceptMatch = async (matchId) => {
+    setSaving(true);
+    try {
+      await api.patch(`/donations/matches/${matchId}/accept`);
+      showToast('Match accepted successfully');
+      loadAll();
+    } catch (err) {
+      showToast(err.response?.data?.detail || 'Failed to accept match', 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleRejectMatch = async (matchId) => {
+    setSaving(true);
+    try {
+      await api.patch(`/donations/matches/${matchId}/reject`);
+      showToast('Match rejected');
+      loadAll();
+    } catch (err) {
+      showToast(err.response?.data?.detail || 'Failed to reject match', 'error');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const MatchCard = ({ match, onAccept, onReject, saving }) => {
+    const donation = match.donation;
+    const donorArea = match.donor_area;
+    
+    return (
+      <div className="bg-surface-container-low rounded-lg p-3 border border-primary/20">
+        <div className="flex items-start justify-between gap-3">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="font-label-md text-on-surface capitalize">{donation?.item_type}</span>
+              <span className="chip bg-primary-container text-on-primary-container font-label-sm">
+                {(match.score * 100).toFixed(0)}% Match
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-2 text-body-sm text-on-surface-variant mb-2">
+              <span className="flex items-center gap-1">
+                <MaterialIcon name="inventory_2" size={14} /> Qty: {donation?.quantity}
+              </span>
+              <span className="flex items-center gap-1">
+                <MaterialIcon name="star" size={14} /> Condition: {donation?.condition}
+              </span>
+              {donorArea && (
+                <span className="flex items-center gap-1">
+                  <MaterialIcon name="location_on" size={14} /> {donorArea}
+                </span>
+              )}
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={() => onAccept(match.id)}
+              disabled={saving}
+              className="btn-primary px-3 py-1.5"
+            >
+              <MaterialIcon name="check" size={16} /> Accept
+            </button>
+            <button
+              type="button"
+              onClick={() => onReject(match.id)}
+              disabled={saving}
+              className="btn-outline px-3 py-1.5 text-error"
+            >
+              <MaterialIcon name="close" size={16} /> Reject
+            </button>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -215,6 +267,11 @@ export default function NGODashboard() {
             <div className="px-5 pb-5 grid grid-cols-1 md:grid-cols-2 gap-4">
               {activeNeeds.map((req) => {
                 const dl = deadlineText(req);
+                const requestMatches = matches[req.id] || [];
+                const pendingMatches = requestMatches.filter(m => m.status === 'pending');
+                const acceptedMatches = requestMatches.filter(m => m.status === 'accepted');
+                const rejectedMatches = requestMatches.filter(m => m.status === 'rejected');
+                
                 return (
                   <article key={req.id} className="bg-surface-container-low rounded-lg p-4 flex flex-col gap-3">
                     <div className="flex items-center gap-3">
@@ -253,6 +310,76 @@ export default function NGODashboard() {
                       ))}
                       <span>• Listed {formatDate(req.created_at)}</span>
                     </div>
+                    
+                    {/* Incoming Matches Section */}
+                    {pendingMatches.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-outline-variant/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MaterialIcon name="sync_alt" size={18} className="text-primary" />
+                          <span className="font-label-md text-on-surface">Incoming Matches ({pendingMatches.length})</span>
+                        </div>
+                        <div className="space-y-2">
+                          {pendingMatches.map((match) => (
+                            <MatchCard key={match.id} match={match} onAccept={() => handleAcceptMatch(match.id)} onReject={() => handleRejectMatch(match.id)} saving={saving} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {acceptedMatches.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-outline-variant/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MaterialIcon name="check_circle" size={18} className="text-tertiary" />
+                          <span className="font-label-md text-on-surface">Accepted ({acceptedMatches.length})</span>
+                        </div>
+                        <div className="space-y-2">
+                          {acceptedMatches.map((match) => (
+                            <div key={match.id} className="bg-tertiary-container/30 rounded-lg p-3">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="font-label-md text-on-surface capitalize">{match.donation?.item_type}</p>
+                                  <p className="font-label-sm text-on-surface-variant">Qty: {match.donation?.quantity} • Score: {(match.score * 100).toFixed(0)}%</p>
+                                </div>
+                                <span className="chip bg-tertiary-container text-on-tertiary-container">
+                                  <MaterialIcon name="check" size={14} /> Accepted
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {rejectedMatches.length > 0 && (
+                      <div className="mt-3 pt-3 border-t border-outline-variant/20">
+                        <div className="flex items-center gap-2 mb-2">
+                          <MaterialIcon name="cancel" size={18} className="text-error" />
+                          <span className="font-label-md text-on-surface">Rejected ({rejectedMatches.length})</span>
+                        </div>
+                        <div className="space-y-2">
+                          {rejectedMatches.map((match) => (
+                            <div key={match.id} className="bg-error-container/30 rounded-lg p-3">
+                              <div className="flex items-center justify-between">
+                                <div>
+                                  <p className="font-label-md text-on-surface capitalize">{match.donation?.item_type}</p>
+                                  <p className="font-label-sm text-on-surface-variant">Qty: {match.donation?.quantity} • Score: {(match.score * 100).toFixed(0)}%</p>
+                                </div>
+                                <span className="chip bg-error-container text-on-error-container">
+                                  <MaterialIcon name="close" size={14} /> Rejected
+                                </span>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    
+                    {requestMatches.length === 0 && (
+                      <div className="mt-3 pt-3 border-t border-outline-variant/20 text-center text-body-sm text-on-surface-variant">
+                        <MaterialIcon name="sync_problem" size={20} className="mx-auto mb-1 text-outline" />
+                        <p>No incoming matches yet. Matches appear here when donors run matching.</p>
+                      </div>
+                    )}
                   </article>
                 );
               })}
@@ -333,92 +460,9 @@ export default function NGODashboard() {
         </section>
       </main>
 
-      {showCreate && (
-        <div className="fixed inset-0 z-[90] bg-black/40 flex items-end md:items-center justify-center p-0 md:p-6" onClick={() => setShowCreate(false)}>
-          <div
-            className="bg-surface-container-lowest w-full md:max-w-2xl rounded-t-3xl md:rounded-lg max-h-[92dvh] overflow-y-auto no-scrollbar p-6 shadow-elevated animate-fade-up"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between mb-5">
-              <h3 className="font-headline-md text-headline-md text-on-surface">Post New Resource Need</h3>
-              <button type="button" className="icon-btn" onClick={() => setShowCreate(false)} aria-label="Close">
-                <MaterialIcon name="close" size={22} />
-              </button>
-            </div>
-            <form onSubmit={submitRequest} className="space-y-4">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {['clothes', 'stationery'].map((cat) => (
-                  <button
-                    key={cat}
-                    type="button"
-                    onClick={() => setForm({ ...form, category: cat })}
-                    className={`rounded-full py-2.5 px-4 font-label-md flex items-center justify-center gap-1.5 ${
-                      form.category === cat ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-surface-container-low text-on-surface-variant'
-                    }`}
-                  >
-                    <MaterialIcon name={categoryIcon(cat)} size={18} />
-                    {categoryLabel(cat)}
-                  </button>
-                ))}
-                <div className="col-span-2 md:col-span-2">
-                  <label className="block font-label-md text-on-surface-variant mb-1">Item Type *</label>
-                  <input required className="field" placeholder="e.g., warm jackets" value={form.item_type} onChange={(e) => setForm({ ...form, item_type: e.target.value })} />
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Quantity Needed *</label>
-                  <input required type="number" min="1" className="field" value={form.quantity_needed} onChange={(e) => setForm({ ...form, quantity_needed: e.target.value })} />
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Beneficiary Group</label>
-                  <input className="field" placeholder="e.g., school children" value={form.beneficiary_group} onChange={(e) => setForm({ ...form, beneficiary_group: e.target.value })} />
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Age Group</label>
-                  <input className="field" placeholder="e.g., 6-10" value={form.age_group} onChange={(e) => setForm({ ...form, age_group: e.target.value })} />
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Gender</label>
-                  <select className="field" value={form.gender} onChange={(e) => setForm({ ...form, gender: e.target.value })}>
-                    {['unisex', 'male', 'female'].map((g) => <option key={g} value={g}>{titleCase(g)}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Season</label>
-                  <select className="field" value={form.season} onChange={(e) => setForm({ ...form, season: e.target.value })}>
-                    <option value="">Any</option>
-                    {['spring', 'summer', 'autumn', 'winter'].map((s) => <option key={s} value={s}>{titleCase(s)}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Size</label>
-                  <input className="field" placeholder="e.g., M,L" value={form.size} onChange={(e) => setForm({ ...form, size: e.target.value })} />
-                </div>
-                <div>
-                  <label className="block font-label-md text-on-surface-variant mb-1">Deadline</label>
-                  <input type="date" className="field" value={form.deadline} onChange={(e) => setForm({ ...form, deadline: e.target.value })} />
-                </div>
-              </div>
-
-              <div>
-                <label className="block font-label-md text-on-surface-variant mb-2">Urgency *</label>
-                <div className="flex items-center gap-3">
-                  <input type="range" min="1" max="5" value={form.urgency} onChange={(e) => setForm({ ...form, urgency: e.target.value })} className="flex-1 accent-primary" />
-                  <span className={`chip ${urgencyBadge(Number(form.urgency))} w-24 justify-center`}>
-                    {['', 'Lower', '', '', '', 'Critical'][Number(form.urgency)] || form.urgency}/5
-                  </span>
-                </div>
-              </div>
-
-              <div className="flex justify-end gap-3 pt-2">
-                <button type="button" className="btn-outline" onClick={() => setShowCreate(false)}>Cancel</button>
-                <button type="submit" disabled={saving} className="btn-primary">
-                  {saving ? 'Publishing...' : 'Publish Need'}
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+{showCreate && (
+          <CreateDonationModal isOpen={showCreate} onClose={() => setShowCreate(false)} />
+        )}
 
       <Toast message={toast?.message} tone={toast?.tone} onClose={() => setToast(null)} />
     </div>
