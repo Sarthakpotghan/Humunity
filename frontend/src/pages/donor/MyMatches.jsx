@@ -1,5 +1,9 @@
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { MaterialIcon, StatusBadge } from '../../components/ui';
 import { useDonorData } from '../../hooks/useDonorData';
+import { api } from '../../services/api';
+import FeedbackForm from '../../components/FeedbackForm';
+import Toast from '../../components/Toast';
 import { formatDate, formatScore, titleCase } from '../../utils/format';
 
 const breakdownLabels = {
@@ -13,8 +17,43 @@ const breakdownLabels = {
   priority_match: 'Priority',
 };
 
+const COMPLETED = ['delivered', 'confirmed'];
+
 export default function MyMatches() {
-  const { donations, matches, loading, error } = useDonorData();
+  const { donations, matches, deliveries, loading, error } = useDonorData();
+  const [feedbackGiven, setFeedbackGiven] = useState({});
+  const [feedbackFor, setFeedbackFor] = useState(null);
+  const [toast, setToast] = useState(null);
+
+  const completedDeliveryMatchIds = useMemo(
+    () => new Set(deliveries.filter((d) => COMPLETED.includes(d.status)).map((d) => d.match_id)),
+    [deliveries]
+  );
+
+  const showToast = (message, tone = 'success') => {
+    setToast({ message, tone });
+    setTimeout(() => setToast(null), 3500);
+  };
+
+  const loadFeedback = useCallback(async () => {
+    const ids = matches
+      .filter((m) => completedDeliveryMatchIds.has(m.id))
+      .map((m) => m.id);
+    const given = {};
+    await Promise.all(ids.map(async (id) => {
+      try {
+        const res = await api.get(`/feedback/match/${id}`);
+        if (res.data?.length) given[id] = true;
+      } catch (e) {
+        // ignore
+      }
+    }));
+    setFeedbackGiven(given);
+  }, [matches, completedDeliveryMatchIds]);
+
+  useEffect(() => {
+    if (matches.length) loadFeedback();
+  }, [matches, loadFeedback]);
 
   const pending = matches.filter((m) => m.status === 'pending');
   const sorted = [...matches].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
@@ -79,6 +118,24 @@ export default function MyMatches() {
                   </div>
                 </div>
 
+                {completedDeliveryMatchIds.has(match.id) && (
+                  <div className="mt-4 pt-4 border-t border-outline-variant/20">
+                    {feedbackGiven[match.id] ? (
+                      <span className="inline-flex items-center gap-1.5 chip bg-tertiary-container text-on-tertiary-container">
+                        <MaterialIcon name="check_circle" size={16} /> Thanks for rating this handover
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setFeedbackFor(match.id)}
+                        className="btn-tonal px-4 py-2"
+                      >
+                        <MaterialIcon name="star" size={18} /> Rate this handover
+                      </button>
+                    )}
+                  </div>
+                )}
+
                 {Object.keys(breakdown).length > 0 && (
                   <div className="mt-5">
                     <p className="font-label-md text-on-surface-variant mb-2">Score Breakdown</p>
@@ -102,6 +159,19 @@ export default function MyMatches() {
           })}
         </div>
       )}
+
+      {feedbackFor && (
+        <FeedbackForm
+          matchId={feedbackFor}
+          onSubmitted={(rating) => {
+            setFeedbackGiven((prev) => ({ ...prev, [feedbackFor]: true }));
+            showToast(`Thanks for rating ${rating} star${rating > 1 ? 's' : ''}!`);
+          }}
+          onClose={() => setFeedbackFor(null)}
+        />
+      )}
+
+      <Toast message={toast?.message} tone={toast?.tone} onClose={() => setToast(null)} />
     </div>
   );
 }

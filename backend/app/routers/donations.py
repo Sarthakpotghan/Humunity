@@ -6,6 +6,8 @@ from app.models import Donation, DonationPhoto, DonationStatus, User, UserRole
 from app.schemas import DonationCreate, DonationUpdate, DonationResponse, DonationPhotoResponse
 from app.utils.security import get_current_user, require_role
 from app.services.nlp import extract_donation_fields
+from app.services.maps import geocode_user_address
+import asyncio
 import os
 import shutil
 from uuid import uuid4
@@ -27,6 +29,22 @@ def create_donation(
     if donation_in.description:
         extracted = extract_donation_fields(donation_in.description)
     
+    # Use provided lat/lng, fall back to user's stored lat/lng
+    lat = donation_in.lat or current_user.lat
+    lng = donation_in.lng or current_user.lng
+    
+    # If no coordinates but user has address, geocode it
+    if (lat is None or lng is None) and current_user.address:
+        try:
+            coords = asyncio.run(geocode_user_address(current_user.address))
+            if coords:
+                lat, lng = coords
+                # Cache on user for future use
+                current_user.lat = lat
+                current_user.lng = lng
+        except Exception:
+            pass  # Gracefully ignore geocoding failure
+    
     donation = Donation(
         donor_id=current_user.id,
         category=donation_in.category,
@@ -38,8 +56,8 @@ def create_donation(
         condition=donation_in.condition,
         quantity=donation_in.quantity,
         description=donation_in.description,
-        lat=donation_in.lat or current_user.lat,
-        lng=donation_in.lng or current_user.lng,
+        lat=lat,
+        lng=lng,
         available_from=donation_in.available_from,
         available_to=donation_in.available_to,
         status=DonationStatus.LISTED
