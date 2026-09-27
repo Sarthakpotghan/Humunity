@@ -1,13 +1,15 @@
 import { useCallback, useEffect, useState } from 'react';
 import { api } from '../services/api';
-import { MaterialIcon, Avatar } from '../components/ui';
+import { MaterialIcon, Avatar, StatusBadge } from '../components/ui';
 import TopAppBar from '../components/layout/TopAppBar';
 import Toast from '../components/Toast';
+import NGOPendingRow from '../components/NGOPendingRow';
 import { formatDate, titleCase } from '../utils/format';
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: 'dashboard' },
   { id: 'ngos', label: 'NGO Verification', icon: 'workspace_premium' },
+  { id: 'deliveries', label: 'Deliveries', icon: 'local_shipping' },
   { id: 'users', label: 'Users', icon: 'group' },
 ];
 
@@ -16,6 +18,8 @@ export default function AdminDashboard() {
   const [summary, setSummary] = useState(null);
   const [pendingNgos, setPendingNgos] = useState([]);
   const [users, setUsers] = useState([]);
+  const [deliveries, setDeliveries] = useState([]);
+  const [volunteers, setVolunteers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [toast, setToast] = useState(null);
@@ -53,12 +57,25 @@ export default function AdminDashboard() {
     }
   }, []);
 
+  const loadDeliveries = useCallback(async () => {
+    try {
+      const [deliveriesRes, volunteersRes] = await Promise.all([
+        api.get('/deliveries'),
+        api.get('/admin/users', { params: { role: 'volunteer' } }).catch(() => []),
+      ]);
+      setDeliveries(deliveriesRes.data || []);
+      setVolunteers(volunteersRes.data || []);
+    } catch (err) {
+      setError(err.response?.data?.detail || 'Failed to load deliveries');
+    }
+  }, []);
+
   const loadTab = useCallback(async () => {
     setError('');
     setLoading(true);
-    await Promise.all([loadOverview(), loadNgos(), loadUsers()]);
+    await Promise.all([loadOverview(), loadNgos(), loadUsers(), loadDeliveries()]);
     setLoading(false);
-  }, [loadOverview, loadNgos, loadUsers]);
+  }, [loadOverview, loadNgos, loadUsers, loadDeliveries]);
 
   useEffect(() => {
     loadTab(activeTab);
@@ -85,6 +102,20 @@ export default function AdminDashboard() {
       loadUsers();
     } catch (err) {
       showToast(err.response?.data?.detail || 'Could not update role', 'error');
+    } finally {
+      setBusy(null);
+    }
+  };
+
+  const assignVolunteer = async (deliveryId, volunteerId) => {
+    if (!volunteerId) return;
+    setBusy(`assign-${deliveryId}`);
+    try {
+      await api.patch(`/deliveries/${deliveryId}/assign`, { volunteer_id: volunteerId });
+      showToast('Volunteer assigned');
+      loadDeliveries();
+    } catch (err) {
+      showToast(err.response?.data?.detail || 'Could not assign volunteer', 'error');
     } finally {
       setBusy(null);
     }
@@ -249,39 +280,82 @@ export default function AdminDashboard() {
             ) : (
               <div className="flex flex-col">
                 {pendingNgos.map((p) => (
-                  <div key={p.id} className="flex flex-col md:flex-row md:items-center gap-3 px-5 py-4 border-t border-outline-variant/20">
-                    <div className="flex items-center gap-3 min-w-0 flex-1">
-                      <Avatar name={p.name || `NGO #${p.id}`} size={40} />
-                      <div className="min-w-0">
-                        <p className="font-label-lg text-on-surface truncate">{p.name}</p>
-                        <p className="font-label-sm text-on-surface-variant truncate">{p.reg_number}</p>
-                        <div className="flex gap-1.5 mt-1 flex-wrap">
-                          {p.focus_areas?.slice(0, 3).map((a) => (
-                            <span key={a} className="chip bg-surface-container-high text-on-surface-variant">{a}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <button
-                        type="button"
-                        disabled={busy === `verify-${p.id}-false`}
-                        onClick={() => decideNgo(p.id, false, p)}
-                        className="btn-outline px-4 py-2 text-error"
-                      >
-                        Reject
-                      </button>
-                      <button
-                        type="button"
-                        disabled={busy === `verify-${p.id}-true`}
-                        onClick={() => decideNgo(p.id, true, p)}
-                        className="btn-primary px-4 py-2"
-                      >
-                        Verify
-                      </button>
-                    </div>
-                  </div>
+                  <NGOPendingRow
+                    key={p.id}
+                    ngo={p}
+                    busy={busy}
+                    onDecide={decideNgo}
+                  />
                 ))}
+              </div>
+            )}
+          </section>
+        ) : activeTab === 'deliveries' ? (
+          <section className="bg-surface-container-lowest rounded-lg shadow-card border border-outline-variant/20 overflow-hidden">
+            <div className="px-5 py-4">
+              <h3 className="font-headline-sm text-headline-sm text-on-surface">Volunteer Assignments</h3>
+              <p className="font-body-sm text-on-surface-variant mt-1">Assign volunteers to scheduled deliveries or track delivery progress</p>
+            </div>
+            {deliveries.length === 0 ? (
+              <p className="px-5 py-10 text-center font-body-sm text-on-surface-variant">
+                No deliveries scheduled yet
+              </p>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full text-left font-body-sm">
+                  <thead>
+                    <tr className="bg-surface-container-low text-on-surface-variant font-label-md">
+                      <th className="px-5 py-3 font-label-md">Item</th>
+                      <th className="px-4 py-3 font-label-md">Donor → NGO</th>
+                      <th className="px-4 py-3 font-label-md">Mode</th>
+                      <th className="px-4 py-3 font-label-md">Status</th>
+                      <th className="px-5 py-3 font-label-md">Volunteer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {deliveries.map((d) => (
+                      <tr key={d.id} className="border-t border-outline-variant/20">
+                        <td className="px-5 py-3">
+                          <span className="font-label-md text-on-surface capitalize">{d.donation_item}</span>
+                          <span className="block font-label-sm text-on-surface-variant">Qty {d.donation_quantity}</span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className="text-on-surface">{d.donor_name}</span>
+                          <span className="text-on-surface-variant"> → </span>
+                          <span className="text-on-surface">{d.ngo_name}</span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <span className="chip bg-surface-container-high text-on-surface-variant">{titleCase(d.mode)}</span>
+                        </td>
+                        <td className="px-4 py-3"><StatusBadge status={d.status} size="sm" /></td>
+                        <td className="px-5 py-3">
+                          {d.status === 'scheduled' || d.status === 'in_transit' ? (
+                            <div className="flex items-center gap-2">
+                              <select
+                                aria-label="Assign volunteer"
+                                className="field py-1.5 text-sm"
+                                defaultValue={d.volunteer_id || ''}
+                                disabled={busy === `assign-${d.id}`}
+                                onChange={(e) => assignVolunteer(d.id, parseInt(e.target.value, 10))}
+                              >
+                                <option value="">{d.volunteer_id ? 'Reassign…' : 'Assign volunteer…'}</option>
+                                {volunteers.map((v) => (
+                                  <option key={v.id} value={v.id}>{v.name}</option>
+                                ))}
+                              </select>
+                            </div>
+                          ) : d.status === 'delivered' || d.status === 'confirmed' ? (
+                            <span className="chip bg-tertiary-container text-on-tertiary-container">
+                              <MaterialIcon name="check_circle" size={14} /> Done
+                            </span>
+                          ) : (
+                            <span className="font-label-sm text-on-surface-variant">—</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             )}
           </section>
