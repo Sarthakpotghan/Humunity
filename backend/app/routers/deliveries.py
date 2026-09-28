@@ -62,8 +62,9 @@ def create_delivery(
         status=DeliveryStatus.SCHEDULED
     )
     db.add(delivery)
+    db.flush()  # Ensure delivery gets an ID before creating event
     
-    event = DeliveryEvent(delivery=delivery, status=DeliveryStatus.SCHEDULED)
+    event = DeliveryEvent(delivery_id=delivery.id, status=DeliveryStatus.SCHEDULED)
     db.add(event)
     
     match.donation.status = DonationStatus.PICKUP_SCHEDULED
