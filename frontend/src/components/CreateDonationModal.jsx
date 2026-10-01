@@ -1,5 +1,4 @@
-import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useRef, useNavigate } from 'react';
 import { api } from '../services/api';
 import { MaterialIcon } from '../components/ui';
 import Toast from '../components/Toast';
@@ -77,14 +76,11 @@ export default function CreateDonationModal({ isOpen, onClose }) {
         available_from: formData.available_from ? new Date(formData.available_from).toISOString() : undefined,
         available_to: formData.available_to ? new Date(formData.available_to).toISOString() : undefined,
       };
-
-      const keys = Object.keys(payload);
-      for (let i = 0; i < keys.length; i++) {
-        const key = keys[i];
+      Object.keys(payload).forEach((key) => {
         if (payload[key] === '' || payload[key] === null || payload[key] === undefined) {
           delete payload[key];
         }
-      }
+      });
 
       const response = await api.post('/donations', payload);
       const donationId = response.data.id;
@@ -164,7 +160,7 @@ export default function CreateDonationModal({ isOpen, onClose }) {
                 <input name="quantity" type="number" min="1" required value={formData.quantity} onChange={handleChange} className="field" />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label className="block font-label-md text-on-surface">Size</label>
+                <label className="font-label-md text-on-surface">Size</label>
                 <input name="size" type="text" placeholder="e.g., M, L, 100 pages" value={formData.size} onChange={handleChange} className="field" />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -184,28 +180,18 @@ export default function CreateDonationModal({ isOpen, onClose }) {
                   {SEASONS.filter(Boolean).map((s) => <option key={s} value={s}>{s[0].toUpperCase() + s.slice(1)}</option>)}
                 </select>
               </div>
-              <div>
+              <div className="flex flex-col gap-1.5">
                 <label className="block font-label-md text-on-surface">Size</label>
-                <input name="size" type="text" placeholder="e.g., M,L" value={formData.size} onChange={handleChange} className="field" />
+                <input name="size" type="text" placeholder="e.g., M, L, 100 pages" value={formData.size} onChange={handleChange} className="field" />
               </div>
-              <div>
+              <div className="flex flex-col gap-1.5">
                 <label className="block font-label-md text-on-surface">Deadline</label>
-                <input name="available_to" type="date" className="field" value={formData.available_to} onChange={(e) => setFormData({ ...formData, available_to: e.target.value })} />
+                <input name="available_to" type="date" className="field" value={formData.available_to} onChange={handleChange} />
               </div>
             </div>
 
             <div className="flex flex-col gap-2">
-              <span className="font-label-md text-on-surface">Urgency *</span>
-              <div className="flex items-center gap-3">
-                <input type="range" min="1" max="5" value={formData.urgency} onChange={handleChange} name="urgency" className="flex-1 accent-primary" />
-                <span className={`chip ${urgencyBadge(Number(formData.urgency))} w-24 justify-center`}>
-                  {['', 'Lower', '', '', '', 'Critical'][Number(formData.urgency)] || formData.urgency}/5
-                </span>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <span className="font-label-md text-on-surface">Description</span>
+              <span className="font-label-md text-on-surface">Description</label>
               <textarea rows={3} name="description" placeholder="Describe the items, e.g. '10 warm jackets for kids 6-10'. Matching details are extracted automatically." value={formData.description} onChange={handleChange} className="field textarea" />
             </div>
 
@@ -286,3 +272,19 @@ export default function CreateDonationModal({ isOpen, onClose }) {
     </div>
   );
 }
+
+const CONDITIONS = [
+  { value: 'new', label: 'New' },
+  { value: 'good', label: 'Good' },
+  { value: 'fair', label: 'Fair' },
+];
+
+const CATEGORIES = [
+  { value: 'clothes', label: 'Clothes', icon: 'checkroom' },
+  { value: 'stationery', label: 'Educational Stationery', icon: 'menu_book' },
+];
+
+const SEASONS = ['', 'spring', 'summer', 'autumn', 'winter'];
+const GENDERS = ['unisex', 'male', 'female'];
+
+export default CreateDonationModal;

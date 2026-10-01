@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     OSRM_BASE_URL: str = "http://router.project-osrm.org"
     MAX_MATCH_DISTANCE_KM: float = 25.0
     DROPOFF_THRESHOLD_KM: float = 5.0
+    VOLUNTEER_PICKUP_MAX_KM: float = 25.0
 
     class Config:
         env_file = ".env"

@@ -197,6 +197,7 @@ class Delivery(Base):
     scheduled_at = Column(DateTime, nullable=True)
     delivered_at = Column(DateTime, nullable=True)
     status = Column(Enum(DeliveryStatus), default=DeliveryStatus.SCHEDULED, nullable=False)
+    location_unknown = Column(Boolean, default=False, nullable=False)
 
     match = relationship("Match", back_populates="delivery")
     volunteer = relationship("User", back_populates="deliveries_as_volunteer", foreign_keys=[volunteer_id])

@@ -212,10 +212,16 @@ def test_create_delivery(client, donor_user, ngo_user):
     match_resp = client.post(f"/donations/{don_id}/match", headers=h)
     match_id = match_resp.json()[0]["id"]
     client.patch(f"/donations/matches/{match_id}/accept", headers=nh)
-
-    del_resp = client.post("/deliveries", json={"match_id": match_id, "mode": "pickup"}, headers=h)
-    assert del_resp.status_code == 201
-    assert del_resp.json()["status"] == "scheduled"
+    
+    # Delivery is now auto-created on match acceptance
+    del_resp = client.get(f"/deliveries", headers=h)
+    assert del_resp.status_code == 200
+    deliveries = del_resp.json()
+    assert len(deliveries) >= 1
+    # Find the delivery for our match
+    delivery = next((d for d in deliveries if d["match_id"] == match_id), None)
+    assert delivery is not None
+    assert delivery["status"] == "scheduled"
 
 
 def test_assign_volunteer(client, donor_user, ngo_user, volunteer_user):
@@ -236,9 +242,15 @@ def test_assign_volunteer(client, donor_user, ngo_user, volunteer_user):
     match_resp = client.post(f"/donations/{don_id}/match", headers=h)
     match_id = match_resp.json()[0]["id"]
     client.patch(f"/donations/matches/{match_id}/accept", headers=nh)
-    del_resp = client.post("/deliveries", json={"match_id": match_id, "mode": "pickup"}, headers=h)
-    del_id = del_resp.json()["id"]
-
+    
+    # Delivery is auto-created on match acceptance
+    del_resp = client.get("/deliveries", headers=h)
+    assert del_resp.status_code == 200
+    deliveries = del_resp.json()
+    delivery = next((d for d in deliveries if d["match_id"] == match_id), None)
+    assert delivery is not None
+    del_id = delivery["id"]
+    
     assign_resp = client.patch(f"/deliveries/{del_id}/assign", json={"volunteer_id": volunteer_user.id}, headers=h)
     assert assign_resp.status_code == 200
     assert assign_resp.json()["volunteer_id"] == volunteer_user.id
@@ -262,8 +274,14 @@ def test_volunteer_status_flow(client, donor_user, ngo_user, volunteer_user):
     match_resp = client.post(f"/donations/{don_id}/match", headers=h)
     match_id = match_resp.json()[0]["id"]
     client.patch(f"/donations/matches/{match_id}/accept", headers=nh)
-    del_resp = client.post("/deliveries", json={"match_id": match_id, "mode": "pickup"}, headers=h)
-    del_id = del_resp.json()["id"]
+    
+    # Delivery is auto-created on match acceptance
+    del_resp = client.get("/deliveries", headers=h)
+    assert del_resp.status_code == 200
+    deliveries = del_resp.json()
+    delivery = next((d for d in deliveries if d["match_id"] == match_id), None)
+    assert delivery is not None
+    del_id = delivery["id"]
     client.patch(f"/deliveries/{del_id}/assign", json={"volunteer_id": volunteer_user.id}, headers=h)
 
     start_resp = client.patch(f"/deliveries/{del_id}/status", json={"status": "in_transit"}, headers=vh)
@@ -294,8 +312,14 @@ def test_feedback_uniqueness_per_match(client, donor_user, ngo_user, volunteer_u
     match_resp = client.post(f"/donations/{don_id}/match", headers=h)
     match_id = match_resp.json()[0]["id"]
     client.patch(f"/donations/matches/{match_id}/accept", headers=nh)
-    del_resp = client.post("/deliveries", json={"match_id": match_id, "mode": "pickup"}, headers=h)
-    del_id = del_resp.json()["id"]
+    
+    # Delivery is auto-created on match acceptance
+    del_resp = client.get("/deliveries", headers=h)
+    assert del_resp.status_code == 200
+    deliveries = del_resp.json()
+    delivery = next((d for d in deliveries if d["match_id"] == match_id), None)
+    assert delivery is not None
+    del_id = delivery["id"]
     client.patch(f"/deliveries/{del_id}/assign", json={"volunteer_id": volunteer_user.id}, headers=h)
     client.patch(f"/deliveries/{del_id}/status", json={"status": "in_transit"}, headers=vh)
     client.patch(f"/deliveries/{del_id}/status", json={"status": "delivered"}, headers=vh)

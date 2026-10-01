@@ -248,6 +248,7 @@ class DeliveryResponse(BaseModel):
     scheduled_at: Optional[datetime] = None
     delivered_at: Optional[datetime] = None
     status: DeliveryStatus
+    location_unknown: bool = False
 
     class Config:
         from_attributes = True

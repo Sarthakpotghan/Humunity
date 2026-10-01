@@ -4,7 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { MaterialIcon, Avatar, StatusBadge } from '../components/ui';
 import TopAppBar from '../components/layout/TopAppBar';
 import Toast from '../components/Toast';
-import CreateDonationModal from '../components/CreateDonationModal';
+import RequestFormModal from '../components/RequestFormModal';
 import {
   formatDate,
   formatDateTime,
@@ -24,7 +24,7 @@ export default function NGODashboard() {
   const [matches, setMatches] = useState({});
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState('');
-  const [showCreate, setShowCreate] = useState(false);
+  const [showRequestForm, setShowRequestForm] = useState(false);
   const [saving, setSaving] = useState(false);
   const [toast, setToast] = useState(null);
   const [activeFilter, setActiveFilter] = useState('all');
@@ -214,7 +214,7 @@ export default function NGODashboard() {
                 <span className="font-label-sm">reliability</span>
               </div>
             )}
-            <button type="button" onClick={() => setShowCreate(true)} className="btn-primary">
+            <button type="button" onClick={() => setShowRequestForm(true)} className="btn-primary">
               <MaterialIcon name="add" size={20} />
               Post New Resource Need
             </button>
@@ -460,8 +460,8 @@ export default function NGODashboard() {
         </section>
       </main>
 
-{showCreate && (
-          <CreateDonationModal isOpen={showCreate} onClose={() => setShowCreate(false)} />
+{showRequestForm && (
+          <RequestFormModal isOpen={showRequestForm} onClose={() => setShowRequestForm(false)} />
         )}
 
       <Toast message={toast?.message} tone={toast?.tone} onClose={() => setToast(null)} />

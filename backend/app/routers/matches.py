@@ -2,11 +2,12 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.models import Match, MatchStatus, Donation, DonationStatus, User, UserRole
+from app.models import Match, MatchStatus, Donation, DonationStatus, User, UserRole, Delivery, DeliveryStatus, DeliveryMode, DeliveryEvent
 from app.schemas import MatchResponse, MatchAction
 from app.utils.security import get_current_user, require_role
 from app.services.matching import run_matching_for_donation
 from app.services.notifier import notify_match_created_sync, notify_match_accepted_sync, notify_match_rejected_sync
+from app.services.maps import calculate_distance_km, suggest_delivery_mode
 
 router = APIRouter(prefix="/donations", tags=["matches"])
 
@@ -97,6 +98,47 @@ def accept_match(
         raise HTTPException(status_code=403, detail="Not authorized")
     if match.status != MatchStatus.PENDING:
         raise HTTPException(status_code=400, detail="Match not in pending status")
+    
+    # Calculate distance and determine delivery mode
+    donation = match.donation
+    ngo = match.request.ngo
+    mode = DeliveryMode.DROPOFF
+    location_unknown = False
+    
+    if donation.lat is not None and donation.lng is not None and ngo.lat is not None and ngo.lng is not None:
+        from app.services.maps import calculate_distance_km, suggest_delivery_mode
+        distance_km = calculate_distance_km(donation.lat, donation.lng, ngo.lat, ngo.lng)
+        mode_str, long_distance_flag = suggest_delivery_mode(distance_km)
+        
+        if distance_km <= 5.0:
+            mode = DeliveryMode.DROPOFF
+        elif distance_km <= 25.0:
+            mode = DeliveryMode.PICKUP
+        else:
+            mode = DeliveryMode.DROPOFF
+    else:
+        mode = DeliveryMode.DROPOFF
+        location_unknown = True
+    
+    # Check if delivery already exists
+    existing_delivery = db.query(Delivery).filter(Delivery.match_id == match.id).first()
+    if not existing_delivery:
+        delivery = Delivery(
+            match_id=match.id,
+            mode=mode,
+            status=DeliveryStatus.SCHEDULED,
+            location_unknown=location_unknown
+        )
+        db.add(delivery)
+        db.flush()
+        
+        event = DeliveryEvent(delivery_id=delivery.id, status=DeliveryStatus.SCHEDULED)
+        db.add(event)
+        
+        match.donation.status = DonationStatus.PICKUP_SCHEDULED
+    else:
+        # Delivery already exists, just update match status
+        pass
     
     match.status = MatchStatus.ACCEPTED
     match.donation.status = DonationStatus.ACCEPTED

@@ -1,8 +1,46 @@
 import httpx
+import math
 from typing import Tuple, List, Dict, Optional
 from app.config import get_settings
 
 settings = get_settings()
+
+
+# Delivery mode thresholds (configurable)
+DROPOFF_THRESHOLD_KM = settings.DROPOFF_THRESHOLD_KM  # <= 5km -> donor dropoff
+VOLUNTEER_PICKUP_MAX_KM = settings.VOLUNTEER_PICKUP_MAX_KM  # 5-25km -> volunteer pickup
+# > 25km -> donor dropoff with long_distance_flag
+
+
+def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    R = 6371
+    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
+    dlat = lat2 - lat1
+    dlon = lon2 - lon1
+    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
+    c = 2 * math.asin(math.sqrt(a))
+    return R * c
+
+
+def calculate_distance_km(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
+    """Calculate Haversine distance in kilometers between two points."""
+    return haversine(lat1, lon1, lat2, lon2)
+
+
+def suggest_delivery_mode(distance_km: float) -> tuple[str, bool]:
+    """
+    Suggest delivery mode based on distance.
+    Returns (mode, long_distance_flag)
+    - <= 5km: donor_dropoff, long_distance_flag=False
+    - 5-25km: volunteer_pickup, long_distance_flag=False
+    - > 25km: donor_dropoff, long_distance_flag=True
+    """
+    if distance_km <= settings.DROPOFF_THRESHOLD_KM:
+        return "donor_dropoff", False
+    elif distance_km <= settings.VOLUNTEER_PICKUP_MAX_KM:
+        return "volunteer_pickup", False
+    else:
+        return "donor_dropoff", True
 
 
 async def geocode(address: str) -> Optional[Tuple[float, float]]:
@@ -111,23 +149,6 @@ async def get_distance_matrix(origins: List[Tuple[float, float]], destinations: 
         except Exception:
             pass
     return [[0.0] * len(destinations) for _ in origins]
-
-
-def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    import math
-    R = 6371
-    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
-    dlat = lat2 - lat1
-    dlon = lon2 - lon1
-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
-    c = 2 * math.asin(math.sqrt(a))
-    return R * c
-
-
-def suggest_delivery_mode(distance_km: float) -> str:
-    if distance_km <= settings.DROPOFF_THRESHOLD_KM:
-        return "dropoff"
-    return "pickup"
 
 
 async def geocode_user_address(address: str) -> Optional[Tuple[float, float]]:
