@@ -82,12 +82,10 @@ def create_ngo_profile(
     return profile
 
 
-@router.get("/ngo/profile", response_model=NgoProfileResponse)
+@router.get("/ngo/profile", response_model=Optional[NgoProfileResponse])
 def get_ngo_profile(
     current_user: User = Depends(require_role(UserRole.NGO)),
     db: Session = Depends(get_db)
 ):
     profile = db.query(NgoProfile).filter(NgoProfile.user_id == current_user.id).first()
-    if not profile:
-        raise HTTPException(status_code=404, detail="NGO profile not found")
     return profile
