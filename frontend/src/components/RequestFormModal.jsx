@@ -74,7 +74,7 @@ Object.keys(payload).forEach((key) => {
       });
 
       await api.post('/requests', payload);
-      setShowToast('Request published');
+      showToast('Request published');
       setTimeout(() => onClose(), 800);
     } catch (err) {
       setError(err.response?.data?.detail || 'Failed to create request');
