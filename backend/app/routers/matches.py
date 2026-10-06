@@ -27,7 +27,8 @@ def match_donation(
         raise HTTPException(status_code=400, detail="Donation not in listed status")
     
     matches = run_matching_for_donation(donation_id, db)
-    donation.status = DonationStatus.MATCHED
+    if matches:
+        donation.status = DonationStatus.MATCHED
     db.commit()
     for match in matches:
         try:
