@@ -71,3 +71,13 @@ export function categoryLabel(category) {
   if (category === 'stationery') return 'Educational Stationery';
   return 'Clothes';
 }
+
+export function urgencyBadge(urgency) {
+  const n = Number(urgency);
+  const tones = {
+    5: 'bg-error-container text-on-error-container',
+    4: 'bg-secondary-fixed text-on-secondary-fixed-variant',
+    3: 'bg-secondary-container text-on-secondary-container',
+  };
+  return tones[n] || 'bg-surface-container-high text-on-surface-variant';
+}
