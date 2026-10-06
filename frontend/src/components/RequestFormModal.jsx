@@ -1,4 +1,4 @@
-import { useState, useRef, useNavigate } from 'react';
+import { useState, useRef } from 'react';
 import { api } from '../services/api';
 import { MaterialIcon } from '../components/ui';
 import Toast from '../components/Toast';
@@ -34,7 +34,6 @@ export default function RequestFormModal({ isOpen, onClose }) {
   const [error, setError] = useState('');
   const [toast, setToast] = useState(null);
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const showToast = (message, tone = 'success') => {
     setToast({ message, tone });
