@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { api } from '../services/api';
 import { MaterialIcon } from '../components/ui';
 import Toast from '../components/Toast';
-import { formatDate, titleCase, categoryIcon, categoryLabel } from '../utils/format';
+import { formatDate, titleCase, categoryIcon, categoryLabel, urgencyBadge } from '../utils/format';
 
 const CONDITIONS = [
   { value: 'new', label: 'New' },
