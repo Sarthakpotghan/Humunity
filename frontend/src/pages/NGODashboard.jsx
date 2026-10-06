@@ -251,7 +251,7 @@ export default function NGODashboard() {
             <div className="px-5 py-10 text-center">
               <MaterialIcon name="campaign" size={40} className="text-outline mx-auto mb-3" />
               <p className="font-body-md text-on-surface-variant">No active needs right now</p>
-              <button type="button" onClick={() => setShowCreate(true)} className="btn-tonal mt-4">
+              <button type="button" onClick={() => setShowRequestForm(true)} className="btn-tonal mt-4">
                 <MaterialIcon name="add" size={18} /> Post your first need
               </button>
             </div>
