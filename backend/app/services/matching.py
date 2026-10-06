@@ -149,21 +149,20 @@ def run_matching_for_donation(donation_id: int, db: Session, top_n: int = 5) -> 
     requests = db.query(Request).join(User, Request.ngo_id == User.id).filter(
         Request.category == donation.category,
         Request.status == RequestStatus.ACTIVE,
-        User.lat.isnot(None),
-        User.lng.isnot(None),
         User.verified == True
     ).all()
-    
-    if not donation.lat or not donation.lng:
-        return []
     
     scored_requests = []
     for req in requests:
         if not req.ngo.lat or not req.ngo.lng:
             continue
-        distance = haversine(donation.lat, donation.lng, req.ngo.lat, req.ngo.lng)
-        if distance > settings.MAX_MATCH_DISTANCE_KM:
-            continue
+        if not donation.lat or not donation.lng:
+            # Use a default proximity score when coordinates are missing
+            distance = None
+        else:
+            distance = haversine(donation.lat, donation.lng, req.ngo.lat, req.ngo.lng)
+            if distance > settings.MAX_MATCH_DISTANCE_KM:
+                continue
         score, breakdown = calculate_match_score(donation, req)
         scored_requests.append((req, score, breakdown))
     
