@@ -85,15 +85,6 @@ export default function NGODashboard() {
     return { label: `Due in ${days}d`, tone: days <= 2 ? 'error' : 'neutral' };
   };
 
-  const urgencyBadge = (urgency) => {
-    const tones = {
-      5: 'bg-error-container text-on-error-container',
-      4: 'bg-secondary-fixed text-on-secondary-fixed-variant',
-      3: 'bg-secondary-container text-on-secondary-container',
-    };
-    return tones[urgency] || 'bg-surface-container-high text-on-surface-variant';
-  };
-
   const handleAcceptMatch = async (matchId) => {
     setSaving(true);
     try {
