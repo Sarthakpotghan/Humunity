@@ -1,54 +1,63 @@
 from fastapi.testclient import TestClient
 from app.main import app
 
-client = TestClient(app)
+def test_notifications_and_analytics_flow():
+    client = TestClient(app)
 
-# Login donor
-resp = client.post('/auth/login', json={
-    'email': 'donor@test.com', 'password': 'password123'
-})
-print('Login donor:', resp.status_code)
-donor_token = resp.json()['access_token']
-donor_headers = {'Authorization': f'Bearer {donor_token}'}
+    # 1. Register all test users first
+    client.post('/auth/register', json={'email': 'donor@test.com', 'password': 'password123', 'name': 'Test Donor', 'role': 'donor'})
+    client.post('/auth/register', json={'email': 'ngo@test.com', 'password': 'password123', 'name': 'Test NGO', 'role': 'ngo'})
+    client.post('/auth/register', json={'email': 'admin@test.com', 'password': 'password123', 'name': 'Test Admin', 'role': 'admin'})
 
-# Login NGO
-resp = client.post('/auth/login', json={
-    'email': 'ngo@test.com', 'password': 'password123'
-})
-print('Login NGO:', resp.status_code)
-ngo_token = resp.json()['access_token']
-ngo_headers = {'Authorization': f'Bearer {ngo_token}'}
+    # 2. Login donor
+    resp_donor = client.post('/auth/login', json={'email': 'donor@test.com', 'password': 'password123'})
+    assert resp_donor.status_code == 200
+    donor_headers = {'Authorization': f"Bearer {resp_donor.json()['access_token']}"}
 
-# Login Admin
-resp = client.post('/auth/login', json={
-    'email': 'admin@test.com', 'password': 'password123'
-})
-print('Login Admin:', resp.status_code)
-admin_token = resp.json()['access_token']
-admin_headers = {'Authorization': f'Bearer {admin_token}'}
+    # 3. Login Admin (Moved up so the Admin can verify the NGO)
+    resp_admin = client.post('/auth/login', json={'email': 'admin@test.com', 'password': 'password123'})
+    assert resp_admin.status_code == 200
+    admin_headers = {'Authorization': f"Bearer {resp_admin.json()['access_token']}"}
 
-# Test notifications for donor
-resp = client.get('/notifications', headers=donor_headers)
-print('Donor notifications:', resp.status_code, resp.json())
+    # 4. Admin verifies the NGO
+    # First, get the list of pending NGOs
+    pending_resp = client.get('/admin/ngos/pending', headers=admin_headers)
+    assert pending_resp.status_code == 200
+    pending_ngos = pending_resp.json()
+    
+    if pending_ngos:
+        ngo_id = pending_ngos[0]['id']
+        # Admin approves the NGO
+        verify_resp = client.patch(f'/admin/ngos/{ngo_id}/verify', json={"verified": True}, headers=admin_headers)
+        assert verify_resp.status_code == 200
 
-# Test notifications for NGO
-resp = client.get('/notifications', headers=ngo_headers)
-print('NGO notifications:', resp.status_code, resp.json())
+    # 5. NOW Login the NGO (will succeed since they are verified)
+    resp_ngo = client.post('/auth/login', json={'email': 'ngo@test.com', 'password': 'password123'})
+    assert resp_ngo.status_code == 200
+    ngo_headers = {'Authorization': f"Bearer {resp_ngo.json()['access_token']}"}
 
-# Test mark all read
-resp = client.patch('/notifications/read-all', headers=donor_headers)
-print('Mark all read:', resp.status_code)
+    # 6. Test notifications for donor
+    notif_donor = client.get('/notifications', headers=donor_headers)
+    assert notif_donor.status_code in [200, 201]
 
-# Test analytics (admin only)
-resp = client.get('/analytics/summary', headers=admin_headers)
-print('Analytics summary:', resp.status_code, resp.json())
+    # 7. Test notifications for NGO
+    notif_ngo = client.get('/notifications', headers=ngo_headers)
+    assert notif_ngo.status_code in [200, 201]
 
-resp = client.get('/analytics/heatmap', headers=admin_headers)
-print('Analytics heatmap:', resp.status_code, resp.json())
+    # 8. Test mark all read
+    mark_read = client.patch('/notifications/read-all', headers=donor_headers)
+    assert mark_read.status_code in [200, 201, 204]
 
-resp = client.get('/analytics/trends', headers=admin_headers)
-print('Analytics trends:', resp.status_code, resp.json())
+    # 9. Test analytics (admin only)
+    analytics_summary = client.get('/analytics/summary', headers=admin_headers)
+    assert analytics_summary.status_code == 200
 
-# Test analytics with NGO (should fail)
-resp = client.get('/analytics/summary', headers=ngo_headers)
-print('Analytics with NGO:', resp.status_code, resp.json())
+    analytics_heatmap = client.get('/analytics/heatmap', headers=admin_headers)
+    assert analytics_heatmap.status_code == 200
+
+    analytics_trends = client.get('/analytics/trends', headers=admin_headers)
+    assert analytics_trends.status_code == 200
+
+    # 10. Test analytics with NGO (should fail with 403 Forbidden)
+    analytics_fail = client.get('/analytics/summary', headers=ngo_headers)
+    assert analytics_fail.status_code in [401, 403], "Role guard failed: NGO accessed admin routes"
