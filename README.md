@@ -2,6 +2,9 @@
 
 Donation matching platform for clothes and educational stationery.
 
+> **Full guide:** [summary.md](summary.md) — architecture, tech stack, matching engine,
+> end-to-end flow, and step-by-step manual verification checklist.
+
 ## Stack
 
 - **Backend:** FastAPI (Python), SQLAlchemy, Alembic, PostgreSQL
