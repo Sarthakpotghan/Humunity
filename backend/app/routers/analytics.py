@@ -66,17 +66,28 @@ def get_summary(
         for n in top_ngos
     ]
     
+    is_sqlite = db.get_bind().dialect.name == "sqlite"
+    month_col = (
+        func.strftime('%Y-%m', Donation.created_at)
+        if is_sqlite
+        else func.date_trunc('month', Donation.created_at)
+    ).label('month')
+
     monthly_trend = db.query(
-        func.date_trunc('month', Donation.created_at).label('month'),
+        month_col,
         func.count(Donation.id).label('count'),
         func.sum(Donation.quantity).label('quantity')
     ).filter(
         Donation.status.in_([DonationStatus.DELIVERED, DonationStatus.CONFIRMED]),
         Donation.created_at >= datetime.utcnow() - timedelta(days=365)
     ).group_by('month').order_by('month').all()
-    
+
     monthly_trend_list = [
-        {"month": m.month.strftime("%Y-%m"), "donations": m.count, "quantity": m.quantity or 0}
+        {
+            "month": m.month if isinstance(m.month, str) else m.month.strftime("%Y-%m"),
+            "donations": m.count,
+            "quantity": m.quantity or 0
+        }
         for m in monthly_trend
     ]
     
@@ -110,6 +121,8 @@ def get_heatmap(
         grid[key]["donations"] += 1
     
     for r in requests:
+        if r.ngo is None or r.ngo.lat is None or r.ngo.lng is None:
+            continue
         key = (round(r.ngo.lat, 2), round(r.ngo.lng, 2))
         grid[key]["requests"] += 1
     
