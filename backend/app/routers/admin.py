@@ -94,8 +94,7 @@ def verify_ngo(
         if approve:
             user.verified = True
             db.commit()
-            db.refresh(ngo)
-            user = ngo.user
+            db.refresh(user)
             return PendingNGOResponse(
                 id=ngo.id,
                 user_id=ngo.user_id,

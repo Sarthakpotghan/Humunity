@@ -197,7 +197,7 @@ export default function NGODashboard() {
             <div className="min-w-0">
               <div className="flex items-center gap-2 flex-wrap">
                 <h1 className="font-headline-md text-headline-md text-on-surface truncate">{user?.name}</h1>
-                {profile ? (
+                {user?.verified ? (
                   <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary-container text-on-tertiary-container font-label-sm font-bold">
                     <MaterialIcon name="verified" size={14} fill={1} />
                     Verified NGO
@@ -237,11 +237,19 @@ export default function NGODashboard() {
           </div>
         </header>
 
-        {!profile && (
+        {!user?.verified && (
           <div className="bg-surface-container-low rounded-lg p-4 flex items-center gap-3 border border-outline-variant/30">
             <MaterialIcon name="info" size={22} className="text-on-surface-variant" />
             <p className="font-body-sm text-on-surface-variant">
-              Your NGO profile is not set up yet. An admin needs to verify your registration before you can receive matches.
+              Your NGO account is pending admin verification. You will be able to receive matches once approved.
+            </p>
+          </div>
+        )}
+        {user?.verified && !profile && (
+          <div className="bg-surface-container-low rounded-lg p-4 flex items-center gap-3 border border-outline-variant/30">
+            <MaterialIcon name="info" size={22} className="text-on-surface-variant" />
+            <p className="font-body-sm text-on-surface-variant">
+              Your NGO is verified! Complete your profile to receive matches and access all features.
             </p>
           </div>
         )}
