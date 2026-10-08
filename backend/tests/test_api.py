@@ -345,5 +345,322 @@ def test_admin_list_pending_ngos(client, admin_user):
     assert resp.status_code == 200
 
 
+def test_admin_verify_ngo_persists_verified_status(client, admin_user, db_session):
+    """
+    Test that when an admin verifies an NGO:
+    1. The NGO's verified status is set to True in the database
+    2. The NGO can log in and /auth/me returns verified=True
+    3. The NGO no longer appears in the pending NGOs list
+    """
+    from app.utils.security import get_password_hash, create_access_token
+    from app.models import NgoProfile
+    
+    h = auth_header(admin_user)
+    
+    # Create an unverified NGO user with a profile
+    unverified_ngo = User(
+        email="unverified_ngo@test.com",
+        name="Unverified NGO",
+        role=UserRole.NGO,
+        password_hash=get_password_hash("password123"),
+        verified=False,
+    )
+    db_session.add(unverified_ngo)
+    db_session.commit()
+    db_session.refresh(unverified_ngo)
+    
+    ngo_profile = NgoProfile(user_id=unverified_ngo.id, reg_number="REG999")
+    db_session.add(ngo_profile)
+    db_session.commit()
+    db_session.refresh(ngo_profile)
+    
+    # Verify NGO appears in pending list
+    pending_resp = client.get("/admin/ngos/pending", headers=h)
+    assert pending_resp.status_code == 200
+    pending_ngos = pending_resp.json()
+    assert any(ngo["user_id"] == unverified_ngo.id for ngo in pending_ngos)
+    
+    # Admin verifies the NGO
+    verify_resp = client.patch(f"/admin/ngos/{ngo_profile.id}/verify", json={"approve": True}, headers=h)
+    assert verify_resp.status_code == 200
+    assert verify_resp.json()["verified"] is True
+    
+    # NGO should no longer be in pending list
+    pending_resp = client.get("/admin/ngos/pending", headers=h)
+    assert pending_resp.status_code == 200
+    pending_ngos = pending_resp.json()
+    assert not any(ngo["user_id"] == unverified_ngo.id for ngo in pending_ngos)
+    
+    # NGO logs in
+    login_resp = client.post("/auth/login", json={"email": "unverified_ngo@test.com", "password": "password123"})
+    assert login_resp.status_code == 200
+    token = login_resp.json()["access_token"]
+    ngo_auth_header = {"Authorization": f"Bearer {token}"}
+    
+    # /auth/me should return verified=True
+    me_resp = client.get("/auth/me", headers=ngo_auth_header)
+    assert me_resp.status_code == 200
+    me_data = me_resp.json()
+    assert me_data["verified"] is True, f"Expected verified=True, got {me_data}"
+
+
+def test_admin_verify_ngo_without_profile(client, admin_user, db_session):
+    """
+    Test that when an admin verifies an NGO without a profile:
+    1. The NGO's verified status is set to True in the database
+    2. The NGO can log in and /auth/me returns verified=True
+    3. The NGO no longer appears in the pending NGOs list
+    """
+    from app.utils.security import get_password_hash, create_access_token
+    
+    h = auth_header(admin_user)
+    
+    # Create an unverified NGO user WITHOUT a profile
+    unverified_ngo = User(
+        email="unverified_ngo_no_profile@test.com",
+        name="Unverified NGO No Profile",
+        role=UserRole.NGO,
+        password_hash=get_password_hash("password123"),
+        verified=False,
+    )
+    db_session.add(unverified_ngo)
+    db_session.commit()
+    db_session.refresh(unverified_ngo)
+    
+    # Verify NGO appears in pending list (has_profile=False)
+    pending_resp = client.get("/admin/ngos/pending", headers=h)
+    assert pending_resp.status_code == 200
+    pending_ngos = pending_resp.json()
+    assert any(ngo["user_id"] == unverified_ngo.id and not ngo["has_profile"] for ngo in pending_ngos)
+    
+    # Admin verifies the NGO using User.id as identifier
+    verify_resp = client.patch(f"/admin/ngos/{unverified_ngo.id}/verify", json={"approve": True}, headers=h)
+    assert verify_resp.status_code == 200
+    assert verify_resp.json()["verified"] is True
+    
+    # NGO should no longer be in pending list
+    pending_resp = client.get("/admin/ngos/pending", headers=h)
+    assert pending_resp.status_code == 200
+    pending_ngos = pending_resp.json()
+    assert not any(ngo["user_id"] == unverified_ngo.id for ngo in pending_ngos)
+    
+    # NGO logs in
+    login_resp = client.post("/auth/login", json={"email": "unverified_ngo_no_profile@test.com", "password": "password123"})
+    assert login_resp.status_code == 200
+    token = login_resp.json()["access_token"]
+    ngo_auth_header = {"Authorization": f"Bearer {token}"}
+    
+    # /auth/me should return verified=True
+    me_resp = client.get("/auth/me", headers=ngo_auth_header)
+    assert me_resp.status_code == 200
+    me_data = me_resp.json()
+    assert me_data["verified"] is True, f"Expected verified=True, got {me_data}"
+
+
+# --- Matching Tests ---
+def test_matching_no_duplicates_on_rerun(client, donor_user, ngo_user, db_session):
+    """
+    Test that running matching multiple times for the same donation
+    does not create duplicate match records (Bug 1 fix).
+    """
+    from app.models import Request, NgoProfile, RequestStatus, Match, MatchStatus, DonationStatus
+    
+    h = auth_header(donor_user)
+    
+    # Update ngo_user to have Pune coordinates (matching donation location)
+    ngo_user.lat = 18.5204
+    ngo_user.lng = 73.8567
+    db_session.commit()
+    db_session.refresh(ngo_user)
+    
+    # Create a second NGO user for multiple matches
+    ngo_user2 = User(
+        email="ngo2@test.com",
+        name="Test NGO 2",
+        role=UserRole.NGO,
+        password_hash=get_password_hash("password123"),
+        verified=True,
+        lat=18.5204,
+        lng=73.8567,
+    )
+    db_session.add(ngo_user2)
+    db_session.commit()
+    db_session.refresh(ngo_user2)
+    
+    ngo_profile2 = NgoProfile(user_id=ngo_user2.id, reg_number="REG456")
+    db_session.add(ngo_profile2)
+    db_session.commit()
+    
+    # Create requests for both NGOs
+    req1 = Request(
+        ngo_id=ngo_user.id,
+        category="clothes",
+        item_type="jacket",
+        quantity_needed=5,
+        urgency=3,
+        status=RequestStatus.ACTIVE,
+    )
+    req2 = Request(
+        ngo_id=ngo_user2.id,
+        category="clothes",
+        item_type="jacket",
+        quantity_needed=5,
+        urgency=2,
+        status=RequestStatus.ACTIVE,
+    )
+    db_session.add_all([req1, req2])
+    db_session.commit()
+    db_session.refresh(req1)
+    db_session.refresh(req2)
+    
+    # Create a donation
+    don_resp = client.post("/donations", json={
+        "category": "clothes", "item_type": "jacket", "size": "L", "age_group": "adult",
+        "gender": "unisex", "season": "winter", "condition": "good", "quantity": 10,
+        "description": "Warm jackets", "pickup_address": "Pune, Maharashtra",
+    }, headers=h)
+    assert don_resp.status_code == 201
+    don_id = don_resp.json()["id"]
+    
+    # Run matching first time
+    match_resp1 = client.post(f"/donations/{don_id}/match", headers=h)
+    assert match_resp1.status_code == 200
+    matches1 = match_resp1.json()
+    assert len(matches1) == 2
+    
+    # Reset donation status to LISTED to allow re-running matching
+    donation = db_session.query(Donation).filter(Donation.id == don_id).first()
+    donation.status = DonationStatus.LISTED
+    db_session.commit()
+    
+    # Run matching second time (should not create duplicates)
+    match_resp2 = client.post(f"/donations/{don_id}/match", headers=h)
+    assert match_resp2.status_code == 200
+    matches2 = match_resp2.json()
+    assert len(matches2) == 2, f"Expected 2 matches, got {len(matches2)}: {matches2}"
+    
+    # Verify database has only 2 pending matches for this donation
+    matches_in_db = db_session.query(Match).filter(
+        Match.donation_id == don_id,
+        Match.status == MatchStatus.PENDING
+    ).count()
+    assert matches_in_db == 2, f"Expected 2 pending matches in DB, got {matches_in_db}"
+
+
+def test_only_top_ranked_match_can_accept(client, donor_user, ngo_user, db_session):
+    """
+    Test that only the highest-scoring (rank #1) match can be accepted (Bug 2 fix).
+    """
+    from app.models import Request, NgoProfile, RequestStatus
+    
+    h = auth_header(donor_user)
+    nh = auth_header(ngo_user)
+    
+    # Update ngo_user to have Pune coordinates (matching donation location)
+    ngo_user.lat = 18.5204
+    ngo_user.lng = 73.8567
+    db_session.commit()
+    db_session.refresh(ngo_user)
+    
+    # Create a second NGO user with different urgency (lower score)
+    ngo_user2 = User(
+        email="ngo3@test.com",
+        name="Test NGO 3",
+        role=UserRole.NGO,
+        password_hash=get_password_hash("password123"),
+        verified=True,
+        lat=18.5204,
+        lng=73.8567,
+    )
+    db_session.add(ngo_user2)
+    db_session.commit()
+    db_session.refresh(ngo_user2)
+    
+    ngo_profile2 = NgoProfile(user_id=ngo_user2.id, reg_number="REG789")
+    db_session.add(ngo_profile2)
+    db_session.commit()
+    
+    # Create requests - ngo_user has higher urgency (higher score)
+    req1 = Request(
+        ngo_id=ngo_user.id,
+        category="clothes",
+        item_type="jacket",
+        quantity_needed=5,
+        urgency=5,  # High urgency = higher score
+        status=RequestStatus.ACTIVE,
+    )
+    req2 = Request(
+        ngo_id=ngo_user2.id,
+        category="clothes",
+        item_type="jacket",
+        quantity_needed=5,
+        urgency=1,  # Low urgency = lower score
+        status=RequestStatus.ACTIVE,
+    )
+    db_session.add_all([req1, req2])
+    db_session.commit()
+    db_session.refresh(req1)
+    db_session.refresh(req2)
+    
+    # Create a donation
+    don_resp = client.post("/donations", json={
+        "category": "clothes", "item_type": "jacket", "size": "L", "age_group": "adult",
+        "gender": "unisex", "season": "winter", "condition": "good", "quantity": 10,
+        "description": "Warm jackets", "pickup_address": "Pune, Maharashtra",
+    }, headers=h)
+    assert don_resp.status_code == 201
+    don_id = don_resp.json()["id"]
+    
+    # Run matching
+    match_resp = client.post(f"/donations/{don_id}/match", headers=h)
+    assert match_resp.status_code == 200
+    matches = match_resp.json()
+    assert len(matches) == 2
+    
+    # Verify matches are sorted by score descending and have rank
+    assert matches[0]["score"] >= matches[1]["score"]
+    assert matches[0]["score_breakdown"]["rank"] == 1
+    assert matches[1]["score_breakdown"]["rank"] == 2
+    
+    # The top match (rank 1) should be for ngo_user (higher urgency)
+    top_match_id = matches[0]["id"]
+    second_match_id = matches[1]["id"]
+    
+    # NGO for top match should be able to accept
+    top_ngo_token = auth_header(ngo_user)["Authorization"].replace("Bearer ", "")
+    # Actually let's login as the NGO
+    login_resp = client.post("/auth/login", json={"email": "ngo@test.com", "password": "password123"})
+    assert login_resp.status_code == 200
+    top_ngo_header = {"Authorization": f"Bearer {login_resp.json()['access_token']}"}
+    
+    # Top match NGO accepts - should succeed
+    accept_resp = client.patch(f"/donations/matches/{top_match_id}/accept", headers=top_ngo_header)
+    assert accept_resp.status_code == 200, f"Top match accept failed: {accept_resp.json()}"
+    
+    # Second match NGO tries to accept - should fail with 403
+    login_resp2 = client.post("/auth/login", json={"email": "ngo3@test.com", "password": "password123"})
+    assert login_resp2.status_code == 200
+    second_ngo_header = {"Authorization": f"Bearer {login_resp2.json()['access_token']}"}
+    
+    # First, we need to create a new donation for the second test since the first one is now accepted
+    don_resp2 = client.post("/donations", json={
+        "category": "clothes", "item_type": "jacket", "size": "L", "age_group": "adult",
+        "gender": "unisex", "season": "winter", "condition": "good", "quantity": 10,
+        "description": "Warm jackets 2", "pickup_address": "Pune, Maharashtra",
+    }, headers=h)
+    assert don_resp2.status_code == 201
+    don_id2 = don_resp2.json()["id"]
+    
+    match_resp2 = client.post(f"/donations/{don_id2}/match", headers=h)
+    assert match_resp2.status_code == 200
+    matches2 = match_resp2.json()
+    assert len(matches2) == 2
+    
+    # The second match (rank 2) should not be acceptable
+    second_match_id = matches2[1]["id"]
+    accept_resp2 = client.patch(f"/donations/matches/{second_match_id}/accept", headers=second_ngo_header)
+    assert accept_resp2.status_code == 403, f"Expected 403 for rank 2 match, got {accept_resp2.status_code}: {accept_resp2.json()}"
+
+
 if __name__ == "__main__":
     pytest.main([__file__, "-v"])
