@@ -114,16 +114,31 @@ export default function NGODashboard() {
   const MatchCard = ({ match, onAccept, onReject, saving }) => {
     const donation = match.donation;
     const donorArea = match.donor_area;
+    const rank = match.score_breakdown?.rank;
     
     return (
       <div className="bg-surface-container-low rounded-lg p-3 border border-primary/20">
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-label-md text-on-surface capitalize">{donation?.item_type}</span>
+        <div className="flex items-start justify-between gap-3 flex-wrap">
+          <div className="flex-1 min-w-0 min-w-[200px]">
+            <div className="flex items-center gap-2 mb-1 flex-wrap">
+              <span className="font-label-md text-on-surface capitalize truncate">{donation?.item_type}</span>
               <span className="chip bg-primary-container text-on-primary-container font-label-sm">
                 {(match.score * 100).toFixed(0)}% Match
               </span>
+              {rank && (
+                <span className={`chip font-label-sm ${rank === 1 ? 'bg-tertiary-container text-on-tertiary-container' : 'bg-surface-container-high text-on-surface-variant'}`}>
+                  {rank === 1 ? (
+                    <>
+                      <MaterialIcon name="emoji_events" size={14} />
+                      <span className="truncate ml-1">Rank #1 - Eligible to Accept</span>
+                    </>
+                  ) : (
+                    <>
+                      Rank #{rank} - Standby
+                    </>
+                  )}
+                </span>
+              )}
             </div>
             <div className="flex flex-wrap gap-2 text-body-sm text-on-surface-variant mb-2">
               <span className="flex items-center gap-1">
@@ -139,23 +154,32 @@ export default function NGODashboard() {
               )}
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={() => onAccept(match.id)}
-              disabled={saving}
-              className="btn-primary px-3 py-1.5"
-            >
-              <MaterialIcon name="check" size={16} /> Accept
-            </button>
-            <button
-              type="button"
-              onClick={() => onReject(match.id)}
-              disabled={saving}
-              className="btn-outline px-3 py-1.5 text-error"
-            >
-              <MaterialIcon name="close" size={16} /> Reject
-            </button>
+          <div className="flex items-center gap-2 flex-wrap shrink-0">
+            {rank === 1 && (
+              <button
+                type="button"
+                onClick={() => onAccept(match.id)}
+                disabled={saving}
+                className="btn-primary px-3 py-1.5"
+              >
+                <MaterialIcon name="check" size={16} /> Accept
+              </button>
+            )}
+            {rank === 1 && (
+              <button
+                type="button"
+                onClick={() => onReject(match.id)}
+                disabled={saving}
+                className="btn-outline px-3 py-1.5 text-error"
+              >
+                <MaterialIcon name="close" size={16} /> Reject
+              </button>
+            )}
+            {rank && rank !== 1 && (
+              <span className="btn-outline px-3 py-1.5 text-on-surface-variant" style={{cursor: 'not-allowed'}}>
+                <MaterialIcon name="hourglass_empty" size={16} /> Standby
+              </span>
+            )}
           </div>
         </div>
       </div>
@@ -260,7 +284,9 @@ export default function NGODashboard() {
               {activeNeeds.map((req) => {
                 const dl = deadlineText(req);
                 const requestMatches = matches[req.id] || [];
-                const pendingMatches = requestMatches.filter(m => m.status === 'pending');
+                const pendingMatches = requestMatches
+                  .filter(m => m.status === 'pending')
+                  .sort((a, b) => (a.score_breakdown?.rank || 999) - (b.score_breakdown?.rank || 999));
                 const acceptedMatches = requestMatches.filter(m => m.status === 'accepted');
                 const rejectedMatches = requestMatches.filter(m => m.status === 'rejected');
                 

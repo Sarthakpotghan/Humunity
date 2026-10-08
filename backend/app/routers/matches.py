@@ -66,7 +66,7 @@ def get_matches(
     if donation.donor_id != current_user.id and current_user.role != UserRole.ADMIN:
         raise HTTPException(status_code=403, detail="Not authorized")
     
-    matches = db.query(Match).filter(Match.donation_id == donation_id).all()
+    matches = db.query(Match).filter(Match.donation_id == donation_id).order_by(Match.score.desc(), Match.id.asc()).all()
     
     # Enrich with NGO name
     result = []
@@ -99,6 +99,14 @@ def accept_match(
         raise HTTPException(status_code=403, detail="Not authorized")
     if match.status != MatchStatus.PENDING:
         raise HTTPException(status_code=400, detail="Match not in pending status")
+    
+    # Only allow the top-ranked (rank 1) match to be accepted
+    rank = match.score_breakdown.get("rank") if match.score_breakdown else None
+    if rank != 1:
+        raise HTTPException(
+            status_code=403, 
+            detail="Only the highest-scoring match (rank #1) can be accepted. This match is ranked #{}.".format(rank)
+        )
     
     # Calculate distance and determine delivery mode
     donation = match.donation

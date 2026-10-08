@@ -52,6 +52,11 @@ def compute_similarity_score(donation: Donation, request: Request) -> float:
     
     from sklearn.metrics.pairwise import cosine_similarity
     sim = cosine_similarity(emb1, emb2)[0][0]
+    
+    # Boost score significantly for exact item type match (case-insensitive, trimmed)
+    if donation.item_type.strip().lower() == request.item_type.strip().lower():
+        sim = min(1.0, sim + 0.3)  # Add 0.3 boost, cap at 1.0
+    
     return max(0.0, float(sim))
 
 
@@ -146,6 +151,12 @@ def run_matching_for_donation(donation_id: int, db: Session, top_n: int = 5) -> 
     if not donation:
         return []
     
+    # Delete existing PENDING matches for this donation to avoid duplicates on re-run
+    db.query(Match).filter(
+        Match.donation_id == donation_id,
+        Match.status == MatchStatus.PENDING
+    ).delete(synchronize_session=False)
+    
     requests = db.query(Request).join(User, Request.ngo_id == User.id).filter(
         Request.category == donation.category,
         Request.status == RequestStatus.ACTIVE,
@@ -166,18 +177,29 @@ def run_matching_for_donation(donation_id: int, db: Session, top_n: int = 5) -> 
         score, breakdown = calculate_match_score(donation, req)
         scored_requests.append((req, score, breakdown))
     
-    scored_requests.sort(key=lambda x: x[1], reverse=True)
+    # Sort by: 1) score desc, 2) similarity desc, 3) request.created_at desc (newer first)
+    scored_requests.sort(
+        key=lambda x: (x[1], x[2].get("similarity", {}).get("value", 0), x[0].created_at),
+        reverse=True
+    )
     top_requests = scored_requests[:top_n]
     
     matches = []
-    for req, score, breakdown in top_requests:
+    for rank, (req, score, breakdown) in enumerate(top_requests, start=1):
         match = Match(
             donation_id=donation.id,
             request_id=req.id,
             score=score,
             score_breakdown=breakdown,
-            status=MatchStatus.PENDING
+            status=MatchStatus.PENDING,
+            # Store rank in score_breakdown for frontend/backend reference
+            # rank 1 = top match (eligible to accept)
         )
+        # Add rank to breakdown for easy access
+        breakdown_with_rank = breakdown.copy()
+        breakdown_with_rank["rank"] = rank
+        match.score_breakdown = breakdown_with_rank
+        
         db.add(match)
         matches.append(match)
     

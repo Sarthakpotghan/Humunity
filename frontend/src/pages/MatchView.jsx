@@ -165,6 +165,21 @@ export default function MatchView() {
                       </div>
                     </div>
                   )}
+                  {breakdown.rank && (
+                    <div className="mt-4 flex items-center gap-2">
+                      {breakdown.rank === 1 ? (
+                        <>
+                          <MaterialIcon name="emoji_events" size={18} className="text-tertiary" />
+                          <span className="font-label-md text-on-surface text-tertiary font-bold">Rank #1 — Eligible to Accept</span>
+                        </>
+                      ) : (
+                        <>
+                          <MaterialIcon name="hourglass_empty" size={18} className="text-on-surface-variant" />
+                          <span className="font-label-md text-on-surface-variant">Rank #{breakdown.rank} — Standby</span>
+                        </>
+                      )}
+                    </div>
+                  )}
                 </div>
               );
             })}
