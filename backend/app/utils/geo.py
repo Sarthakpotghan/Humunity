@@ -1,34 +1,25 @@
-import math
-from typing import Tuple, List
+"""Shared geocoding utilities."""
+from typing import Optional, Tuple
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut, GeocoderServiceError
+from app.config import get_settings
+
+settings = get_settings()
 
 
-def haversine(lat1: float, lon1: float, lat2: float, lon2: float) -> float:
-    R = 6371
-    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
-    dlat = lat2 - lat1
-    dlon = lon2 - lon1
-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
-    c = 2 * math.asin(math.sqrt(a))
-    return R * c
-
-
-def bbox_from_point(lat: float, lng: float, radius_km: float) -> Tuple[float, float, float, float]:
-    lat_delta = radius_km / 111.0
-    lng_delta = radius_km / (111.0 * math.cos(math.radians(lat)))
-    return (
-        lat - lat_delta,
-        lat + lat_delta,
-        lng - lng_delta,
-        lng + lng_delta,
-    )
-
-
-def points_within_radius(
-    center_lat: float, center_lng: float,
-    points: List[Tuple[float, float]],
-    radius_km: float
-) -> List[Tuple[float, float]]:
-    return [
-        (lat, lng) for lat, lng in points
-        if haversine(center_lat, center_lng, lat, lng) <= radius_km
-    ]
+def geocode_address(address: str) -> Tuple[Optional[float], Optional[float]]:
+    """
+    Geocode an address string to (latitude, longitude) using Nominatim.
+    Returns (None, None) if geocoding fails.
+    """
+    if not address or not address.strip():
+        return None, None
+    
+    try:
+        geolocator = Nominatim(user_agent=settings.NOMINATIM_USER_AGENT)
+        location = geolocator.geocode(address.strip(), timeout=10)
+        if location:
+            return location.latitude, location.longitude
+    except (GeocoderTimedOut, GeocoderServiceError):
+        pass
+    return None, None

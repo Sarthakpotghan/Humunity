@@ -108,8 +108,8 @@ export default function Register() {
               <input id="phone" name="phone" type="tel" autoComplete="tel" value={formData.phone} onChange={handleChange} className="field" placeholder="+91 ..." />
             </div>
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="address" className="font-label-md text-on-surface">Address (optional)</label>
-              <input id="address" name="address" type="text" autoComplete="street-address" value={formData.address} onChange={handleChange} className="field" placeholder="City, area" />
+              <label htmlFor="address" className="font-label-md text-on-surface">Address *</label>
+              <input id="address" name="address" type="text" autoComplete="street-address" required value={formData.address} onChange={handleChange} className="field" placeholder="City, area (required for proximity matching)" />
             </div>
           </div>
 

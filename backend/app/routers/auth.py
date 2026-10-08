@@ -5,8 +5,12 @@ from app.database import get_db
 from app.models import User, UserRole, NgoProfile
 from app.schemas import UserCreate, UserLogin, UserResponse, Token, NgoProfileCreate, NgoProfileResponse
 from app.utils.security import verify_password, get_password_hash, create_access_token, get_current_user, require_role
+from app.config import get_settings
+from app.utils.geo import geocode_address
 
 router = APIRouter(prefix="/auth", tags=["auth"])
+
+settings = get_settings()
 
 
 @router.post("/register", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
@@ -16,6 +20,29 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Email already registered")
     
     hashed_password = get_password_hash(user_in.password)
+    
+    # Determine latitude and longitude
+    lat = user_in.lat if hasattr(user_in, 'lat') and user_in.lat is not None else None
+    lng = user_in.lng if hasattr(user_in, 'lng') and user_in.lng is not None else None
+    
+    # If no explicit lat/lng provided, try to geocode the address (required field)
+    if lat is None or lng is None:
+        if user_in.address:
+            geocoded_lat, geocoded_lng = geocode_address(user_in.address)
+            if geocoded_lat is not None and geocoded_lng is not None:
+                lat = geocoded_lat
+                lng = geocoded_lng
+            else:
+                raise HTTPException(
+                    status_code=400,
+                    detail="Invalid address: Could not resolve geographic coordinates. Please provide a valid city, area, or postal code."
+                )
+        else:
+            raise HTTPException(
+                status_code=400,
+                detail="Address is required to calculate donation proximity."
+            )
+    
     user = User(
         email=user_in.email,
         name=user_in.name,
@@ -23,7 +50,9 @@ def register(user_in: UserCreate, db: Session = Depends(get_db)):
         phone=user_in.phone,
         address=user_in.address,
         password_hash=hashed_password,
-        verified=user_in.role != UserRole.NGO
+        verified=user_in.role != UserRole.NGO,
+        lat=lat,
+        lng=lng,
     )
     db.add(user)
     db.commit()
@@ -69,6 +98,13 @@ def create_ngo_profile(
     existing = db.query(NgoProfile).filter(NgoProfile.user_id == current_user.id).first()
     if existing:
         raise HTTPException(status_code=400, detail="NGO profile already exists")
+    
+    # Ensure NGO user has coordinates (should be set during registration)
+    if current_user.lat is None or current_user.lng is None:
+        raise HTTPException(
+            status_code=400,
+            detail="User coordinates are missing. Please ensure address was provided during registration."
+        )
     
     profile = NgoProfile(
         user_id=current_user.id,

@@ -29,8 +29,7 @@ export default function DonationForm() {
     condition: 'good',
     quantity: 1,
     description: '',
-    lat: '',
-    lng: '',
+    pickup_address: '',
     available_from: '',
     available_to: '',
   });
@@ -71,8 +70,7 @@ export default function DonationForm() {
       const payload = {
         ...formData,
         quantity: parseInt(formData.quantity, 10),
-        lat: formData.lat === '' ? undefined : parseFloat(formData.lat),
-        lng: formData.lng === '' ? undefined : parseFloat(formData.lng),
+        pickup_address: formData.pickup_address === '' ? undefined : formData.pickup_address,
         available_from: formData.available_from ? new Date(formData.available_from).toISOString() : undefined,
         available_to: formData.available_to ? new Date(formData.available_to).toISOString() : undefined,
       };
@@ -222,19 +220,15 @@ export default function DonationForm() {
           </div>
 
           <div className="flex flex-col gap-3 border-t border-outline-variant/30 pt-5">
-            <span className="font-headline-sm text-headline-sm text-on-surface">Location &amp; Availability</span>
+            <span className="font-headline-sm text-headline-sm text-on-surface">Location & Availability</span>
             <p className="font-body-sm text-on-surface-variant">
-              Leave coordinates blank to use your profile location. Optional latitude/longitude numbers help volunteers find you.
+              Leave blank to use your registered profile location. Enter a specific city or area if the items are located elsewhere.
             </p>
+            <div className="flex flex-col gap-1.5">
+              <label className="font-label-md text-on-surface">Pickup Address</label>
+              <input name="pickup_address" type="text" placeholder="e.g., Pune, Maharashtra" value={formData.pickup_address} onChange={handleChange} className="field" />
+            </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1.5">
-                <label className="font-label-md text-on-surface">Latitude</label>
-                <input name="lat" type="number" step="any" placeholder="e.g., 28.6139" value={formData.lat} onChange={handleChange} className="field" />
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label className="font-label-md text-on-surface">Longitude</label>
-                <input name="lng" type="number" step="any" placeholder="e.g., 77.2090" value={formData.lng} onChange={handleChange} className="field" />
-              </div>
               <div className="flex flex-col gap-1.5">
                 <label className="font-label-md text-on-surface">Available From</label>
                 <input name="available_from" type="datetime-local" value={formData.available_from} onChange={handleChange} className="field" />

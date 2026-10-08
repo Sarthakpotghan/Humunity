@@ -23,6 +23,9 @@ class UserBase(BaseModel):
 
 class UserCreate(UserBase):
     password: str = Field(..., min_length=8)
+    lat: Optional[float] = None
+    lng: Optional[float] = None
+    address: str
 
 
 class UserUpdate(BaseModel):
@@ -122,8 +125,19 @@ class DonationBase(BaseModel):
     available_to: Optional[datetime] = None
 
 
-class DonationCreate(DonationBase):
-    pass
+class DonationCreate(BaseModel):
+    category: ItemCategory
+    item_type: str = Field(..., max_length=100)
+    size: Optional[str] = None
+    age_group: Optional[str] = None
+    gender: Optional[str] = None
+    season: Optional[str] = None
+    condition: ItemCondition
+    quantity: int = Field(..., gt=0)
+    description: Optional[str] = None
+    pickup_address: Optional[str] = None
+    available_from: Optional[datetime] = None
+    available_to: Optional[datetime] = None
 
 
 class DonationUpdate(BaseModel):

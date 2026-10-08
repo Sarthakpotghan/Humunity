@@ -6,8 +6,7 @@ from app.models import Donation, DonationPhoto, DonationStatus, User, UserRole
 from app.schemas import DonationCreate, DonationUpdate, DonationResponse, DonationPhotoResponse
 from app.utils.security import get_current_user, require_role
 from app.services.nlp import extract_donation_fields
-from app.services.maps import geocode_user_address
-import asyncio
+from app.utils.geo import geocode_address
 import os
 import shutil
 from uuid import uuid4
@@ -29,21 +28,24 @@ def create_donation(
     if donation_in.description:
         extracted = extract_donation_fields(donation_in.description)
     
-    # Use provided lat/lng, fall back to user's stored lat/lng
-    lat = donation_in.lat or current_user.lat
-    lng = donation_in.lng or current_user.lng
+    # Determine lat/lng from pickup_address, user profile, or explicit lat/lng
+    lat = None
+    lng = None
     
-    # If no coordinates but user has address, geocode it
-    if (lat is None or lng is None) and current_user.address:
-        try:
-            coords = asyncio.run(geocode_user_address(current_user.address))
-            if coords:
-                lat, lng = coords
-                # Cache on user for future use
-                current_user.lat = lat
-                current_user.lng = lng
-        except Exception:
-            pass  # Gracefully ignore geocoding failure
+    if donation_in.pickup_address:
+        # Geocode the provided pickup address
+        geocoded_lat, geocoded_lng = geocode_address(donation_in.pickup_address)
+        if geocoded_lat is not None and geocoded_lng is not None:
+            lat, lng = geocoded_lat, geocoded_lng
+        else:
+            raise HTTPException(
+                status_code=400,
+                detail="Could not resolve pickup address. Please provide a valid location or leave blank to use your profile address."
+            )
+    else:
+        # Fall back to user's stored lat/lng
+        lat = current_user.lat
+        lng = current_user.lng
     
     donation = Donation(
         donor_id=current_user.id,

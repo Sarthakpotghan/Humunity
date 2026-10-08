@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     MAX_MATCH_DISTANCE_KM: float = 25.0
     DROPOFF_THRESHOLD_KM: float = 5.0
     VOLUNTEER_PICKUP_MAX_KM: float = 25.0
+    # Default coordinates for Pune, India (used when NGO registers without address)
+    DEFAULT_NGO_LAT: float = 18.5204
+    DEFAULT_NGO_LNG: float = 73.8567
 
     class Config:
         env_file = ".env"
